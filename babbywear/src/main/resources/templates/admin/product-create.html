@@ -1,0 +1,127 @@
+<!--<!DOCTYPE html>-->
+<!--<html xmlns:th="http://www.thymeleaf.org">-->
+<!--<head>-->
+<!--    <meta charset="UTF-8">-->
+<!--    <title>Title</title>-->
+<!--</head>-->
+<!--<body>-->
+
+<!--<div class="container mt-3">-->
+<!--<form th:action="@{/product/add-product}" th:object="${product}" method="post" enctype="multipart/form-data">-->
+<!--    <div class="modal-body">-->
+<!--        <div class="form-group">&ndash;&gt;-->
+<!--            <label for="productName">Product Name:</label>-->
+<!--            <input type="text" class="form-control" id="productName" name="productName" required>-->
+<!--            <span class="text-danger" th:if="${#fields.hasErrors('productName')}" th:errors="*{productName}"></span>-->
+
+<!--        </div>&ndash;&gt;-->
+<!--        <div class="form-group">-->
+<!--            <label for="price">Price:</label>-->
+<!--            <input type="number" class="form-control" id="price" name="price" required>-->
+<!--        </div>-->
+<!--        <div class="form-group">-->
+<!--            <label for="description">Description:</label>-->
+<!--            <textarea class="form-control" id="description" name="description" required></textarea>-->
+<!--        </div>-->
+
+<!--        <div class="form-group">-->
+<!--            <label for="categoryId">Category:</label>-->
+<!--            <select class="form-control" id="categoryId" name="categoryId" required>-->
+<!--                <option th:each="category : ${categories}" th:value="${category.id}" th:text="${category.categoryName}"></option>-->
+<!--            </select>-->
+<!--        </div>-->
+
+<!--        <div class="form-group">-->
+<!--            <label for="images">Images:</label>-->
+<!--            <input type="file"  accept="image/jpeg,image/png" class="form-control" id="images" name="images" multiple="multiple">-->
+<!--        </div>-->
+<!--    </div>-->
+<!--    <div class="modal-footer">-->
+<!--        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>-->
+<!--        <button type="submit" class="btn btn-primary">Add Product</button>-->
+<!--    </div>-->
+<!--  </form>-->
+<!--</div>-->
+
+
+<!--</body>-->
+<!--</html>-->
+
+
+
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign up</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card bg-light">
+                <div class="card-body">
+                    <h2 class="text-center mb-4">Add Products</h2>
+                    <form th:action="@{/product/add-product}" th:object="${product}" method="post" enctype="multipart/form-data">
+                        <div class="form-group">
+                            <label for="productName">Product Name:</label>
+                            <input type="text" class="form-control" id="productName" name="productName" required>
+                            <span class="text-danger" th:if="${#fields.hasErrors('productName')}" th:errors="*{productName}"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="price">Price:</label>
+                            <input type="number" class="form-control" id="price" name="price" required>
+                        </div>
+
+
+                        <div class="form-group">
+                            <label for="description">Description:</label>
+                            <textarea class="form-control" id="description" name="description" required></textarea>
+                        </div>
+
+
+                        <div class="form-group">
+                            <label for="categoryId">Category:</label>
+                            <select class="form-control" id="categoryId" name="categoryId" required>
+                                <option th:each="category : ${categories}" th:value="${category.id}" th:text="${category.categoryName}"></option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="images">Images:</label>
+                            <input type="file"  accept="image/jpeg,image/png" class="form-control" id="images" name="images" multiple="multiple">
+                        </div>
+
+                        <div class="modal-footer">
+                            <a th:href="@{/product/product-page}">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            </a>
+                            <button type="submit" class="btn btn-primary">Add Product</button>
+
+                        </div>
+
+
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.bundle.min.js"></script>
+<!--<script>-->
+<!--        document.getElementById("signupForm").addEventListener("submit", () => {-->
+<!--            var password = document.getElementById("password").value;-->
+<!--            var confirmPassword = document.getElementById("confirmPassword").value;-->
+
+<!--            if (password !== confirmPassword) {-->
+<!--                alert("Passwords do not match!");-->
+<!--            }-->
+<!--        });-->
+<!--    </script>-->
+</body>
+</html>
