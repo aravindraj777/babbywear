@@ -620,13 +620,64 @@
                                         <a class="ratings-text" href="#product-review-link" id="review-link">( 2 Reviews )</a>
                                     </div><!-- End .rating-container -->
 
-                                    <div class="product-price " th:text="${product.price}">
+                                    <div class="product-price " id="variantPrice" th:text="${variants[0].price}">
 
                                     </div><!-- End .product-price -->
 
                                     <div class="product-content">
                                         <p th:text="${product.description}"> </p>
                                     </div><!-- End .product-content -->
+
+<!--                                    <div class="variant-selection mt-3">-->
+<!--                                        <label for="variant">Select Variant:</label>-->
+<!--                                        <select id="variant" class="form-control">-->
+<!--                                            <option th:each="variant : ${variants}" th:value="${variant.id}" th:data-variant-price="${variant.price}">-->
+<!--                                                ${variant.variantName}-->
+<!--                                            </option>-->
+<!--                                        </select>-->
+<!--                                    </div>-->
+
+
+<!--                                    <div class="variant-selection mt-3">-->
+<!--                                        <label for="variant">Select Variant:</label>-->
+<!--                                        <select id="variant" class="form-control">-->
+<!--                                            <option th:each="variant : ${variants}" th:value="${variant.id}">-->
+<!--                                                ${variant.variantName}-->
+<!--                                            </option>-->
+<!--                                        </select>-->
+<!--                                    </div>-->
+
+<!--                                    <div class="variant-price mt-2">-->
+<!--                                        <label>Variant Price:</label>-->
+<!--                                        <span id="variantPrice"></span>-->
+<!--                                    </div>-->
+
+
+<!--                                    <form th:action="@{/get-variant/{id}(id=${id})}" method="post">-->
+                                    <div class="variant-selection mt-3">
+                                        <label for="variant">Select Variant:</label>
+                                        <select id="variant" class="form-control" onchange="variantSelect()">
+                                            <option value="0">Select</option>
+                                            <option th:each="variant : ${variants}" th:value="${variant.id}" th:text="  ${variant.variantName}">
+                                                variant name
+                                            </option>
+                                        </select>
+                                    </div>
+
+<!--                                    <div class="variant-price mt-2" >-->
+<!--                                        <label>Variant Price:</label>-->
+<!--                                        <span id="variantPrice"></span>-->
+<!--                                    </div>-->
+<!--                                    </form>-->
+
+
+                                    <form th:action="@{/add-to-cart}" method="post">
+                                        <input type="hidden" name="variantId" id="hiddenVariantId">
+                                        <input type="submit" class="btn btn-primary" value="Add to Cart">
+                                    </form>
+
+
+
 
                                     <div class="details-filter-row details-row-size">
                                         <label>Color:</label>
@@ -1455,6 +1506,53 @@
     <script src="/assets/js/jquery.magnific-popup.min.js"></script>
     <!-- Main JS File -->
     <script src="/assets/js/main.js"></script>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+<!--    $(document).ready(function() {-->
+<!--        var variantSelector = $('#variant');-->
+<!--        var variantPriceElement = $('#variantPrice');-->
+
+<!--        variantSelector.change(function() {-->
+<!--            var selectedVariantId = variantSelector.val();-->
+
+<!--            // Send AJAX request to fetch variant price-->
+<!--            $.get('/get-variant-price/' + selectedVariantId, function(data) {-->
+<!--                variantPriceElement.text(data.price);-->
+<!--            });-->
+<!--        });-->
+<!--    });-->
+
+    function variantSelect(){
+        const variant = document.getElementById('variant').value;
+        const variantId = +variant;
+        console.log(typeof(variantId));
+        console.log("vanno?",variantId);
+<!--        const options = {-->
+<!--            method: 'post',-->
+<!--            headers : 'Content-Type':'application/json',-->
+<!--            body: JSON.Stringify(variantId)-->
+<!--        }-->
+try{
+fetch(`/get-variant/`+variantId)
+        .then(response => response.json())
+            .then(data => {
+            console.log(data)
+            document.getElementById('variantPrice').innerHTML = data.price;
+            })
+
+
+}
+catch (e){
+ console.log(e.message)
+}
+
+    }
+
+</script>
+
+
+
 </body>
 
 

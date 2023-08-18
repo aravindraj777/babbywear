@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Create Variant</title>
+</head>
+<body>
+<h1>Create Variant</h1>
+<!--<form th:action="@{/variant/create}" th:object="${variant}" method="post">-->
+<!--  <input type="hidden" name="productId" th:value="${variant.product.id}" /> &lt;!&ndash; Add this line &ndash;&gt;-->
+<!--  <select th:field="*{products}" required>-->
+<!--    <option th:each="product : ${products}" th:value="${product.id}" th:text="${product.productName}"></option>-->
+<!--  </select>-->
+<!--  <input type="text" th:field="*{variantName}" placeholder="Variant Name" required>-->
+<!--  <input type="number" th:field="*{price}" placeholder="Price" step="0.01" required>-->
+<!--  <input type="number" th:field="*{stock}" placeholder="stock" step="0.01" required>-->
+<!--  &lt;!&ndash;  <input type="text" th:field="*{description}" placeholder="description"  required>&ndash;&gt;-->
+<!--  <button type="submit">Create Variant</button>-->
+<!--</form>-->
+
+
+
+<form th:action="@{/variant/create}" th:object="${variant}" method="post">
+<!--  <input type="hidden" name="productId" th:value="${variant.product.id}" />-->
+  <select th:field="*{products}" required>
+    <option th:each="product : ${products}" th:value="${product.id}" th:text="${product.productName}"></option>
+  </select>
+  <input type="text" th:field="*{variantName}" placeholder="Variant Name" required>
+  <input type="number" th:field="*{price}" placeholder="Price"  required>
+  <input type="number" th:field="*{stock}" placeholder="stock" required>
+  <!-- Add other input fields for description, stock, etc. -->
+  <button type="submit">Create Variant</button>
+</form>
+
+</body>
+</html>

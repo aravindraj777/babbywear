@@ -1,3 +1,42 @@
+<!-- src/main/resources/templates/admin/variant.html -->
+
+<!--<!DOCTYPE html>-->
+<!--<html xmlns:th="http://www.thymeleaf.org">-->
+<!--<head>-->
+<!--    <title>Variant List</title>-->
+<!--</head>-->
+<!--<body>-->
+<!--<h1>Variant List</h1>-->
+<!--<a th:href="@{/variant/create}" class="btn btn-primary">Add Variant</a>-->
+<!--<table>-->
+<!--    <thead>-->
+<!--    <tr>-->
+<!--        <th>Variant ID</th>-->
+<!--        <th>Variant Name</th>-->
+<!--        <th>Variant Price</th>-->
+<!--        <th>Product Name</th>-->
+<!--    </tr>-->
+<!--    </thead>-->
+<!--    <tbody>-->
+<!--    <tr th:each="variant : ${variants}">-->
+<!--        <td th:text="${variant.id}"></td>-->
+<!--        <td th:text="${variant.variantName}"></td>-->
+<!--        <td th:text="${variant.price}"></td>-->
+<!--        <td th:text="${variant.stock}"></td>-->
+<!--        <td th:text="${variant.products.productName}"></td>-->
+<!--    </tr>-->
+<!--    </tbody>-->
+<!--</table>-->
+<!--</body>-->
+<!--</html>-->
+
+
+
+
+
+<!--&lt;!&ndash;&ndash;&gt;-->
+
+
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
@@ -117,11 +156,11 @@
                 </a>
             </li>
             <li class="nav-item menu-items">
-                <a class="nav-link" href="pages/tables/basic-table.html">
+                <a class="nav-link" th:href="@{/user/user-panel}">
               <span class="menu-icon">
                 <i class="mdi mdi-table-large"></i>
               </span>
-                    <span class="menu-title">Tables</span>
+                    <span class="menu-title">Users</span>
                 </a>
             </li>
             <li class="nav-item menu-items">
@@ -360,14 +399,14 @@
         <!-- partial -->
         <div class="main-panel">
             <div class="page-header">
-                <h3 class="page-title mt-4">Products</h3>
+                <h3 class="page-title mt-4">UserList</h3>
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb">
                         <!-- Change the button trigger below -->
                         <li class="breadcrumb-item">
                             <!-- Button to trigger the modal -->
-                            <a  th:href="@{/product/create}" type="button" class="btn btn-primary">
-                            <button>+Add products  </button></a>
+                            <!--                            <a  th:href="@{/product/create}" type="button" class="btn btn-primary">-->
+                            <!--                                <button>+Add products  </button></a>-->
                         </li>
                     </ol>
                 </nav>
@@ -385,47 +424,40 @@
                         <div class="card bg-dark">
                             <div class="card-body">
                                 <div class="table-container">
+                                    <a th:href="@{/variant/create}" class="btn btn-primary">Add Variant</a>
                                     <table class="table table-bordered">
-                                        <thead>
-                                        <tr>
-                                            <th>No</th>
-                                            <th>Product Name</th>
-                                            <th>Image</th>
-                                            <th>Price</th>
-                                            <th>Description</th>
-                                            <th>Category</th>
-                                            <th>variants</th>
-                                            <th>Action</th>
-                                        </tr>
-                                        </thead>
-                                        <tbody>
-                                        <!-- Loop through the products and display the information -->
-                                        <tr th:each="products, iterStat : ${product}">
-                                            <td th:text="${iterStat.count}"></td>
-                                            <td th:text="${products.productName}"></td>
-                                            <td>
-                                                <!-- Display product images -->
-                                                <img th:each="image : ${products.images}" th:src="${'/productImages/'+image.imageUrl}" alt="" style="max-width: 100px;">
-                                            </td>
-                                            <td th:text="${products.price}"></td>
-                                            <td th:text="${products.description}"></td>
-                                            <td th:text="${ products.category.categoryName }"></td>
-                                            <td>
-                                                <span th:each="variant:${products.variant}">
-                                                    <p th:text="${variant.variantName}"></p>
-                                                </span>
-                                            </td>
-                                            <td>
-                                                <!-- Add action buttons for each product -->
-<!--                                                <a th:href="@{'/admin/edit-product/' + ${product.id}}" class="btn btn-primary btn-sm">Edit</a>-->
-<!--                                                <a th:href="@{/product/update/{id}(id=  ${products.id})}" class="btn btn-warning btn-sm">Update</a>-->
-                                                <a th:href="@{/product/delete/{id}(id=${products.id})}" class="btn btn-danger btn-sm" onclick="if (!(confirm('Are you sure you want to delete this product?'))) return false">Delete</a>
-                                                <a th:href="@{/product/update/{id}(id=${products.id})}" class="btn btn-danger btn-sm" >Update</a>
 
-                                            </td>
-                                        </tr>
-                                        </tbody>
+
+                                            <thead>
+                                            <tr>
+                                                <th>Variant ID</th>
+                                                <th>Variant Name</th>
+                                                <th>Variant Price</th>
+                                                <th>Stock</th>
+                                                <th>productName</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            <tr th:each="variant : ${variants}">
+                                                <td th:text="${variant.id}"></td>
+                                                <td th:text="${variant.variantName}"></td>
+                                                <td th:text="${variant.price}"></td>
+                                                <td th:text="${variant.stock}"></td>
+                                                <td th:text="${variant.products.productName}"></td>
+                                            </tr>
+                                            </tbody>
+
                                     </table>
+
+<!--                                    <div th:if="${users.totalPages > 1}">-->
+<!--                                        <div class="pagination">-->
+<!--                                            <a th:if="${users.hasPrevious}" th:href="@{/user/user-panel(pageNo=${users.number - 1})}"> <-pre  </a>-->
+<!--                                            <span th:each="pageNumber : ${#numbers.sequence(0, users.totalPages - 1)}">-->
+<!--                                               <a th:href="@{/user/user-panel(pageNo=${pageNumber})}" th:text="${pageNumber + 1}"></a>-->
+<!--                                              </span>-->
+<!--                                            <a th:if="${users.hasNext}" th:href="@{/user/user-panel(pageNo=${users.number + 1})}">Next-></a>-->
+<!--                                        </div>-->
+<!--                                    </div>-->
                                 </div>
                             </div>
                         </div>
@@ -463,28 +495,31 @@
 <!-- endinject -->
 <!-- Custom js for this page -->
 <script src="/admin/adminassets/js/dashboard.js"></script>
+
+
+<script>
+    function toggleBlockUnblock(userId, isBlocked) {
+        const toggleButton = document.getElementById("toggleButton");
+
+        // Send an AJAX request to the server
+        fetch(`/user/block/${userId}?action=${isBlocked ? 'unblock' : 'block'}`, {
+            method: "GET"
+        })
+        .then(response => response.text())
+        .then(() => {
+            if (isBlocked) {
+                toggleButton.classList.remove("btn-danger");
+                toggleButton.classList.add("btn-primary");
+            } else {
+                toggleButton.classList.remove("btn-primary");
+                toggleButton.classList.add("btn-danger");
+            }
+        })
+        .catch(error => console.error("Error:", error));
+    }
+</script>
+
+
 <!-- End custom js for this page -->
-
-
-<!--<script>-->
-<!--  function validateCategoryName() {-->
-<!--    var categoryNameInput = document.getElementById('categoryName');-->
-<!--    var categoryName = categoryNameInput.value.trim().toLowerCase();-->
-
-
-<!--    var existingCategoryNames = document.querySelectorAll('.category-name');-->
-
-
-<!--    for (var i = 0; i < existingCategoryNames.length; i++) {-->
-<!--      if (categoryName === existingCategoryNames[i].innerText.trim().toLowerCase()) {-->
-<!--        alert('Category name already exists. Please enter a different name.');-->
-<!--        return false;-->
-<!--      }-->
-<!--    }-->
-
-<!--    return true;-->
-<!--  }-->
-<!--</script>-->
-
 </body>
 </html>
