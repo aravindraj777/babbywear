@@ -58,36 +58,7 @@ public class UserServiceImpl implements UserService{
 
 
 
-//    @Override
-//    public  boolean saveUser(UserDto userDto) {
-//        Optional<UserInfo> userByUserName = userRepository.findByUserName(userDto.getUserName());
-//        Optional<UserInfo> userByEmail = userRepository.findByEmail(userDto.getEmail());
-//        Optional<UserInfo> userByPhone = userRepository.findByPhone(userDto.getPhone());
-//
-//        if(userByUserName.isPresent() || userByEmail.isPresent() || userByPhone.isPresent()){
-//            flag  = 1;
-//            return false;
-//        }
-//        else {
-//            UserInfo userInfo = new UserInfo();
-//            userInfo.setFirstName(userDto.getFirstName());
-//            userInfo.setLastName(userDto.getLastName());
-//            userInfo.setUserName(userDto.getUserName());
-//            userInfo.setEmail(userDto.getEmail());
-//            userInfo.setPhone(userDto.getPhone());
-//            userInfo.setPassword(passwordEncoder.encode(userDto.getPassword()));
-//            userInfo.setEnabled(true);
-//
-//
-//
-//            Role role = roleRepository.roleName("ROLE_USER");
-//            userInfo.setRole(role);
-//            userRepository.save(userInfo);
-//
-//            return true;
-//        }
-//
-//    }
+
 
 
     @Override
@@ -124,7 +95,7 @@ public class UserServiceImpl implements UserService{
                 .role(role)
                 .otp(otp)
                 .enabled(true)
-//                .isDeleted(true)
+
                 .build();
         userRepository.save(newUser);
 
@@ -141,15 +112,15 @@ public class UserServiceImpl implements UserService{
 
 
     public boolean verifyAccount(OtpDto otpDto) {
-        System.out.println(otpDto);
+
         UserInfo user = userRepository.findById(otpDto.getId())
 
                 .orElseThrow(() -> new RuntimeException("User not found with this email: " ));
-        System.out.println(user);
+
 
         if (user.getOtp().equals(otpDto.getOtp()) && Duration.between(user.getOtpGeneratedTime(),
                 LocalDateTime.now()).getSeconds() < (30 * 60)) {
-            System.out.println(user.getOtp());
+
             user.setEnabled(true);
 
 
@@ -176,7 +147,7 @@ public class UserServiceImpl implements UserService{
     public UserInfo findByUsername(String username) {
         Optional<UserInfo> userOptional = userRepository.findByUserName(username);
         if (userOptional.isPresent()) {
-            System.out.println(userOptional);
+
             return userOptional.get();
         } else {
             throw new NoSuchElementException("User not found with username: " + username);
@@ -231,7 +202,7 @@ public class UserServiceImpl implements UserService{
     @Override
     public UserInfo forgetPass(ResetPasswordDTO resetPasswordDTO) {
         Optional<UserInfo> userEmail = userRepository.findByEmail(resetPasswordDTO.getEmail());
-        System.out.println(userEmail+"anbfsn");
+
 
         if (userEmail.isPresent()) {
             UserInfo user = userEmail.get();
@@ -247,7 +218,7 @@ public class UserServiceImpl implements UserService{
 
         } else {
             throw new UsernameNotFoundException("gsg");
-//            System.out.println("Email not present");
+
         }
 
     }
@@ -258,7 +229,7 @@ public class UserServiceImpl implements UserService{
 
         UserInfo user1=user.get();
         if (user1.getOtp().equals(resetPassDto.getOtp())){
-            System.out.println("otp success");
+
             return true;
 
         }
@@ -274,9 +245,9 @@ public class UserServiceImpl implements UserService{
 
         Optional<UserInfo> userPassword = userRepository.findByEmail(resetPassDto.getEmail());
         UserInfo user1=userPassword.get();
-        System.out.println(user1);
+
         user1.setPassword(passwordEncoder.encode(resetPassDto.getPassword()));
-        System.out.println("afkjsb");
+
         userRepository.save(user1);
         return null;
     }
@@ -294,9 +265,7 @@ public class UserServiceImpl implements UserService{
     }
 
 
-//    public void saveDto(UserDto userDto) {
-//        userRepository.save(userDto);
-//    }
+
 
 
     @Override

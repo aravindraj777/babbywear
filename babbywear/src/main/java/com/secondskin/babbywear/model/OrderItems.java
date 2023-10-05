@@ -4,8 +4,7 @@ package com.secondskin.babbywear.model;
 import lombok.*;
 
 import javax.persistence.*;
-import javax.print.attribute.standard.MediaSize;
-import java.util.List;
+
 
 @AllArgsConstructor
 @NoArgsConstructor

@@ -3,7 +3,7 @@ package com.secondskin.babbywear.dto;
 
 import lombok.*;
 
-import javax.annotation.processing.Generated;
+
 
 @Getter
 @Setter

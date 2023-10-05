@@ -32,7 +32,7 @@ public class StockServiceImpl implements StockService {
             Variant variant = orderItem.getVariant();
             int orderedQuantity = orderItem.getQuantity();
 
-//            stockUpdatesOfVariant.putIfAbsent(variant,0);
+
 
             stockUpdatesOfVariant.put(variant,stockUpdatesOfVariant.getOrDefault(variant,0)+orderedQuantity);
         }

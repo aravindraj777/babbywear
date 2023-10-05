@@ -1,11 +1,11 @@
 package com.secondskin.babbywear.controller.admin;
 
 
-import com.secondskin.babbywear.dto.ProductDto;
+
 import com.secondskin.babbywear.model.Category;
 import com.secondskin.babbywear.model.Images;
 import com.secondskin.babbywear.model.Products;
-import com.secondskin.babbywear.model.UserInfo;
+
 import com.secondskin.babbywear.repository.ProductRepository;
 import com.secondskin.babbywear.service.category.CategoryService;
 import com.secondskin.babbywear.service.image.ImageService;
@@ -14,13 +14,11 @@ import com.secondskin.babbywear.service.product.ProductService;
 import com.secondskin.babbywear.service.review.ReviewService;
 import com.secondskin.babbywear.service.user.UserService;
 import net.coobird.thumbnailator.Thumbnails;
-import net.coobird.thumbnailator.geometry.Position;
+
 import net.coobird.thumbnailator.geometry.Positions;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.io.Resource;
-import org.springframework.core.io.ResourceLoader;
-import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.parameters.P;
+
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -28,14 +26,13 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.io.File;
-import java.io.FileOutputStream;
+
 import java.io.IOException;
-import java.io.OutputStream;
+
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.security.Principal;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -66,7 +63,7 @@ public class ProductController {
     @Autowired
     ImageService imageService;
 
-//    public static String uploadDir = "C:\\Users\\ARAVIND\\OneDrive\\Desktop\\babbywear\\babbywear\\src\\main\\resources\\static\\productImages";
+
     public static String uploadDir ="C:\\Users\\ARAVIND\\IdeaProjects\\babbywear\\babbywear\\src\\main\\resources\\static\\productImages";
 
 
@@ -155,9 +152,9 @@ public class ProductController {
 
     @GetMapping("/delete/{id}")
     public String deleteProduct(@PathVariable Long id ){
-        System.out.println("eltjghiejhgpiuehbgi");
+
         productService.deleteById(id);
-        System.out.println("ljehgipuehpgiuehpriugheipruh");
+
 
       return "redirect:/product/product-page";
 

@@ -57,7 +57,7 @@ public class ProductServiceImpl implements ProductService{
     public void deleteById(Long id) {
         Optional<Products> products= productRepository.findById(id);
         products.ifPresent(products1 -> {
-            System.out.println("irhjgpoiuehigfuhdfpioguhdpofiughpodifhgo");
+
             products1.setDeleted(true);
             productRepository.save(products1);
         });
@@ -71,7 +71,7 @@ public class ProductServiceImpl implements ProductService{
             editProducts.setProductName(products.getProductName());
             editProducts.setPrice(products.getPrice());
             editProducts.setCategory(products.getCategory());
-//            editProducts.setImages(products.getImages());
+
             editProducts.setDescription(products.getDescription());
 
 
@@ -104,11 +104,10 @@ public class ProductServiceImpl implements ProductService{
         for(ProductReview productReview:productReviews){
             totalRatingOfProduct += productReview.getRating();
         }
-        System.out.println(totalRating);
-        System.out.println(totalRatingOfProduct);
+
 
         double avgRating  = ((double) totalRatingOfProduct / totalRating) * 100.00;
-        System.out.println(avgRating);
+
 
         return avgRating;
     }

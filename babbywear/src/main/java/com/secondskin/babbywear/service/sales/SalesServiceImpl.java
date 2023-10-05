@@ -8,19 +8,13 @@ import com.secondskin.babbywear.model.SalesTime;
 import com.secondskin.babbywear.model.Status;
 import com.secondskin.babbywear.repository.OrderRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.jpa.repository.Temporal;
-import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
+
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
-import java.sql.Timestamp;
-import java.time.DayOfWeek;
+
 import java.time.LocalDate;
-import java.time.LocalTime;
-import java.time.Period;
-import java.time.temporal.TemporalAdjuster;
-import java.time.temporal.TemporalAdjusters;
-import java.time.temporal.TemporalAmount;
+
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -44,7 +38,7 @@ public class SalesServiceImpl implements SalesService{
 
         long weeklyOrderCount = allOrders. size();
 
-        System.out.println(weeklyOrderCount);
+
 
         return weeklyOrderCount;
 
@@ -54,13 +48,13 @@ public class SalesServiceImpl implements SalesService{
 
     @Override
     public BigDecimal calculateWeeklyOrderSum() {
-        // Get the current date
 
 
-        // Calculate the start date of the week (Monday)
+
+
         LocalDate startDate = LocalDate.now().minusWeeks(1);
 
-        // Calculate the end date of the week (Sunday)
+
         LocalDate endDate = LocalDate.now();
 
 
@@ -69,7 +63,7 @@ public class SalesServiceImpl implements SalesService{
 
          BigDecimal weeklyOrderSum = BigDecimal.valueOf(ordersInOneWeek.stream().mapToDouble(Order::getTotal).sum());
 
-        System.out.println(weeklyOrderSum);
+
 
         return weeklyOrderSum;
     }
@@ -86,7 +80,7 @@ public class SalesServiceImpl implements SalesService{
                 .filter(order -> order.getOrderedDate().equals(date) && !order.getStatus().equals(Status.ORDER_CANCELLED))
                         .count();
 
-        System.out.println(dailyOrderCount);
+
 
 
         return dailyOrderCount;

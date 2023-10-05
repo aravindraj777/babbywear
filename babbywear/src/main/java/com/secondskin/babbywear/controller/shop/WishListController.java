@@ -33,16 +33,16 @@ public class WishListController {
     @ResponseBody
     public ResponseEntity<String> addToWishList(@PathVariable("variantId") Long variantId,
                                                 Principal principal ){
-        System.out.println(variantId+"var");
+
 
 
         try {
 
             String user = principal.getName();
 
-            System.out.println("hmm");
+
             wishListService.addToWishList(user,variantId);
-            System.out.println("aaah");
+
             return ResponseEntity.ok("Item Added To Wishlist");
 
 

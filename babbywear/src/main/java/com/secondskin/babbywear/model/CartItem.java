@@ -4,7 +4,7 @@ package com.secondskin.babbywear.model;
 import lombok.*;
 
 import javax.persistence.*;
-import java.util.List;
+
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -31,7 +31,7 @@ public class CartItem {
     @JoinColumn(name = "cart_id")
     private Cart cart;
 
-//    private float totalPrice;
+
 
 
 

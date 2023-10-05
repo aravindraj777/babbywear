@@ -22,7 +22,7 @@ public interface ProductService {
 
      void deleteById(Long id);
 
-//     void updateProducts(Long id,Products products);
+
 
     void editById(Long id,Products products);
 

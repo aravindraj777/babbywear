@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
+
 
 @RestController
 @RequestMapping("/chart")
@@ -22,25 +22,7 @@ public class ChartController {
     @Autowired
     SalesService salesService;
 
-//    @GetMapping("/show-chart")
-//    public ResponseEntity<Long> getOrderCount(@RequestParam (name = "range",defaultValue = "weekly") String range ){
-//
-//        long orderCount = 0;
-//        System.out.println(range);
-//
-//        switch (range) {
-//            case "weekly" -> orderCount = salesService.calculateWeeklyOrderCount();
-//            case "monthly" -> orderCount = salesService.calculateMonthlyOrderCount();
-//            case "yearly" -> orderCount = salesService.calculateYearlyOrderCount();
-//            default -> {
-//                return ResponseEntity.status(HttpStatus.BAD_REQUEST)
-//                        .body(orderCount);
-//            }
-//
-//        }
-//        return ResponseEntity.ok(orderCount);
-//
-//    }
+
 
     @GetMapping("/show-chart")
     public ResponseEntity<List<ChartDTO>> getOrderCountAndDate(@RequestParam(name = "range", defaultValue = "weekly") String range) {

@@ -3,17 +3,17 @@ package com.secondskin.babbywear.service.coupon;
 
 import com.secondskin.babbywear.model.Coupon;
 import com.secondskin.babbywear.model.CouponType;
-import com.secondskin.babbywear.model.UserInfo;
+
 import com.secondskin.babbywear.repository.CouponRepository;
 import com.secondskin.babbywear.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
-import java.time.LocalDateTime;
+
 import java.util.List;
 import java.util.Optional;
-import java.util.Set;
+
 
 @Service
 public class CouponServiceImpl implements CouponService{
@@ -60,7 +60,7 @@ public class CouponServiceImpl implements CouponService{
             return getCouponByCode.get();
         }
         else {
-            System.out.println("not exists");
+
             throw new CouponNotFoundException("Coupon Not Exists");
         }
     }

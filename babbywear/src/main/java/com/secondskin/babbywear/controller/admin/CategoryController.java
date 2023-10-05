@@ -1,22 +1,18 @@
 package com.secondskin.babbywear.controller.admin;
 
-//import com.secondskin.babbywear.service.category.CategoryService;
-//import com.secondskin.babbywear.service.category.CategoryServiceImpl;
-import com.secondskin.babbywear.dto.CategoryDto;
+
+
 import com.secondskin.babbywear.model.Category;
 import com.secondskin.babbywear.repository.CategoryRepository;
-import com.secondskin.babbywear.repository.UserRepository;
+
 import com.secondskin.babbywear.service.category.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.Banner;
-import org.springframework.http.ResponseEntity;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-import org.w3c.dom.Node;
+
 
 import java.util.List;
 import java.util.Optional;
@@ -35,11 +31,7 @@ public class CategoryController {
 
 
 
-//    @GetMapping("/categories-page")
-//    public String showCategories(){
-//        return "admin/categories";
-//
-//    }
+
 
     @GetMapping("/create")
     public String createCategory(Model model){

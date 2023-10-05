@@ -4,10 +4,10 @@ package com.secondskin.babbywear.controller;
 import com.secondskin.babbywear.dto.OtpDto;
 import com.secondskin.babbywear.dto.UserDto;
 import com.secondskin.babbywear.model.UserInfo;
-import com.secondskin.babbywear.service.user.UserService;
+
 import com.secondskin.babbywear.service.user.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.access.method.P;
+
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -19,7 +19,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+
 
 @Controller
 public class LoginController {
@@ -41,25 +41,6 @@ public class LoginController {
         return "redirect:/";
     }
 
-//    @PostMapping("/signup")
-//    public String registerUser(@ModelAttribute("signUpRequest") UserDto userDto , Model model){
-//       OtpDto otp = userService.saveUser(userDto);
-//       model.addAttribute("otp",otp);
-//       return "otp-page";
-
-//        if(!result && userService.getFlag()==1){
-//            model.addAttribute("error","Username or email already exists");
-//            return "/signup";
-//        } else if (!result && userService.getFlag() == 0) {
-//            return "/signup";
-//
-//        }
-//        else {
-//            return "redirect:/login";
-//        }
-
-
-//    }
 
 
     @PostMapping("/login")
@@ -72,7 +53,7 @@ public class LoginController {
         }
 
         if(user.isDeleted()==false){
-            System.out.println(user.isDeleted());
+
             return "login";
         }
 
@@ -107,7 +88,7 @@ public class LoginController {
     @PostMapping("/verifyotp")
     public String verifyAccount(@ModelAttribute("otp") OtpDto otp) {
 
-        System.out.println(otp);
+
 
         boolean res=userService.verifyAccount(otp);
         if(res) {

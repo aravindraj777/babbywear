@@ -1,10 +1,10 @@
 package com.secondskin.babbywear.model;
 
 import lombok.*;
-import org.hibernate.annotations.Type;
+
 
 import javax.persistence.*;
-import java.util.UUID;
+
 
 
 @AllArgsConstructor
@@ -12,7 +12,6 @@ import java.util.UUID;
 @Builder
 @Table
 @Entity
-//@Data
 @Getter
 @Setter
 public class Images {

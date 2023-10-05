@@ -3,7 +3,7 @@ package com.secondskin.babbywear.service.imageCrop;
 import com.secondskin.babbywear.model.Images;
 import com.secondskin.babbywear.model.Products;
 import com.secondskin.babbywear.repository.ImageRepository;
-import net.coobird.thumbnailator.Thumbnailator;
+
 import net.coobird.thumbnailator.Thumbnails;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
