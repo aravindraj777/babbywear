@@ -14,7 +14,7 @@ import java.util.UUID;
 @Builder
 @Getter
 @Setter
-@Data
+@ToString
 @Table(name ="user_info")
 public class UserInfo {
 
@@ -25,7 +25,7 @@ public class UserInfo {
     private String firstName;
     private String lastName;
 
-    @Column(name = "userName")
+    @Column(name = "userName",unique = true)
     private String userName;
 
     private String email;
@@ -51,6 +51,31 @@ public class UserInfo {
 
     @OneToMany(mappedBy = "userInfo")
     private List<Address> address = new ArrayList<>();
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "cart_id")
+    @ToString.Exclude
+    private Cart cart;
+
+
+    @OneToMany(mappedBy = "userInfo")
+    @ToString.Exclude
+    private List<Order>orders = new ArrayList<>();
+
+    @OneToOne(mappedBy = "userInfo",cascade = CascadeType.ALL)
+    @ToString.Exclude
+    private Wallet wallet;
+
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "wishlist_id")
+    @ToString.Exclude
+    private Wishlist wishlist;
+
+
+
+
+
 
 
 

@@ -60,7 +60,8 @@ public class SecurityConfig {
         http.csrf().disable()
                 .authorizeRequests(authorize->authorize
                         .antMatchers("/static/**","/assets/**","/productImages/**").permitAll()
-                        .antMatchers("/signup","/").permitAll()
+                        .antMatchers("/signup","/","/forget-pass","/resetPass","/updatePassword","/resetOtp")
+                        .permitAll()
                         .anyRequest().authenticated())
                 .formLogin(form->form
                         .loginPage("/login")
@@ -74,7 +75,7 @@ public class SecurityConfig {
                         .successHandler(((request, response, authentication) -> {
                             for (GrantedAuthority auth : authentication.getAuthorities()){
                                     if(auth.getAuthority().equals("ROLE_ADMIN")){
-                                        response.sendRedirect("/admin/admin-page");
+                                        response.sendRedirect("/sales/dashboard");
                                         return;
                                     }
                             }

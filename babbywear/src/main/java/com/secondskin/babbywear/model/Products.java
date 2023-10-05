@@ -40,4 +40,7 @@ public class Products {
     @ToString.Exclude
     @JsonIgnore
     private List<Variant> variant = new ArrayList<>();
+
+    @Column(name = "rating")
+    private Double averageRating ;
 }

@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+
+<!-- molla/checkout.html  22 Nov 2019 09:55:06 GMT -->
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Second Skin</title>
+    <meta name="keywords" content="HTML5 Template">
+    <meta name="description" content="Molla - Bootstrap eCommerce Template">
+    <meta name="author" content="p-themes">
+    <!-- Favicon -->
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/images/icons/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/images/icons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/images/icons/favicon-16x16.png">
+    <link rel="manifest" href="/assets/images/icons/site.html">
+    <link rel="mask-icon" href="/assets/images/icons/safari-pinned-tab.svg" color="#666666">
+    <link rel="shortcut icon" href="/assets/images/icons/favicon.ico">
+    <meta name="apple-mobile-web-app-title" content="Molla">
+    <meta name="application-name" content="Molla">
+    <meta name="msapplication-TileColor" content="#cc9966">
+    <meta name="msapplication-config" content="/assets/images/icons/browserconfig.xml">
+    <meta name="theme-color" content="#ffffff">
+    <!-- Plugins CSS File -->
+    <link rel="stylesheet" href="/assets/css/bootstrap.min.css">
+    <!-- Main CSS File -->
+    <link rel="stylesheet" href="/assets/css/style.css">
+</head>
+
+<body>
+<div class="page-wrapper">
+
+    <header class="header">
+        <div class="header-top">
+            <div class="container">
+                <div class="header-left">
+                    <div class="header-dropdown">
+                        <a href="#">Usd</a>
+                        <div class="header-menu">
+                            <ul>
+                                <li><a href="#">Eur</a></li>
+                                <li><a href="#">Usd</a></li>
+                            </ul>
+                        </div><!-- End .header-menu -->
+                    </div><!-- End .header-dropdown -->
+
+                    <div class="header-dropdown">
+                        <a href="#">Eng</a>
+                        <div class="header-menu">
+                            <ul>
+                                <li><a href="#">English</a></li>
+                                <li><a href="#">French</a></li>
+                                <li><a href="#">Spanish</a></li>
+                            </ul>
+                        </div><!-- End .header-menu -->
+                    </div><!-- End .header-dropdown -->
+                </div><!-- End .header-left -->
+
+                <div class="header-right">
+                    <ul class="top-menu">
+                        <li>
+                            <a href="#">Links</a>
+                            <ul>
+                                <li><a href="tel:#"><i class="icon-phone"></i>Call: +0123 456 789</a></li>
+                                <li><a href="wishlist.html"><i class="icon-heart-o"></i>Wishlist <span>(3)</span></a>
+                                </li>
+                                <li><a href="about.html">About Us</a></li>
+                                <li><a href="contact.html">Contact Us</a></li>
+                                <li><a href="#signin-modal" data-toggle="modal"><i class="icon-user"></i>Login</a></li>
+                            </ul>
+                        </li>
+                    </ul><!-- End .top-menu -->
+                </div><!-- End .header-right -->
+            </div><!-- End .container -->
+        </div><!-- End .header-top -->
+
+        <div class="header-middle sticky-header">
+            <div class="container">
+                <div class="header-left">
+                    <button class="mobile-menu-toggler">
+                        <span class="sr-only">Toggle mobile menu</span>
+                        <i class="icon-bars"></i>
+                    </button>
+
+                    <a href="index.html" class="logo">
+                        <img src="/assets/images/secondskinlogo.png" alt="Molla Logo" width="105" height="25">
+                    </a>
+
+                    <nav class="main-nav">
+                        <ul class="menu sf-arrows">
+                            <li class="megamenu-container active">
+                                <a th:href="@{/}" class="sf-with-ul">Home</a>
+
+                            </li>
+                            <li>
+                                <a th:href="@{/product-gallery}" class="sf-with-ul">Shop</a>
+
+                            </li>
+                            <li>
+                                <a th:href="@{/cart}" class="sf-with-ul">cart</a>
+                            </li>
+
+
+                        </ul><!-- End .menu -->
+                    </nav><!-- End .main-nav -->
+                </div><!-- End .header-left -->
+
+                <div class="header-right">
+
+
+
+                    <div class="dropdown cart-dropdown">
+                        <a href="#" class="dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true"
+                           aria-expanded="false" data-display="static">
+                            <i class="icon-shopping-cart"></i>
+                            <span class="cart-count">2</span>
+                        </a>
+
+                        <div class="dropdown-menu dropdown-menu-right">
+
+                            <div class="dropdown-cart-action">
+                                <a th:href="@{/cart}" class="btn btn-primary">View Cart</a>
+
+                                      </i></a>
+                            </div><!-- End .dropdown-cart-total -->
+                        </div><!-- End .dropdown-menu -->
+                    </div><!-- End .cart-dropdown -->
+                </div><!-- End .header-right -->
+            </div><!-- End .container -->
+        </div><!-- End .header-middle -->
+    </header><!-- End .header -->
+
+    <main class="main">
+        <div class="page-header text-center" style="background-image: url('/assets/images/page-header-bg.jpg')">
+            <div class="container">
+                <h1 class="page-title">Checkout<span>Shop</span></h1>
+            </div><!-- End .container -->
+        </div><!-- End .page-header -->
+        <nav aria-label="breadcrumb" class="breadcrumb-nav">
+            <div class="container">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a th:href="@{/}">Home</a></li>
+                    <li class="breadcrumb-item"><a th:href="@{/product-gallery}">Shop</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Checkout</li>
+                </ol>
+            </div><!-- End .container -->
+        </nav><!-- End .breadcrumb-nav -->
+
+
+        <div class="container page-content">
+            <form th:action="@{/place-order}" method="post" id="order_form">
+                <div class="row">
+
+
+                    <div class=" col-md-8" id="billing-details-form-container">
+                        <div class="checkout-discount">
+
+                        </div><!-- End .checkout-discount -->
+
+
+                        <!--                        <h2 class="checkout-title">Billing Details</h2>&lt;!&ndash; End .checkout-title &ndash;&gt;-->
+
+                        <div class="d-flex" style="justify-content: space-between;">
+                            <div><h5><span class="shipping-heading font-weight-bold text-dark">Shipping Address</span>
+                            </h5>
+                            </div>
+                            <div><a class="btn btn-outline-primary " th:href="@{/details/add-address}">Add
+                                address</a></div>
+                        </div>
+
+
+                        <div class="card mb-1" th:each="addresses : ${address}">
+                            <div class="card-body">
+                                <div class="form-check">
+                                    <input
+                                            class="form-check-input"
+                                            type="radio"
+                                            name="shippingAddress"
+                                            id="addressRadio${addressIndex}"
+                                            th:value="${addresses.id}"
+                                    >
+
+                                    <label class="form-check-label" for="addressRadio${addressIndex}">
+                                        <address>
+                                            <p th:text="${addresses.userInfo.firstName  + addresses.userInfo.lastName}"></p>
+                                            <p th:text="${addresses.flat + ', ' + addresses.area + ' ' + addresses.town}"></p>
+                                            <p th:text="${addresses.city + ', ' + addresses.state + ' ' + addresses.pin}"></p>
+                                        </address>
+                                    </label>
+                                </div>
+                            </div>
+                        </div><!-- End .card -->
+
+                    </div><!-- End .col-lg-9 -->
+
+
+                    <div class="col-md-4">
+                        <!--                    <form>-->
+                        <div class="summary">
+                            <h3 class="summary-title">Your Order</h3><!-- End .summary-title -->
+
+                            <table class="table table-summary">
+                                <thead>
+                                <tr>
+                                    <th>Product</th>
+                                    <th>NOS</th>
+                                    <th>Total</th>
+                                </tr>
+                                </thead>
+
+                                <tbody>
+                                <tr th:each="cartItem:${cartItems}">
+                                    <td><a th:href="@{'/single-product/' + ${cartItem.variant.products.id}}"
+                                           th:text="${cartItem.variant.products.productName}"></a></td>
+                                    <td><a th:text="${cartItem.quantity}"></a></td>
+
+                                    <td th:inline="text">
+                                        [[${cartItem.variant.price * cartItem.quantity}]]
+                                    </td>
+                                </tr>
+
+
+
+
+                                <tr class="summary-subtotal">
+                                    <td>Subtotal:</td>
+                                    <td></td>
+                                    <td>
+                               <span th:if="${couponApplied}">
+                               <del th:text="${delTotal}"></del> <!-- Original price with strikethrough -->
+                                  <span th:text="${updatedCartTotal}"></span> <!-- Updated price -->
+                                  </span>
+                                        <span th:unless="${couponApplied}">
+                                  <span th:text="${cartTotal}"></span> <!-- Original price without strikethrough -->
+                                  </span>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td>You saved:</td>
+                                    <td></td>
+                                    <td>
+                              <span th:if="${couponApplied}">
+                              You saved: <span th:text="${delTotal - updatedCartTotal}"></span>
+                              <!-- Calculate and display the amount saved -->
+                              </span>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td>Shipping:</td>
+                                    <td></td>
+                                    <td>Free shipping</td>
+                                </tr>
+                                <tr class="summary-total">
+                                    <td>Total:</td>
+                                    <td></td>
+                                    <td th:text="${cartTotal}"></td>
+                                </tr><!-- End .summary-total -->
+                                </tbody>
+                            </table><!-- End .table table-summary -->
+
+                            <div class="accordion-summary" id="accordion-payment">
+                                <div class="card">
+                                    <div class="card-header" id="heading-1">
+                                        <h2 class="card-title">
+                                            <a role="button" data-toggle="collapse" href="#collapse-1"
+                                               aria-expanded="true" aria-controls="collapse-1">
+                                                Direct Cash
+                                            </a>
+                                        </h2>
+                                    </div><!-- End .card-header -->
+
+
+
+                                    <div id="collapse-1" class="collapse show" aria-labelledby="heading-1"
+                                         data-parent="#accordion-payment">
+                                        <div class="card-body">
+                                            <!-- Radio button option for Direct Bank Transfer -->
+                                            <label>
+                                                <input type="radio" th:name="selectedPaymentMethod" th:value="COD"/>
+                                                <!--                                                <input type="radio" th:field="*{selectedPaymentMethod}" th:value="COD" />-->
+                                                Cash On Delivery
+                                            </label>
+
+                                            <!-- Payment instructions for Direct Bank Transfer -->
+                                            <div>
+                                                <button type="submit"
+                                                        class="btn btn-outline-primary-2 btn-order btn-block">
+                                                    <span class="btn-text">Place Order</span>
+                                                    <span class="btn-hover-text">Proceed to Checkout</span>
+                                                </button>
+                                            </div>
+                                        </div><!-- End .card-body -->
+                                    </div><!-- End .collapse -->
+                                </div><!-- End .card -->
+
+                                <div class="card">
+                                    <div class="card-header" id="heading-2">
+                                        <h2 class="card-title">
+                                            <a class="collapsed" role="button" data-toggle="collapse" href="#collapse-2"
+                                               aria-expanded="false" aria-controls="collapse-2">
+                                                Online Payment
+                                            </a>
+                                        </h2>
+                                    </div><!-- End .card-header -->
+                                    <div id="collapse-2" class="collapse" aria-labelledby="heading-2"
+                                         data-parent="#accordion-payment">
+                                        <div class="card-body">
+                                            <label>
+                                                <input type="radio" th:name="selectedPaymentMethod" th:value="ONLINE"/>
+                                                <input type="hidden" name="orderId" th:value="${orderId}"/>
+                                                <input type="hidden" name="orderAmount"
+                                                       th:value="${orderAmount / 100}"/>
+
+
+                                                <input type="hidden" name="orderCurrency" th:value="${currency}"/>
+                                                Razorpay
+                                            </label>
+
+
+                                            <div>
+                                                <button id="rzp-button1" type="button"
+                                                        class="btn btn-outline-primary-2 btn-order btn-block">
+                                                    <span class="btn-text">Place Order</span>
+                                                    <span class="btn-hover-text">Proceed to Checkout</span>
+                                                </button>
+                                            </div>
+                                        </div><!-- End .card-body -->
+                                    </div><!-- End .collapse -->
+                                </div><!-- End .card -->
+                            </div><!-- End .accordion -->
+
+
+                        </div><!-- End .summary -->
+                        <!--                    </form>-->
+                    </div><!-- End .col-lg-3 -->
+
+                </div><!-- End .row -->
+            </form>
+
+
+
+
+
+            <div class="row justify-content-center">
+                <div class="col-4">
+                    <form th:action="@{/coupon/applyCoupon}" method="POST">
+
+                        <div class="input-group  align-items-center">
+                            <input type="text" name="couponCode" class="form-control form-control-sm"
+                                   placeholder="Have coupon?" required>
+                            <div class="input-group-append pb-1">
+                                <button class="btn btn-primary" type="submit">Submit</button>
+                            </div>
+                        </div>
+
+                        <div th:if="${error}">
+                            <p class="error-message">Invalid or expired coupon code.</p>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-4 ">
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+                        Launch demo modal
+                    </button>
+                </div>
+                -->
+            </div>
+            -->
+            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                 aria-hidden="true">-->
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Available Coupons</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+
+
+                            <div class="card justify-content-center">
+                                <div class="card-body justify-content-center">
+                                    <div class="row">
+                                        <div class="col">1</div>
+                                        <div class="col">Lenskart</div>
+                                        <div class="col">Code:<span class="text-success">LEN23@1YUO</span></div>
+                                        <div class="col">Discount : 7%</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="card justify-content-center">
+                                <div class="card-body justify-content-center">
+                                    <div class="row">
+                                        <div class="col">2</div>
+                                        <div class="col">onam offer</div>
+                                        <div class="col">Code:<span class="text-success">ONA234%4</span></div>
+                                        <div class="col">Discount : 4%</div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        </div><!-- End .container -->
+
+        <div th:if="${successMessage}" class="success-message">
+            <p th:text="${successMessage}"></p>
+        </div>
+    </main><!-- End .main -->
+
+    <footer class="footer">
+        <div class="footer-middle">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-6 col-lg-3">
+                        <div class="widget widget-about">
+                            <img src="/assets/images/secondskinlogo.png" class="footer-logo" alt="Footer Logo"
+                                 width="105"
+                                 height="25">
+                            <p>Praesent dapibus, neque id cursus ucibus, tortor neque egestas augue, eu vulputate magna
+                                eros
+                                eu erat. </p>
+
+                            <div class="social-icons">
+                                <a href="#" class="social-icon" target="_blank" title="Facebook"><i
+                                        class="icon-facebook-f"></i></a>
+                                <a href="#" class="social-icon" target="_blank" title="Twitter"><i
+                                        class="icon-twitter"></i></a>
+                                <a href="#" class="social-icon" target="_blank" title="Instagram"><i
+                                        class="icon-instagram"></i></a>
+                                <a href="#" class="social-icon" target="_blank" title="Youtube"><i
+                                        class="icon-youtube"></i></a>
+                                <a href="#" class="social-icon" target="_blank" title="Pinterest"><i
+                                        class="icon-pinterest"></i></a>
+                            </div><!-- End .soial-icons -->
+                        </div><!-- End .widget about-widget -->
+                    </div><!-- End .col-sm-6 col-lg-3 -->
+
+                    <div class="col-sm-6 col-lg-3">
+                        <div class="widget">
+                            <h4 class="widget-title">Useful Links</h4><!-- End .widget-title -->
+
+                            <ul class="widget-list">
+                                <li><a href="about.html">About Molla</a></li>
+                                <li><a href="#">How to shop on Molla</a></li>
+                                <li><a href="#">FAQ</a></li>
+                                <li><a href="contact.html">Contact us</a></li>
+                                <li><a href="login.html">Log in</a></li>
+                            </ul><!-- End .widget-list -->
+                        </div><!-- End .widget -->
+                    </div><!-- End .col-sm-6 col-lg-3 -->
+
+                    <div class="col-sm-6 col-lg-3">
+                        <div class="widget">
+                            <h4 class="widget-title">Customer Service</h4><!-- End .widget-title -->
+
+                            <ul class="widget-list">
+                                <li><a href="#">Payment Methods</a></li>
+                                <li><a href="#">Money-back guarantee!</a></li>
+                                <li><a href="#">Returns</a></li>
+                                <li><a href="#">Shipping</a></li>
+                                <li><a href="#">Terms and conditions</a></li>
+                                <li><a href="#">Privacy Policy</a></li>
+                            </ul><!-- End .widget-list -->
+                        </div><!-- End .widget -->
+                    </div><!-- End .col-sm-6 col-lg-3 -->
+
+                    <div class="col-sm-6 col-lg-3">
+                        <div class="widget">
+                            <h4 class="widget-title">My Account</h4><!-- End .widget-title -->
+
+                            <ul class="widget-list">
+                                <li><a href="#">Sign In</a></li>
+                                <li><a href="cart.html">View Cart</a></li>
+                                <li><a href="#">My Wishlist</a></li>
+                                <li><a href="#">Track My Order</a></li>
+                                <li><a href="#">Help</a></li>
+                            </ul><!-- End .widget-list -->
+                        </div><!-- End .widget -->
+                    </div><!-- End .col-sm-6 col-lg-3 -->
+                </div><!-- End .row -->
+            </div><!-- End .container -->
+        </div><!-- End .footer-middle -->
+
+        <div class="footer-bottom">
+            <div class="container">
+                <p class="footer-copyright">Copyright © 2019 Molla Store. All Rights Reserved.</p>
+                <!-- End .footer-copyright -->
+                <figure class="footer-payments">
+                    <img src="/assets/images/payments.png" alt="Payment methods" width="272" height="20">
+                </figure><!-- End .footer-payments -->
+            </div><!-- End .container -->
+        </div><!-- End .footer-bottom -->
+    </footer><!-- End .footer -->
+</div><!-- End .page-wrapper -->
+<button id="scroll-top" title="Back to Top"><i class="icon-arrow-up"></i></button>
+
+<!-- Mobile Menu -->
+<div class="mobile-menu-overlay"></div><!-- End .mobil-menu-overlay -->
+
+<div class="mobile-menu-container">
+    <div class="mobile-menu-wrapper">
+        <span class="mobile-menu-close"><i class="icon-close"></i></span>
+
+        <form action="#" method="get" class="mobile-search">
+            <label for="mobile-search" class="sr-only">Search</label>
+            <input type="search" class="form-control" name="mobile-search" id="mobile-search" placeholder="Search in..."
+                   required>
+            <button class="btn btn-primary" type="submit"><i class="icon-search"></i></button>
+        </form>
+
+        <nav class="mobile-nav">
+            <ul class="mobile-menu">
+                <li class="active">
+                    <a th:href="@{/}">Home</a>
+
+                </li>
+
+                <li>
+                    <a th:href="@{/product-gallery}" class="sf-with-ul">Products</a>
+
+                </li>
+
+                <li>
+                    <a th:href="@{/cart}">Cart</a>
+
+
+                </li>
+                <li>
+                    <a th:href="@{/}" class="sf-with-ul">pages</a>
+
+                    <ul>
+                        <li><a th:href="@{/product-gallery}">Products</a></li>
+                        <li><a th:href="@{/cart}">Cart</a></li>
+
+                        <li><a th:href="@{/details/user-account}">Portfolio</a></li>
+
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+
+        <div class="social-icons">
+            <a href="#" class="social-icon" target="_blank" title="Facebook"><i class="icon-facebook-f"></i></a>
+            <a href="#" class="social-icon" target="_blank" title="Twitter"><i class="icon-twitter"></i></a>
+            <a href="#" class="social-icon" target="_blank" title="Instagram"><i class="icon-instagram"></i></a>
+            <a href="#" class="social-icon" target="_blank" title="Youtube"><i class="icon-youtube"></i></a>
+        </div><!-- End .social-icons -->
+    </div><!-- End .mobile-menu-wrapper -->
+</div><!-- End .mobile-menu-container -->
+
+<!-- Sign in / Register Modal -->
+
+
+
+<!--Razorpay-->
+
+
+
+
+<!--<button id="rzp-button1">Pay with Razorpay</button>-->
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+<script>
+
+ var orderId = document.getElementsByName("orderId")[0].value;
+    var orderAmount = document.getElementsByName("orderAmount")[0].value;
+    var orderCurrency = document.getElementsByName("orderCurrency")[0].value;
+
+
+
+var options = {
+    "key": "rzp_test_MLtEnD2XBlBADJ", // Enter the Key ID generated from the Dashboard
+    "amount": orderAmount, // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
+    "currency": "INR",
+    "name": "Acme Corp",
+    "description": "Test Transaction",
+<!--    "image": "https://example.com/your_logo",-->
+
+<!--var a = /*[[${orderId}]]*/ 0-->
+<!--console.log(/*[[${orderId}]]*/0)-->
+
+    "order_id": orderId, //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
+    "handler": function (response){
+
+
+
+         const form = document.getElementById('order_form');
+             // Submit the form
+             form.submit();
+    },
+    "prefill": {
+        "name": "Second Skin",
+        "email": "gaurav.kumar@example.com",
+        "contact": "9000090000"
+    },
+    "notes": {
+        "address": "Razorpay Corporate Office"
+    },
+    "theme": {
+        "color": "#3399cc"
+    }
+};
+var rzp1 = new Razorpay(options);
+rzp1.on('payment.failed', function (response){
+        alert(response.error.code);
+        alert(response.error.description);
+        alert(response.error.source);
+        alert(response.error.step);
+        alert(response.error.reason);
+        alert(response.error.metadata.order_id);
+        alert(response.error.metadata.payment_id);
+});
+document.getElementById('rzp-button1').onclick = function(e){
+    rzp1.open();
+    e.preventDefault();
+}
+
+</script>
+
+
+<!-- Plugins JS File -->
+<script src="/assets/js/jquery.min.js"></script>
+<script src="/assets/js/bootstrap.bundle.min.js"></script>
+<script src="/assets/js/jquery.hoverIntent.min.js"></script>
+<script src="/assets/js/jquery.waypoints.min.js"></script>
+<script src="/assets/js/superfish.min.js"></script>
+<script src="/assets/js/owl.carousel.min.js"></script>
+<!-- Main JS File -->
+<script src="/assets/js/main.js"></script>
+
+
+</body>
+
+
+<!-- molla/checkout.html  22 Nov 2019 09:55:06 GMT -->
+</html>

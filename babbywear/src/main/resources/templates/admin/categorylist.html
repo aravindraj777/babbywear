@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+  <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
   <!-- Required meta tags -->
@@ -84,7 +84,7 @@
         <span class="nav-link">Navigation</span>
       </li>
       <li class="nav-item menu-items">
-        <a class="nav-link" href="index.html">
+        <a class="nav-link" th:href="@{/sales/dashboard}">
               <span class="menu-icon">
                 <i class="mdi mdi-speedometer"></i>
               </span>
@@ -117,47 +117,49 @@
         </a>
       </li>
       <li class="nav-item menu-items">
-        <a class="nav-link" href="pages/tables/basic-table.html">
+        <a class="nav-link" th:href="@{/user/user-panel}">
               <span class="menu-icon">
                 <i class="mdi mdi-table-large"></i>
               </span>
-          <span class="menu-title">Tables</span>
+          <span class="menu-title">Users</span>
         </a>
       </li>
+
       <li class="nav-item menu-items">
-        <a class="nav-link" href="pages/charts/chartjs.html">
+        <a class="nav-link" th:href="@{/variant/low-stock}">
               <span class="menu-icon">
                 <i class="mdi mdi-chart-bar"></i>
               </span>
-          <span class="menu-title">Charts</span>
+          <span class="menu-title">lOW STOCK</span>
         </a>
       </li>
       <li class="nav-item menu-items">
-        <a class="nav-link" href="pages/icons/mdi.html">
+        <a class="nav-link" th:href="@{/variant/variant-list}">
               <span class="menu-icon">
                 <i class="mdi mdi-contacts"></i>
               </span>
-          <span class="menu-title">Icons</span>
+          <span class="menu-title">Variants</span>
         </a>
       </li>
       <li class="nav-item menu-items">
-        <a class="nav-link" data-toggle="collapse" href="#auth" aria-expanded="false" aria-controls="auth">
+        <a class="nav-link"  th:href="@{/orders/user-orders}">
               <span class="menu-icon">
                 <i class="mdi mdi-security"></i>
               </span>
-          <span class="menu-title">User Pages</span>
+          <span class="menu-title">User Orders</span>
           <i class="menu-arrow"></i>
         </a>
-
       </li>
+
       <li class="nav-item menu-items">
-        <a class="nav-link" href="http://www.bootstrapdash.com/demo/corona-free/jquery/documentation/documentation.html">
+        <a class="nav-link" th:href="@{/coupon/create}">
               <span class="menu-icon">
-                <i class="mdi mdi-file-document-box"></i>
+                <i class="mdi mdi-chart-bar"></i>
               </span>
-          <span class="menu-title">Documentation</span>
+          <span class="menu-title">Coupon</span>
         </a>
       </li>
+
     </ul>
   </nav>
   <!-- partial -->
@@ -222,7 +224,8 @@
           </li>
           <li class="nav-item nav-settings d-none d-lg-block">
             <a class="nav-link" href="#">
-              <i class="mdi mdi-view-grid"></i>
+              <i class="fa fa-home"></i>
+              <li><a th:href="@{/admin/admin-page}"><i class="fa fa-home" aria-hidden="true"></i></a></li>
             </a>
           </li>
           <li class="nav-item dropdown border-left">
@@ -363,9 +366,13 @@
         <h3 class="page-title mt-4">Category </h3>
         <nav aria-label="breadcrumb">
           <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
-              +Add Category
-            </button></a></li>
+            <li class="breadcrumb-item">
+              <a>
+              <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
+                +Add Category
+              </button>
+              </a>
+            </li>
           </ol>
         </nav>
       </div>
@@ -386,8 +393,6 @@
               <div class="modal-body">
                 <label for="categoryName">Category Name:</label><br>
                 <input type="text" id="categoryName" name="categoryName" field="{categoryName}" required><br>
-
-
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -419,6 +424,12 @@
                       <td class="category-name" th:text="${category.categoryName}"></td>
                       <td>
                         <a th:href="@{/category/delete/{id}(id=${category.id})}" class="btn btn-danger btn-sm" onclick="if (!(confirm('Are you sure you want to delete this Category?'))) return false">Delete</a>
+                        <a th:href="@{/category/update/{id}(id=${category.id})}" class="btn btn-success btn-sm">Update</a>
+
+
+
+
+
 
 <!--                      <a th:href="@{/category/delete/{id}(id=${category.id})}" onclick="return confirmDeleteCategory()" class="delete action-icon" title="Delete" data-toggle="tooltip">&ndash;&gt;-->
 <!--                          <i class="material-icons">&#xE5C9;</i></a>-->
@@ -486,6 +497,7 @@
     return true;
   }
 </script>
+
 
 </body>
 </html>

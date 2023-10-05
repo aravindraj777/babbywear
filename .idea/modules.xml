@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/babbywear.iml" filepath="$PROJECT_DIR$/.idea/babbywear.iml" />
+      <module fileurl="file://$PROJECT_DIR$/babbywear/babbywear.iml" filepath="$PROJECT_DIR$/babbywear/babbywear.iml" />
     </modules>
   </component>
 </project>

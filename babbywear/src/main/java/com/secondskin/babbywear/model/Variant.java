@@ -6,6 +6,8 @@ import lombok.*;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
+import java.util.ArrayList;
+import java.util.List;
 
 
 @AllArgsConstructor
@@ -45,6 +47,10 @@ public class Variant {
     public Long getId(){
         return id;
     }
+
+
+
+
 
 
 

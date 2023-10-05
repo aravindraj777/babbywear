@@ -1,11 +1,13 @@
 package com.secondskin.babbywear.service.user;
 
 import com.secondskin.babbywear.dto.OtpDto;
+import com.secondskin.babbywear.dto.ResetPasswordDTO;
 import com.secondskin.babbywear.dto.UserDto;
-import com.secondskin.babbywear.model.Role;
-import com.secondskin.babbywear.model.UserInfo;
+import com.secondskin.babbywear.model.*;
 import com.secondskin.babbywear.otp.EmailUtil;
 import com.secondskin.babbywear.otp.OtpUtil;
+import com.secondskin.babbywear.repository.AddressRepository;
+import com.secondskin.babbywear.repository.OrderRepository;
 import com.secondskin.babbywear.repository.RoleRepository;
 import com.secondskin.babbywear.repository.UserRepository;
 import lombok.Data;
@@ -13,12 +15,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import javax.mail.MessagingException;
+import javax.transaction.Transactional;
 import java.time.Duration;
 import java.time.LocalDateTime;
+import java.util.Collections;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Optional;
@@ -34,6 +39,9 @@ public class UserServiceImpl implements UserService{
     RoleRepository roleRepository;
 
     @Autowired
+    AddressRepository addressRepository;
+
+    @Autowired
     PasswordEncoder passwordEncoder;
     int flag = 0;
 
@@ -42,6 +50,9 @@ public class UserServiceImpl implements UserService{
 
     @Autowired
     EmailUtil emailUtil;
+
+    @Autowired
+    OrderRepository orderRepository;
 
 
 
@@ -173,6 +184,13 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
+    public Optional<UserInfo> getByUserName(String userName) {
+
+
+        return userRepository.findByUserName(userName);
+    }
+
+    @Override
     public UserInfo findById(Long id) {
         return userRepository.findById(id).orElse(null);
     }
@@ -187,7 +205,7 @@ public class UserServiceImpl implements UserService{
     public void blockById(Long id){
         Optional<UserInfo>user = userRepository.findById(id);
         user.ifPresent(userInfo->{
-            userInfo.setDeleted(true);
+            userInfo.setEnabled(false);
             userRepository.save(userInfo);
         });
 
@@ -197,7 +215,7 @@ public class UserServiceImpl implements UserService{
     public void unBlockById(Long id) {
         Optional<UserInfo>user = userRepository.findById(id);
         user.ifPresent(userInfo -> {
-            userInfo.setDeleted(false);
+            userInfo.setEnabled(true);
             userRepository.save(userInfo);
         });
     }
@@ -209,7 +227,121 @@ public class UserServiceImpl implements UserService{
     }
 
 
+
+    @Override
+    public UserInfo forgetPass(ResetPasswordDTO resetPasswordDTO) {
+        Optional<UserInfo> userEmail = userRepository.findByEmail(resetPasswordDTO.getEmail());
+        System.out.println(userEmail+"anbfsn");
+
+        if (userEmail.isPresent()) {
+            UserInfo user = userEmail.get();
+            String otp = otpUtil.generateOtp();
+            user.setOtp(otp);
+
+            try {
+                emailUtil.sendOtpEmail(resetPasswordDTO.getEmail(), otp);
+            } catch (MessagingException e) {
+                throw new RuntimeException("unable to create otp");
+            }
+            return userRepository.save(user);
+
+        } else {
+            throw new UsernameNotFoundException("gsg");
+//            System.out.println("Email not present");
+        }
+
+    }
+
+
+    public boolean verifyEmail(ResetPasswordDTO resetPassDto) {
+        Optional<UserInfo> user = userRepository.findByEmail(resetPassDto.getEmail());
+
+        UserInfo user1=user.get();
+        if (user1.getOtp().equals(resetPassDto.getOtp())){
+            System.out.println("otp success");
+            return true;
+
+        }
+
+        return false;
+    }
+
+
+
+
+    @Override
+    public UserInfo passwordUpdate(ResetPasswordDTO resetPassDto) {
+
+        Optional<UserInfo> userPassword = userRepository.findByEmail(resetPassDto.getEmail());
+        UserInfo user1=userPassword.get();
+        System.out.println(user1);
+        user1.setPassword(passwordEncoder.encode(resetPassDto.getPassword()));
+        System.out.println("afkjsb");
+        userRepository.save(user1);
+        return null;
+    }
+
+
+
+    @Override
+    @Transactional
+    public void addAddressToUser(UserInfo userInfo, Address newAddress) {
+
+        newAddress.setUserInfo(userInfo);
+        addressRepository.save(newAddress);
+        userInfo.getAddress().add(newAddress);
+        userRepository.save(userInfo);
+    }
+
+
 //    public void saveDto(UserDto userDto) {
 //        userRepository.save(userDto);
 //    }
+
+
+    @Override
+    public List<Address> getUserAddress(String userName) {
+        Optional<UserInfo> user = userRepository.findByUserName(userName);
+
+        if(user.isPresent()){
+           return user.get().getAddress();
+        }
+        else {
+            return Collections.emptyList();
+        }
+
+    }
+
+    @Override
+    public void deleteCart(Cart cart) {
+
+        UserInfo user = userRepository.findById(cart.getUserInfo().getId()).orElse(null);
+        assert user != null;
+        user.setCart(null);
+        userRepository.save(user);
+    }
+
+    @Override
+    public void updateUser(Long id, UserInfo updateUser) {
+        Optional<UserInfo> getUser = userRepository.findById(id);
+        if (getUser.isPresent()) {
+            UserInfo user = getUser.get();
+            user.setFirstName(updateUser.getFirstName());
+            user.setLastName(updateUser.getLastName());
+            user.setUserName(updateUser.getUserName());
+            user.setEmail(updateUser.getEmail());
+            user.setPhone(updateUser.getPhone());
+
+            userRepository.save(user);
+        }else {
+            throw new UsernameNotFoundException("user not found");
+        }
+    }
+
+    @Override
+    public List<Order> getUserOrders(String userName) {
+
+          return orderRepository.findByUserInfoUserName(userName);
+    }
+
 }

@@ -1,7 +1,11 @@
 package com.secondskin.babbywear.service.user;
 
 import com.secondskin.babbywear.dto.OtpDto;
+import com.secondskin.babbywear.dto.ResetPasswordDTO;
 import com.secondskin.babbywear.dto.UserDto;
+import com.secondskin.babbywear.model.Address;
+import com.secondskin.babbywear.model.Cart;
+import com.secondskin.babbywear.model.Order;
 import com.secondskin.babbywear.model.UserInfo;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -20,6 +24,8 @@ public interface UserService {
 
     UserInfo findByUsername(String username);
 
+    Optional<UserInfo> getByUserName(String userName);
+
     UserInfo findById(Long id);
 
     UserInfo findByemail(String email);
@@ -30,13 +36,23 @@ public interface UserService {
 
     Page<UserInfo>findAll(int pageNo,int pageSize);
 
+     UserInfo forgetPass(ResetPasswordDTO resetPasswordDTO);
 
 
+    void addAddressToUser(UserInfo userInfo, Address newAddress);
 
 
+    boolean verifyEmail(ResetPasswordDTO resetPassDto);
+
+    UserInfo passwordUpdate(ResetPasswordDTO resetPassDto);
+
+    List<Address> getUserAddress(String userName);
+
+    void deleteCart(Cart cart);
 
 
+    void updateUser(Long id, UserInfo updateUser);
 
 
-
+    List<Order> getUserOrders(String userName);
 }

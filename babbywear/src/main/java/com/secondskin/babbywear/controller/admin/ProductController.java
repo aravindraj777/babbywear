@@ -5,13 +5,21 @@ import com.secondskin.babbywear.dto.ProductDto;
 import com.secondskin.babbywear.model.Category;
 import com.secondskin.babbywear.model.Images;
 import com.secondskin.babbywear.model.Products;
+import com.secondskin.babbywear.model.UserInfo;
 import com.secondskin.babbywear.repository.ProductRepository;
 import com.secondskin.babbywear.service.category.CategoryService;
 import com.secondskin.babbywear.service.image.ImageService;
+import com.secondskin.babbywear.service.imageCrop.ImageCropService;
 import com.secondskin.babbywear.service.product.ProductService;
+import com.secondskin.babbywear.service.review.ReviewService;
+import com.secondskin.babbywear.service.user.UserService;
+import net.coobird.thumbnailator.Thumbnails;
+import net.coobird.thumbnailator.geometry.Position;
+import net.coobird.thumbnailator.geometry.Positions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.ResourceLoader;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.parameters.P;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -27,6 +35,7 @@ import java.io.OutputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -44,11 +53,21 @@ public class ProductController {
     @Autowired
     ProductRepository productRepository;
 
+    @Autowired
+    ImageCropService imageCropService;
+
+    @Autowired
+    UserService userService;
+
+    @Autowired
+    ReviewService reviewService;
+
 
     @Autowired
     ImageService imageService;
 
-    public static String uploadDir = "C:\\Users\\ARAVIND\\OneDrive\\Desktop\\babbywear\\babbywear\\src\\main\\resources\\static\\productImages";
+//    public static String uploadDir = "C:\\Users\\ARAVIND\\OneDrive\\Desktop\\babbywear\\babbywear\\src\\main\\resources\\static\\productImages";
+    public static String uploadDir ="C:\\Users\\ARAVIND\\IdeaProjects\\babbywear\\babbywear\\src\\main\\resources\\static\\productImages";
 
 
 
@@ -77,10 +96,9 @@ public class ProductController {
     }
 
 
-
+// existing
     @PostMapping("/add-product")
     public String addProducts(@Validated @ModelAttribute Products products,
-//
                               BindingResult bindingResult,
                               @RequestParam("images")List<MultipartFile> imageFiles,
                               @RequestParam("categoryId")Long categoryId,
@@ -90,6 +108,7 @@ public class ProductController {
 
         if(addedProduct.isPresent()){
             bindingResult.rejectValue("productName","error.productName","Product Already Exists");
+
 
             model.addAttribute("categories", categoryService.getAllCategories());
             return "admin/product-create";
@@ -108,62 +127,38 @@ public class ProductController {
             String imageId= imageFile.getOriginalFilename();
             Path filePath = Paths.get(uploadDir,imageId);
             Files.write(filePath,imageFile.getBytes());
+
+            int maxHeight = 200;
+            int maxWidth=200;
+
+
+            Thumbnails.of(filePath.toFile())
+                    .crop(Positions.TOP_CENTER)
+                    .size(maxWidth,maxHeight)
+                    .outputQuality(1.0)
+                    .toFile(filePath.toFile());
+
+
             images.setImageUrl(imageId);
             images.setProducts(products);
             imagesList.add(images);
         }
         products.setImages(imagesList);
+        products.setAverageRating(products.getAverageRating());
         productService.saveProduct(products);
         return "redirect:/product/product-page";
     }
 
 
 
-//    private String saveImageToDisk(MultipartFile imageFile,Products products)throws IOException{
-//        String imageName = System.currentTimeMillis()+"/"+imageFile.getOriginalFilename();
-//        String imageUrl = "/src/main/resources/static/assets/images/products/productImages/"+imageName;
-//        Images images = new Images(imageUrl,products);
-//        imageService.saveImages(images);
-//        return imageUrl;
-//
-//
-//    }
 
-//    @Autowired
-//    private ResourceLoader resourceLoader;
-//
-//    private String saveImageToDisk(MultipartFile imageFile, Products products) throws IOException {
-//        String imageName = System.currentTimeMillis() + "_" + imageFile.getOriginalFilename();
-//        String imagePath = "/src/main/resources/static/assets/images/products/productImages/" + imageName;
-//
-//        // Get the file resource from the provided path
-//        Resource resource = resourceLoader.getResource(imagePath);
-//
-//        // Get the absolute file path
-//        File file = resource.getFile();
-//        String imageUrl = imagePath+imageName;
-//
-//        // Save the image to the file location
-//        try (OutputStream outputStream = new FileOutputStream(file)) {
-//            outputStream.write(imageFile.getBytes());
-//        }
-//
-//        // Create the Images object and save it to the database
-//        Images images = new Images(imageUrl, products);
-//        imageService.saveImages(images);
-//
-//        return imageUrl;
-//    }
 
     @GetMapping("/delete/{id}")
     public String deleteProduct(@PathVariable Long id ){
         System.out.println("eltjghiejhgpiuehbgi");
         productService.deleteById(id);
         System.out.println("ljehgipuehpgiuehpriugheipruh");
-//      if(productService.findById(id).isPresent()){
-//          productService.deleteById(id);
-//          return "redirect:/product/product-page";
-//      }
+
       return "redirect:/product/product-page";
 
     }
@@ -173,14 +168,42 @@ public class ProductController {
     public String editProducts(@PathVariable Long id,Model model ){
         Optional<Products> products = productRepository.findById(id);
         model.addAttribute("product",products);
+        model.addAttribute("categories", categoryService.getAllCategories());
         return "admin/update-products";
     }
 
+
+
     @PostMapping("/edit")
-    public String editProduct(@ModelAttribute("product")Products products){
-            productService.editById(products.getId(),products);
-            return "redirect:/product/product-page";
+    public String editProduct(@ModelAttribute("product") Products editedProduct) {
+
+
+        Optional<Products> existingProduct = productService.findById(editedProduct.getId());
+
+        if (existingProduct.isPresent()) {
+            Products productToUpdate = existingProduct.get();
+
+
+            productToUpdate.setProductName(editedProduct.getProductName());
+            productToUpdate.setPrice(editedProduct.getPrice());
+
+
+
+            productToUpdate.setDescription(editedProduct.getDescription());
+
+
+            productService.saveProduct(productToUpdate);
+        }
+
+        return "redirect:/product/product-page";
     }
+
+
+
+
+
+
+
 
 
 

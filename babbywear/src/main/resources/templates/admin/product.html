@@ -84,7 +84,7 @@
                 <span class="nav-link">Navigation</span>
             </li>
             <li class="nav-item menu-items">
-                <a class="nav-link" href="index.html">
+                <a class="nav-link" th:href="@{/sales/dashboard}">
               <span class="menu-icon">
                 <i class="mdi mdi-speedometer"></i>
               </span>
@@ -117,47 +117,49 @@
                 </a>
             </li>
             <li class="nav-item menu-items">
-                <a class="nav-link" href="pages/tables/basic-table.html">
+                <a class="nav-link" th:href="@{/user/user-panel}">
               <span class="menu-icon">
                 <i class="mdi mdi-table-large"></i>
               </span>
-                    <span class="menu-title">Tables</span>
+                    <span class="menu-title">Users</span>
                 </a>
             </li>
+
             <li class="nav-item menu-items">
-                <a class="nav-link" href="pages/charts/chartjs.html">
+                <a class="nav-link" th:href="@{/variant/low-stock}">
               <span class="menu-icon">
                 <i class="mdi mdi-chart-bar"></i>
               </span>
-                    <span class="menu-title">Charts</span>
+                    <span class="menu-title">lOW STOCK</span>
                 </a>
             </li>
             <li class="nav-item menu-items">
-                <a class="nav-link" href="pages/icons/mdi.html">
+                <a class="nav-link" th:href="@{/variant/variant-list}">
               <span class="menu-icon">
                 <i class="mdi mdi-contacts"></i>
               </span>
-                    <span class="menu-title">Icons</span>
+                    <span class="menu-title">Variants</span>
                 </a>
             </li>
             <li class="nav-item menu-items">
-                <a class="nav-link" data-toggle="collapse" href="#auth" aria-expanded="false" aria-controls="auth">
+                <a class="nav-link"  th:href="@{/orders/user-orders}">
               <span class="menu-icon">
                 <i class="mdi mdi-security"></i>
               </span>
-                    <span class="menu-title">User Pages</span>
+                    <span class="menu-title">User Orders</span>
                     <i class="menu-arrow"></i>
                 </a>
-
             </li>
+
             <li class="nav-item menu-items">
-                <a class="nav-link" href="http://www.bootstrapdash.com/demo/corona-free/jquery/documentation/documentation.html">
+                <a class="nav-link" th:href="@{/coupon/create}">
               <span class="menu-icon">
-                <i class="mdi mdi-file-document-box"></i>
+                <i class="mdi mdi-chart-bar"></i>
               </span>
-                    <span class="menu-title">Documentation</span>
+                    <span class="menu-title">Coupon</span>
                 </a>
             </li>
+
         </ul>
     </nav>
     <!-- partial -->
@@ -463,28 +465,11 @@
 <!-- endinject -->
 <!-- Custom js for this page -->
 <script src="/admin/adminassets/js/dashboard.js"></script>
+
+
+
+
 <!-- End custom js for this page -->
-
-
-<!--<script>-->
-<!--  function validateCategoryName() {-->
-<!--    var categoryNameInput = document.getElementById('categoryName');-->
-<!--    var categoryName = categoryNameInput.value.trim().toLowerCase();-->
-
-
-<!--    var existingCategoryNames = document.querySelectorAll('.category-name');-->
-
-
-<!--    for (var i = 0; i < existingCategoryNames.length; i++) {-->
-<!--      if (categoryName === existingCategoryNames[i].innerText.trim().toLowerCase()) {-->
-<!--        alert('Category name already exists. Please enter a different name.');-->
-<!--        return false;-->
-<!--      }-->
-<!--    }-->
-
-<!--    return true;-->
-<!--  }-->
-<!--</script>-->
 
 </body>
 </html>

@@ -16,7 +16,12 @@ public interface VariantService {
 
     Optional<Variant> findById(Long id);
 
+    void decreaseQuantity(Variant variant);
+
+    void checkStockAndNotifyAdmin();
+
+    List<Variant> getVariantWithLowStock();
 
 
-
+    void updateVariant(Long id, Variant variant);
 }

@@ -1,5 +1,6 @@
 package com.secondskin.babbywear.service.category;
 
+import com.secondskin.babbywear.dto.CategoryDto;
 import com.secondskin.babbywear.model.Category;
 import com.secondskin.babbywear.repository.CategoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -48,6 +49,27 @@ public class CategoryServiceImpl implements CategoryService{
     public void updateCategory(Category category) {
         categoryRepository.save(category);
     }
+
+    @Override
+    public Optional<Category> findByName(String categoryName) {
+
+        Optional<Category> category = categoryRepository.findByCategoryName(categoryName);
+
+        return category;
+    }
+
+    @Override
+    public void editCategory(CategoryDto categoryDto) {
+        Category category = categoryRepository.findById(categoryDto.getId())
+                .orElseThrow(() -> new RuntimeException("Category not found"));
+
+        // Update the category name
+        category.setCategoryName(categoryDto.getCategoryName());
+
+        // Save the updated category
+        categoryRepository.save(category);
+    }
+
 
 
 //    public String getImageUrlForCategory(Category category) {
