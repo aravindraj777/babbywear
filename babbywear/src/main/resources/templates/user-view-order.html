@@ -1,0 +1,668 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+
+<!-- molla/dashboard.html  22 Nov 2019 10:03:13 GMT -->
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>Molla - Bootstrap eCommerce Template</title>
+  <meta name="keywords" content="HTML5 Template">
+  <meta name="description" content="Molla - Bootstrap eCommerce Template">
+  <meta name="author" content="p-themes">
+  <!-- Favicon -->
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/images/icons/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/images/icons/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/assets/images/icons/favicon-16x16.png">
+  <link rel="manifest" href="/assets/images/icons/site.html">
+  <link rel="mask-icon" href="/assets/images/icons/safari-pinned-tab.svg" color="#666666">
+  <link rel="shortcut icon" href="/assets/images/icons/favicon.ico">
+  <meta name="apple-mobile-web-app-title" content="Molla">
+  <meta name="application-name" content="Molla">
+  <meta name="msapplication-TileColor" content="#cc9966">
+  <meta name="msapplication-config" content="/assets/images/icons/browserconfig.xml">
+  <meta name="theme-color" content="#ffffff">
+  <!-- Plugins CSS File -->
+  <link rel="stylesheet" href="/assets/css/bootstrap.min.css">
+  <!-- Main CSS File -->
+  <link rel="stylesheet" href="/assets/css/style.css">
+
+
+
+
+
+  <style>
+
+    .my-custom-margin {
+    margin-top: 110px;
+    }
+
+
+
+
+
+
+            :root {
+  --line-border-empty: #ccc; /* Define your default color */
+  --line-border-fill: #109610; /* Define your active/filled color */
+}
+
+.progress-container::before {
+  content: "";
+  background: var(--line-border-empty);
+  position: absolute;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+  height: 2px;
+  width: 100%;
+  z-index: -1;
+}
+
+.progress-container {
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+  margin-bottom: 25px;
+  max-width: 100%;
+  width: 350px;
+}
+
+.progress {
+  background: var(--line-border-fill); /* Use the defined fill color */
+  position: absolute;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+  height: 2px;
+  width: 0%;
+  z-index: -1;
+  transition: 3s cubic-bezier(0.71, 0.15, 0.71, 0.29);
+}
+
+.circle {
+  background: var(--line-border-empty); /* Use the defined empty color */
+  color: #999;
+  border-radius: 50%;
+  height: 10px;
+  width: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 3px solid var(--line-border-empty);
+  transition: 0.5s cubic-bezier(0.25, 0.1, 0.48, 0.62);
+}
+
+.circle.active {
+  background: var(--line-border-fill); /* Use the defined fill color */
+  border-color: var(--line-border-fill); /* Use the defined fill color */
+}
+
+
+
+        .btn {
+          background-color: var(--line-border-fill);
+          color: #fff;
+          cursor: pointer;
+          font-family: inherit;
+          border: 0;
+          border-radius: 6px;
+          padding: 8px 30px;
+          margin: 5px;
+          font-size: 14px;
+        }
+
+        .btn:active {
+          transform: scale(0.98);
+        }
+
+        .btn:focus {
+          outline: 0;
+        }
+
+        .btn:disabled {
+          background-color: var(--line-border-empty);
+          cursor: not-allowed;
+        }
+        .circle small{
+            margin-bottom: 5rem;
+            text-align: center;
+        }
+        .date_small small{
+            font-size:10px;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+        }
+        .date-container{
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+        .discount-amount{
+            margin-bottom:2rem;
+        }
+  </style>
+</head>
+
+<body>
+<div class="page-wrapper">
+  <header class="header">
+    <div class="header-top">
+      <div class="container">
+        <div class="header-left">
+          <div class="header-dropdown">
+            <a href="#">Usd</a>
+            <div class="header-menu">
+              <ul>
+                <li><a href="#">Eur</a></li>
+                <li><a href="#">Usd</a></li>
+              </ul>
+            </div><!-- End .header-menu -->
+          </div><!-- End .header-dropdown -->
+
+          <div class="header-dropdown">
+            <a href="#">Eng</a>
+            <div class="header-menu">
+              <ul>
+                <li><a href="#">English</a></li>
+                <li><a href="#">French</a></li>
+                <li><a href="#">Spanish</a></li>
+              </ul>
+            </div><!-- End .header-menu -->
+          </div><!-- End .header-dropdown -->
+        </div><!-- End .header-left -->
+
+        <div class="header-right">
+          <ul class="top-menu">
+            <li>
+              <a href="#">Links</a>
+              <ul>
+                <li><a href="tel:#"><i class="icon-phone"></i>Call: +0123 456 789</a></li>
+                <li><a href="wishlist.html"><i class="icon-heart-o"></i>Wishlist <span>(3)</span></a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="contact.html">Contact Us</a></li>
+                <!--                                    <li><a href="#signin-modal" data-toggle="modal"><i class="icon-user"></i>Login</a></li>-->
+                <li th:if="${#request.isUserInRole('ROLE_USER')}">
+                  <form th:action="@{/logout}" method="post">
+                    <button type="submit" class="fa fa-user border-none icon-user" style="border:none"> Logout</button>
+                  </form>
+                </li>
+              </ul>
+            </li>
+          </ul><!-- End .top-menu -->
+        </div><!-- End .header-right -->
+      </div><!-- End .container -->
+    </div><!-- End .header-top -->
+
+    <div class="header-middle sticky-header">
+      <div class="container">
+        <div class="header-left">
+          <button class="mobile-menu-toggler">
+            <span class="sr-only">Toggle mobile menu</span>
+            <i class="icon-bars"></i>
+          </button>
+
+          <a href="index.html" class="logo">
+            <img src="/assets/images/secondskinlogo.png" alt="SECOND SKIN" width="105" height="25">
+          </a>
+
+          <nav class="main-nav">
+            <ul class="menu sf-arrows">
+              <li class="megamenu-container active">
+                <a th:href="@{/}" class="sf-with-ul">Home</a>
+              </li>
+              <li>
+                <a th:href="@{/product-gallery}" class="sf-with-ul">Shop</a>
+
+
+              </li>
+              <li>
+                <a th:href="@{/cart}" class="sf-with-ul">cart</a>
+
+
+              </li>
+
+            </ul><!-- End .menu -->
+          </nav><!-- End .main-nav -->
+        </div><!-- End .header-left -->
+
+        <div class="header-right">
+
+
+
+          <div class="dropdown cart-dropdown">
+            <a href="#" class="dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-display="static">
+              <i class="icon-shopping-cart"></i>
+              <span class="cart-count">2</span>
+            </a>
+
+            <div class="dropdown-menu dropdown-menu-right">
+
+              <div class="dropdown-cart-action">
+                <a th:href="@{/cart}" class="btn btn-primary">View Cart</a>
+
+              </div><!-- End .dropdown-cart-total -->
+            </div><!-- End .dropdown-menu -->
+          </div><!-- End .cart-dropdown -->
+        </div><!-- End .header-right -->
+      </div><!-- End .container -->
+    </div><!-- End .header-middle -->
+  </header><!-- End .header -->
+
+
+
+
+  <main class="main">
+    <div class="page-header text-center" style="background-image: url('/assets/images/page-header-bg.jpg')">
+      <div class="container">
+        <h1 class="page-title">My Account<span>Shop</span></h1>
+      </div><!-- End .container -->
+    </div><!-- End .page-header -->
+
+    <nav aria-label="breadcrumb" class="breadcrumb-nav mb-3">
+      <div class="container">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a th:href="@{/}">Home</a></li>
+          <li class="breadcrumb-item"><a th:href="@{/product-gallery}">Shop</a></li>
+          <li class="breadcrumb-item active" aria-current="page">view Order</li>
+        </ol>
+      </div><!-- End .container -->
+    </nav><!-- End .breadcrumb-nav -->
+
+    <div class="page-content">
+      <div class="dashboard">
+        <div class="container">
+          <div class="row">
+            <aside class="col-md-4 col-lg-3">
+              <ul class="nav nav-dashboard flex-column mb-3 mb-md-0" role="tablist">
+                <li class="nav-item">
+                  <a class="nav-link" id="tab-dashboard-link" th:href="@{/details/user-account}" role="tab" aria-controls="tab-dashboard" aria-selected="true">My profile</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link active" id="tab-orders-link" data-toggle="tab" href="#tab-orders" role="tab" aria-controls="tab-orders" aria-selected="false">Orders</a>
+                </li>
+
+                <li class="nav-item">
+                  <a class="nav-link" th:href="@{/details/add-addressform}">Addresses</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link " th:href="@{/details/show-address}">Show Addresses</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" id="tab-account-link" th:href="@{/user-wallet/show-wallet}" role="tab" aria-controls="tab-account" aria-selected="false">My Wallet</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#">Sign Out</a>
+                </li>
+              </ul>
+            </aside><!-- End .col-lg-3 -->
+
+            <div class="col-md-8 col-lg-9">
+              <div class="tab-content">
+                <div class="row">
+                  <!-- Delivery Address Column (Left) -->
+                  <div class="col-md-6 delivery_address">
+
+<!--                    <hr>-->
+                    <div class="delivery">
+                      <h4>Delivery Address</h4>
+                    </div>
+                    <div class="sub_headings">
+                      <span th:text="${user.firstName}"></span>
+                      <span th:text="${user.lastName}"></span>
+                    </div>
+                    <br>
+                    <div><span th:text="${order.address.flat}"></span></div>
+                    <div><span th:text="${order.address.area}"></span></div>
+                    <div><span th:text="${order.address.town}"></span></div>
+                    <div><span th:text="${order.address.city}"></span></div>
+                    <div><span th:text="${order.address.state}"></span></div>
+                    <div><span th:text="${order.address.pin}"></span></div>
+                    <div><span th:text="${order.address.landMark}"></span></div>
+                    <br>
+                    <div class="sub_headings">
+                      <span th:text="${user.phone}"></span>
+                    </div>
+                    <div class="date-container d-flex" th:if="${order.status != T(com.secondskin.babbywear.model.Status).ORDER_CANCELLED}">
+                      <div class="date_small" th:if="${order.orderedDate != null}">ordered on<small th:text="${order.orderedDate}"></small></div>
+                      <div class="date_small " th:if="${order.deliveryDate != null}">Delivered on<small th:text="${order.deliveryDate}"></small></div>
+                    </div>
+                  </div>
+
+                  <!-- Order Details Column (Right) -->
+                  <div class="col-md-6 main_area">
+                    <div th:each="myOrder : ${order}">
+                      <div th:each="orderItem : ${myOrder.orderItems}">
+                        <div class="row">
+                          <div class="col-md-12 image_preview">
+                            <input id="order_id" type="hidden" th:value="${order.id}">
+                            <img width="100" height="100" alt="poster_1_up" class="shop_thumbnail"
+                                 th:src="@{/productImages/{imageUrl}(imageUrl=${orderItem.variant.products.images[0].imageUrl})}">
+                          </div>
+                          <div class="col-md-6"> <!-- Adjust the column width as needed -->
+                            <!-- Elements to display on the right of the image -->
+                            <div>
+                              <span style="color:red;" th:if="${order.status == T(com.secondskin.babbywear.model.Status).ORDER_CANCELLED}" th:text="${order.status}">Order Cancelled</span>
+                              <span th:unless="${order.status == T(com.secondskin.babbywear.model.Status).ORDER_CANCELLED}"></span>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <button class="btn-sm btn-primary cancel_btn" type="button" id="returnCancelReasonBtn" onclick="cancelOrder()"
+                            th:if="${order.status != T(com.secondskin.babbywear.model.Status).ORDER_CANCELLED
+                       and order.status != T(com.secondskin.babbywear.model.Status).ORDERED_DELIVERED}">
+                      Cancel Order
+                    </button>
+
+
+
+                  </div>
+                </div>
+
+                <div class="progress-container" th:if="${order.status != T(com.secondskin.babbywear.model.Status).ORDER_CANCELLED}">
+                  <div class="progress" id="progress"></div>
+                  <div class="circle "><small>Order Confirmed</small></div>
+
+                  <div class="circle"><small>Shipped</small></div>
+                  <div class="circle"><small>Ordered Delivered</small></div>
+                </div>
+
+
+
+                <div id="successPopup" style="display: none;" class="alert alert-success">
+                  Return request sent successfully!
+                </div>
+              </div>
+            </div><!-- End .col-lg-9 -->
+
+
+
+          </div><!-- End .row -->
+        </div><!-- End .container -->
+      </div><!-- End .dashboard -->
+    </div><!-- End .page-content -->
+  </main><!-- End .main -->
+
+
+
+
+
+
+
+
+  <footer class="footer">
+    <div class="footer-middle">
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-6 col-lg-3">
+            <div class="widget widget-about">
+              <img src="/assets/images/secondskinlogo.png" class="footer-logo" alt="Footer Logo" width="105" height="25">
+              <p>Praesent dapibus, neque id cursus ucibus, tortor neque egestas augue, eu vulputate magna eros eu erat. </p>
+
+              <div class="social-icons">
+                <a href="#" class="social-icon" target="_blank" title="Facebook"><i class="icon-facebook-f"></i></a>
+                <a href="#" class="social-icon" target="_blank" title="Twitter"><i class="icon-twitter"></i></a>
+                <a href="#" class="social-icon" target="_blank" title="Instagram"><i class="icon-instagram"></i></a>
+                <a href="#" class="social-icon" target="_blank" title="Youtube"><i class="icon-youtube"></i></a>
+                <a href="#" class="social-icon" target="_blank" title="Pinterest"><i class="icon-pinterest"></i></a>
+              </div><!-- End .soial-icons -->
+            </div><!-- End .widget about-widget -->
+          </div><!-- End .col-sm-6 col-lg-3 -->
+
+          <div class="col-sm-6 col-lg-3">
+            <div class="widget">
+              <h4 class="widget-title">Useful Links</h4><!-- End .widget-title -->
+
+              <ul class="widget-list">
+                <li><a href="about.html">About Molla</a></li>
+                <li><a href="#">How to shop on Molla</a></li>
+                <li><a href="#">FAQ</a></li>
+                <li><a href="contact.html">Contact us</a></li>
+                <li><a href="login.html">Log in</a></li>
+              </ul><!-- End .widget-list -->
+            </div><!-- End .widget -->
+          </div><!-- End .col-sm-6 col-lg-3 -->
+
+          <div class="col-sm-6 col-lg-3">
+            <div class="widget">
+              <h4 class="widget-title">Customer Service</h4><!-- End .widget-title -->
+
+              <ul class="widget-list">
+                <li><a href="#">Payment Methods</a></li>
+                <li><a href="#">Money-back guarantee!</a></li>
+                <li><a href="#">Returns</a></li>
+                <li><a href="#">Shipping</a></li>
+                <li><a href="#">Terms and conditions</a></li>
+                <li><a href="#">Privacy Policy</a></li>
+              </ul><!-- End .widget-list -->
+            </div><!-- End .widget -->
+          </div><!-- End .col-sm-6 col-lg-3 -->
+
+          <div class="col-sm-6 col-lg-3">
+            <div class="widget">
+              <h4 class="widget-title">My Account</h4><!-- End .widget-title -->
+
+              <ul class="widget-list">
+                <li><a href="#">Sign In</a></li>
+                <li><a href="cart.html">View Cart</a></li>
+                <li><a href="#">My Wishlist</a></li>
+                <li><a href="#">Track My Order</a></li>
+                <li><a href="#">Help</a></li>
+              </ul><!-- End .widget-list -->
+            </div><!-- End .widget -->
+          </div><!-- End .col-sm-6 col-lg-3 -->
+        </div><!-- End .row -->
+      </div><!-- End .container -->
+    </div><!-- End .footer-middle -->
+
+    <div class="footer-bottom">
+      <div class="container">
+        <p class="footer-copyright">Copyright © 2019 SecondSKin Store. All Rights Reserved.</p><!-- End .footer-copyright -->
+        <figure class="footer-payments">
+          <img src="/assets/images/payments.png" alt="Payment methods" width="272" height="20">
+        </figure><!-- End .footer-payments -->
+      </div><!-- End .container -->
+    </div><!-- End .footer-bottom -->
+  </footer><!-- End .footer -->
+</div><!-- End .page-wrapper -->
+<button id="scroll-top" title="Back to Top"><i class="icon-arrow-up"></i></button>
+
+<!-- Mobile Menu -->
+<div class="mobile-menu-overlay"></div><!-- End .mobil-menu-overlay -->
+
+<div class="mobile-menu-container">
+  <div class="mobile-menu-wrapper">
+    <span class="mobile-menu-close"><i class="icon-close"></i></span>
+
+    <form action="#" method="get" class="mobile-search">
+      <label for="mobile-search" class="sr-only">Search</label>
+      <input type="search" class="form-control" name="mobile-search" id="mobile-search" placeholder="Search in..." required>
+      <button class="btn btn-primary" type="submit"><i class="icon-search"></i></button>
+    </form>
+
+    <nav class="mobile-nav">
+      <ul class="mobile-menu">
+        <li class="active">
+          <a th:href="@{/}">Home</a>
+
+
+        </li>
+        <li>
+          <a th:href="@{/product-gallery}">Shop</a>
+
+        </li>
+        <li>
+          <a th:href="@{/cart}" class="sf-with-ul">My Cart</a>
+
+        </li>
+        <li>
+          <a th:href="@{/details/user-account}">My Account</a>
+
+        </li>
+
+
+      </ul>
+    </nav><!-- End .mobile-nav -->
+
+    <div class="social-icons">
+      <a href="#" class="social-icon" target="_blank" title="Facebook"><i class="icon-facebook-f"></i></a>
+      <a href="#" class="social-icon" target="_blank" title="Twitter"><i class="icon-twitter"></i></a>
+      <a href="#" class="social-icon" target="_blank" title="Instagram"><i class="icon-instagram"></i></a>
+      <a href="#" class="social-icon" target="_blank" title="Youtube"><i class="icon-youtube"></i></a>
+    </div><!-- End .social-icons -->
+  </div><!-- End .mobile-menu-wrapper -->
+</div><!-- End .mobile-menu-container -->
+
+
+
+<!-- Plugins JS File -->
+<script src="/assets/js/jquery.min.js"></script>
+<script src="/assets/js/bootstrap.bundle.min.js"></script>
+<script src="/assets/js/jquery.hoverIntent.min.js"></script>
+<script src="/assets/js/jquery.waypoints.min.js"></script>
+<script src="/assets/js/superfish.min.js"></script>
+<script src="/assets/js/owl.carousel.min.js"></script>
+<!-- Main JS File -->
+<script src="/assets/js/main.js"></script>
+
+
+
+
+
+
+<script>
+        document.addEventListener("DOMContentLoaded", function () {
+  const progress = document.querySelector(".progress");
+  const stepCircles = document.querySelectorAll(".circle");
+
+  // Define a mapping of statuses to steps (percentages)
+  const statusToStep = {
+    "ORDER_CONFIRMED": 25,
+    "SHIPPING": 50,
+    "ORDERED_DELIVERED": 100
+  };
+
+  // Simulate an order status change (replace with actual status from your data)
+  async function updateProgress() {
+    const orderId = document.getElementById("order_id").value;
+    const response = await fetch(`/details/getOrderStatus/${orderId}`);
+    const currentStatus = await response.text(); // Assuming the response is text
+    const currentStep = statusToStep[currentStatus] || 0; // Default to 0 if status is not found
+    console.log(currentStep)
+
+    progress.style.width = currentStep + "%";
+
+    stepCircles.forEach((circle, i) => {
+      if (i < currentStep / 25) {
+        circle.classList.add("active");
+      } else {
+        circle.classList.remove("active");
+      }
+    });
+  }
+
+  // Initial update when the page loads
+  updateProgress();
+});
+
+    </script>
+
+
+         <script>
+
+
+
+
+           function cancelOrder() {
+    // Get the order ID from your HTML or any other source
+<!--    var orderId = /* Get the order ID here */;-->
+     var orderIdInput = document.getElementById("order_id");
+
+         var orderId = orderIdInput.value;
+         console.log("Order ID: " + orderId);
+
+    // Make a fetch request to cancel the order with a POST method
+    fetch("/details/cancel-order", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/x-www-form-urlencoded",
+        },
+        body: "orderId=" + orderId,
+    })
+    .then(function (response) {
+        if (response.ok) {
+            // Handle the success response, e.g., show a confirmation message
+            alert("Order has been successfully canceled.");
+            // Optionally, you can update the page content or show a message to the user
+            // For example, hide the cancel button or update the order status on the page
+        } else {
+            // Handle the error response, e.g., show an error message
+            alert("An error occurred while canceling the order.");
+        }
+    })
+    .catch(function (error) {
+        // Handle network or other errors
+        console.error("Error:", error);
+    });
+}
+   </script>
+
+<script>
+  // Get the form element
+  const returnForm = document.getElementById("returnForm");
+
+  // Get the success popup element
+  const successPopup = document.getElementById("successPopup");
+
+  // Add a submit event listener to the form
+  returnForm.addEventListener("submit", function (e) {
+    e.preventDefault(); // Prevent the default form submission
+
+    // Get the selected reason from the dropdown
+    const selectedReason = document.getElementById("returnCancelReason").value;
+
+    // Create a FormData object to serialize the form data
+    const formData = new FormData(returnForm);
+
+    // Append the selected reason to the form data
+    formData.append("selectedReason", selectedReason);
+
+    // Send a POST request using the Fetch API
+    fetch("@{/details/return-order}", {
+      method: "POST",
+      body: formData,
+    })
+      .then((response) => {
+        if (response.ok) {
+          // Request was successful, display the success popup
+          successPopup.style.display = "block";
+          // You can update the UI or display a success message here
+
+          // Hide the popup after a few seconds (adjust as needed)
+          setTimeout(() => {
+            successPopup.style.display = "none";
+          }, 3000); // 3000 milliseconds (3 seconds)
+        } else {
+          // Handle errors if the request was not successful
+          console.error("Request for return failed.");
+          // You can display an error message to the user here
+        }
+      })
+      .catch((error) => {
+        // Handle network errors
+        console.error("Network error:", error);
+      });
+  });
+</script>
+
+
+
+</body>
+
+
+
+</html>

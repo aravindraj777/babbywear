@@ -1,0 +1,451 @@
+
+
+
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+
+<!-- molla/cart.html  22 Nov 2019 09:55:06 GMT -->
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Molla - Bootstrap eCommerce Template</title>
+    <meta name="keywords" content="HTML5 Template">
+    <meta name="description" content="Molla - Bootstrap eCommerce Template">
+    <meta name="author" content="p-themes">
+    <!-- Favicon -->
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/images/icons/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/images/icons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/images/icons/favicon-16x16.png">
+    <link rel="manifest" href="/assets/images/icons/site.html">
+    <link rel="mask-icon" href="/assets/images/icons/safari-pinned-tab.svg" color="#666666">
+    <link rel="shortcut icon" href="/assets/images/icons/favicon.ico">
+    <meta name="apple-mobile-web-app-title" content="Molla">
+    <meta name="application-name" content="Molla">
+    <meta name="msapplication-TileColor" content="#cc9966">
+    <meta name="msapplication-config" content="/assets/images/icons/browserconfig.xml">
+    <meta name="theme-color" content="#ffffff">
+    <!-- Plugins CSS File -->
+    <link rel="stylesheet" href="/assets/css/bootstrap.min.css">
+    <!-- Main CSS File -->
+    <link rel="stylesheet" href="/assets/css/style.css">
+
+
+    <style>
+        .confirm {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 50vh;
+            margin: 0;
+            text-align: center;
+        }
+
+
+    </style>
+</head>
+
+<body>
+<div class="page-wrapper">
+    <header class="header">
+        <div class="header-top">
+            <div class="container">
+                <div class="header-left">
+                    <div class="header-dropdown">
+                        <a href="#">Usd</a>
+                        <div class="header-menu">
+                            <ul>
+                                <li><a href="#">Eur</a></li>
+                                <li><a href="#">Usd</a></li>
+                            </ul>
+                        </div><!-- End .header-menu -->
+                    </div><!-- End .header-dropdown -->
+
+                    <div class="header-dropdown">
+                        <a href="#">Eng</a>
+                        <div class="header-menu">
+                            <ul>
+                                <li><a href="#">English</a></li>
+                                <li><a href="#">French</a></li>
+                                <li><a href="#">Spanish</a></li>
+                            </ul>
+                        </div><!-- End .header-menu -->
+                    </div><!-- End .header-dropdown -->
+                </div><!-- End .header-left -->
+
+                <div class="header-right">
+                    <ul class="top-menu">
+                        <li>
+                            <a href="#">Links</a>
+                            <ul>
+                                <li><a href="tel:#"><i class="icon-phone"></i>Call: +0123 456 789</a></li>
+                                <li><a href="wishlist.html"><i class="icon-heart-o"></i>Wishlist <span>(3)</span></a></li>
+                                <li><a href="about.html">About Us</a></li>
+                                <li><a href="contact.html">Contact Us</a></li>
+                                <li><a href="#signin-modal" data-toggle="modal"><i class="icon-user"></i>Login</a></li>
+                            </ul>
+                        </li>
+                    </ul><!-- End .top-menu -->
+                </div><!-- End .header-right -->
+            </div><!-- End .container -->
+        </div><!-- End .header-top -->
+
+        <div class="header-middle sticky-header">
+            <div class="container">
+                <div class="header-left">
+                    <button class="mobile-menu-toggler">
+                        <span class="sr-only">Toggle mobile menu</span>
+                        <i class="icon-bars"></i>
+                    </button>
+
+                    <a href="index.html" class="logo">
+                        <img src="/assets/images/secondskinlogo.png" alt="Molla Logo" width="80" height="20">
+                    </a>
+
+                    <nav class="main-nav">
+                        <ul class="menu sf-arrows">
+                            <li class="megamenu-container active">
+                                <a th:href="@{/}" class="sf-with-ul">Home</a>
+
+                            </li>
+
+                            <li>
+                                <a th:href="@{/product-gallery}" class="sf-with-ul">Products</a>
+
+
+                            </li>
+
+                        </ul><!-- End .menu -->
+                    </nav><!-- End .main-nav -->
+                </div><!-- End .header-left -->
+
+
+            </div><!-- End .header-middle -->
+        </div>
+    </header><!-- End .header -->
+
+
+    <main class="main">
+        <div class="page-header text-center" style="background-image: url('/assets/images/page-header-bg.jpg')">
+            <div class="container">
+                <h1 class="page-title">Order<span>Shop</span></h1>
+            </div><!-- End .container -->
+        </div><!-- End .page-header -->
+        <nav aria-label="breadcrumb" class="breadcrumb-nav">
+            <div class="container">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                    <li class="breadcrumb-item"><a th:href="@{/product-gallery}">Shop</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Shopping Cart</li>
+                </ol>
+            </div><!-- End .container -->
+        </nav><!-- End .breadcrumb-nav -->
+
+
+        <div class="confirm">
+            <h1>Order Success</h1>
+            <img src="https://www.google.com/url?sa=i&url=https%3A%2F%2Fclipart-library.com%2Ffree%2Fsuccess-transparent.html&psig=AOvVaw2WcfiZDHtehRrcg3sq_3c9&ust=1694864791371000&source=images&cd=vfe&opi=89978449&ved=0CBAQjRxqFwoTCIilmr_FrIEDFQAAAAAdAAAAABAE" alt="">
+            <a th:href="@{/}">HOME</a>
+            <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+            <lottie-player src="https://lottie.host/5fd86e69-4064-40b5-8ac3-bf13d9135d27/qLLgjEOL87.json" background="transparent" speed="1" style="width: 300px; height: 300px;" loop autoplay></lottie-player>
+        </div>
+
+
+    </main><!-- End .main -->
+
+
+
+
+
+    <footer class="footer">
+        <div class="footer-middle">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-6 col-lg-3">
+                        <div class="widget widget-about">
+                            <img src="/assets/images/secondskinlogo.png" class="footer-logo" alt="Footer Logo" width="105" height="25">
+                            <p>Praesent dapibus, neque id cursus ucibus, tortor neque egestas augue, eu vulputate magna eros eu erat. </p>
+
+                            <div class="social-icons">
+                                <a href="#" class="social-icon" target="_blank" title="Facebook"><i class="icon-facebook-f"></i></a>
+                                <a href="#" class="social-icon" target="_blank" title="Twitter"><i class="icon-twitter"></i></a>
+                                <a href="#" class="social-icon" target="_blank" title="Instagram"><i class="icon-instagram"></i></a>
+                                <a href="#" class="social-icon" target="_blank" title="Youtube"><i class="icon-youtube"></i></a>
+                                <a href="#" class="social-icon" target="_blank" title="Pinterest"><i class="icon-pinterest"></i></a>
+                            </div><!-- End .soial-icons -->
+                        </div><!-- End .widget about-widget -->
+                    </div><!-- End .col-sm-6 col-lg-3 -->
+
+                    <div class="col-sm-6 col-lg-3">
+                        <div class="widget">
+                            <h4 class="widget-title">Useful Links</h4><!-- End .widget-title -->
+
+                            <ul class="widget-list">
+                                <li><a href="about.html">About Molla</a></li>
+                                <li><a href="#">How to shop on Molla</a></li>
+                                <li><a href="#">FAQ</a></li>
+                                <li><a href="contact.html">Contact us</a></li>
+                                <li><a href="login.html">Log in</a></li>
+                            </ul><!-- End .widget-list -->
+                        </div><!-- End .widget -->
+                    </div><!-- End .col-sm-6 col-lg-3 -->
+
+                    <div class="col-sm-6 col-lg-3">
+                        <div class="widget">
+                            <h4 class="widget-title">Customer Service</h4><!-- End .widget-title -->
+
+                            <ul class="widget-list">
+                                <li><a href="#">Payment Methods</a></li>
+                                <li><a href="#">Money-back guarantee!</a></li>
+                                <li><a href="#">Returns</a></li>
+                                <li><a href="#">Shipping</a></li>
+                                <li><a href="#">Terms and conditions</a></li>
+                                <li><a href="#">Privacy Policy</a></li>
+                            </ul><!-- End .widget-list -->
+                        </div><!-- End .widget -->
+                    </div><!-- End .col-sm-6 col-lg-3 -->
+
+                    <div class="col-sm-6 col-lg-3">
+                        <div class="widget">
+                            <h4 class="widget-title">My Account</h4><!-- End .widget-title -->
+
+                            <ul class="widget-list">
+                                <li><a href="#">Sign In</a></li>
+                                <li><a href="cart.html">View Cart</a></li>
+                                <li><a href="#">My Wishlist</a></li>
+                                <li><a href="#">Track My Order</a></li>
+                                <li><a href="#">Help</a></li>
+                            </ul><!-- End .widget-list -->
+                        </div><!-- End .widget -->
+                    </div><!-- End .col-sm-6 col-lg-3 -->
+                </div><!-- End .row -->
+            </div><!-- End .container -->
+        </div><!-- End .footer-middle -->
+
+        <div class="footer-bottom">
+            <div class="container">
+                <p class="footer-copyright">Copyright © 2023 SecondSkin Store. All Rights Reserved.</p><!-- End .footer-copyright -->
+                <figure class="footer-payments">
+                    <img src="/assets/images/payments.png" alt="Payment methods" width="272" height="20">
+                </figure><!-- End .footer-payments -->
+            </div><!-- End .container -->
+        </div><!-- End .footer-bottom -->
+    </footer><!-- End .footer -->
+</div><!-- End .page-wrapper -->
+<button id="scroll-top" title="Back to Top"><i class="icon-arrow-up"></i></button>
+
+<!-- Mobile Menu -->
+<div class="mobile-menu-overlay"></div><!-- End .mobil-menu-overlay -->
+
+<div class="mobile-menu-container">
+    <div class="mobile-menu-wrapper">
+        <span class="mobile-menu-close"><i class="icon-close"></i></span>
+
+        <form action="#" method="get" class="mobile-search">
+            <label for="mobile-search" class="sr-only">Search</label>
+            <input type="search" class="form-control" name="mobile-search" id="mobile-search" placeholder="Search in..." required>
+            <button class="btn btn-primary" type="submit"><i class="icon-search"></i></button>
+        </form>
+
+        <nav class="mobile-nav">
+            <ul class="mobile-menu">
+                <li class="active">
+                    <a th:href="@{/}">Home</a>
+
+
+                </li>
+                <li>
+                    <a th:href="@{/product-gallery}">Shop</a>
+
+                </li>
+
+                <li>
+                    <a th:href="@{/details/user-account}">My Account</a>
+
+                </li>
+
+            </ul>
+
+        </nav><!-- End .mobile-nav -->
+
+        <div class="social-icons">
+            <a href="#" class="social-icon" target="_blank" title="Facebook"><i class="icon-facebook-f"></i></a>
+            <a href="#" class="social-icon" target="_blank" title="Twitter"><i class="icon-twitter"></i></a>
+            <a href="#" class="social-icon" target="_blank" title="Instagram"><i class="icon-instagram"></i></a>
+            <a href="#" class="social-icon" target="_blank" title="Youtube"><i class="icon-youtube"></i></a>
+        </div><!-- End .social-icons -->
+    </div><!-- End .mobile-menu-wrapper -->
+</div><!-- End .mobile-menu-container -->
+
+
+
+
+<!-- Plugins JS File -->
+<script src="/assets/js/jquery.min.js"></script>
+<script src="/assets/js/bootstrap.bundle.min.js"></script>
+<script src="/assets/js/jquery.hoverIntent.min.js"></script>
+<script src="/assets/js/jquery.waypoints.min.js"></script>
+<script src="/assets/js/superfish.min.js"></script>
+<script src="/assets/js/owl.carousel.min.js"></script>
+<script src="/assets/js/bootstrap-input-spinner.js"></script>
+<!-- Main JS File -->
+<script src="/assets/js/main.js"></script>
+
+
+
+
+
+<!--<script>-->
+
+<!--    const subTotal = document.getElementById("sub-total");-->
+<!--    const summeryTotal = document.getElementById("summary-total");-->
+
+
+<!--    function updateTotalPrice(inputQuantity){-->
+<!--        console.log('inputQuantity.value',inputQuantity.value);-->
+<!--        console.log(inputQuantity.id);-->
+<!--        const id = inputQuantity.id;-->
+<!--        const totalPrice = fetchData(`/calculateTotalPrice/${id}?`+ `quantity=${inputQuantity.value}`, inputQuantity);-->
+<!--    }-->
+
+<!--    async function fetchData (url, currInp) {-->
+<!--       const response = await fetch(url,{method: "GET"});-->
+<!--       if(response.ok){-->
+<!--           const totalPrice = await response.json();-->
+<!--           const totalPriceSpan = currInp.parentElement.parentElement.nextElementSibling.querySelector(".amount");-->
+
+<!--           const singleVarientPrice = +totalPrice / currInp.value;-->
+
+
+<!--           let summary_Total = 0;-->
+<!--           console.log(+totalPrice,  +singleVarientPrice)-->
+<!--           if(+totalPrice > +totalPriceSpan.innerText) summary_Total = +summeryTotal.innerText + +singleVarientPrice-->
+<!--           else if (+totalPrice < +totalPriceSpan.innerText) summary_Total = +summeryTotal.innerText - +singleVarientPrice;-->
+
+
+
+<!--           summeryTotal.innerText = summary_Total;-->
+<!--           totalPriceSpan.innerText  = totalPrice;-->
+<!--       }-->
+<!--    }-->
+<!--</script>-->
+
+<!--<script>-->
+<!--    function updateTotalPrice(inputquantity){-->
+<!--     console.log('inputquantity.value',inputquantity.value);-->
+
+<!--    }-->
+
+
+<!--    <script>-->
+
+<!--function updateTotalPrice(inputElement) {-->
+
+
+<!--  var cartItemElement = inputElement.closest('.cart-item');-->
+<!--  if (!cartItemElement) {-->
+<!--    return;-->
+<!--  }-->
+
+<!--  var quantity = parseInt(inputElement.value);-->
+<!--  var variantPrice = parseFloat(inputElement.getAttribute('data-variant-price'));-->
+<!--&lt;!&ndash;  console.log(data-variant-price)&ndash;&gt;-->
+<!--console.log(variantPrice)-->
+
+
+<!--  var newSubtotal = quantity * variantPrice;-->
+<!--  var subtotalElement = cartItemElement.querySelector('.amount');-->
+
+<!--  subtotalElement.textContent = newSubtotal.toFixed(2);-->
+
+
+
+<!--&lt;!&ndash;  &ndash;&gt;-->
+
+<!--// Calculate overall cart total by looping through each cart item-->
+<!--  var cartItems = document.querySelectorAll('.cart-item');-->
+<!--  var cartTotal = 0;-->
+
+<!--  cartItems.forEach(function (cartItem) {-->
+<!--    var quantityInput = cartItem.querySelector('.input-text.qty');-->
+<!--    var variantPrice = parseFloat(quantityInput.getAttribute('data-variant-price'));-->
+<!--    var quantity = parseInt(quantityInput.value);-->
+<!--    var subtotal = quantity * variantPrice;-->
+
+<!--    cartTotal += subtotal;-->
+<!--  });-->
+
+<!--  // Update the overall cart total in the summary section-->
+<!--  var summaryTotalElement = document.getElementById('summary-total');-->
+<!--  summaryTotalElement.textContent = cartTotal.toFixed(2);-->
+
+
+<!--}-->
+<!--</script>-->
+
+
+
+
+<script>
+function updateTotalPrice(inputElement) {
+    var cartItemElement = inputElement.closest('.cart-item');
+    if (!cartItemElement) {
+        return;
+    }
+
+    var quantity = parseInt(inputElement.value);
+    var variantPrice = parseFloat(inputElement.getAttribute('data-variant-price'));
+
+    var newSubtotal = quantity * variantPrice;
+    var subtotalElement = cartItemElement.querySelector('.amount');
+    if (subtotalElement) {
+        subtotalElement.textContent = newSubtotal.toFixed(2);
+    }
+
+    // Update backend and fetch updated cart item total
+    updateBackend(inputElement, quantity); // Pass the correct parameter here
+}
+
+function updateBackend(inputElement, newQuantity) {
+    var cartItemId = inputElement.getAttribute('id');
+
+    fetch(`/update-quantity?cartItemId=${cartItemId}&newQuantity=${newQuantity}`, {
+        method: 'POST', // Specify the HTTP method
+        headers: {
+            'Content-Type': 'application/json' // Specify that you're sending JSON data
+        }
+    })
+    .then(response => response.json())
+    .then(updatedCartItemTotal => {
+        var cartItemElement = inputElement.closest('.cart-item');
+        var subtotalElement = cartItemElement.querySelector('.amount');
+        if (subtotalElement) {
+            subtotalElement.textContent = updatedCartItemTotal.toFixed(2);
+        }
+    });
+}
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+
+
+<!-- molla/cart.html  22 Nov 2019 09:55:06 GMT -->
+</html>

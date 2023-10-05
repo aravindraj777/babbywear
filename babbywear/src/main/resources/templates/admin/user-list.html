@@ -21,6 +21,27 @@
     <link rel="stylesheet" href="/admin/adminassets/css/style.css">
     <!-- End layout styles -->
     <link rel="shortcut icon" href="/admin/adminassets/images/favicon.png" />
+
+    <style>
+    .table-container {
+        max-height: 400px; /* Adjust the height as needed */
+        overflow-y: auto; /* Enable vertical scrolling */
+    }
+
+    /* Make the table header sticky at the top */
+    .table-container table thead {
+        position: sticky;
+        top: 0;
+        background-color:#1f2121; /* Background color for the sticky header */
+    }
+
+    /* Ensure the background covers the whole header */
+    .table-container table th {
+        position: relative;
+        z-index: 2;
+    }
+</style>
+
 </head>
 <body>
 <div class="container-scroller">
@@ -84,7 +105,7 @@
                 <span class="nav-link">Navigation</span>
             </li>
             <li class="nav-item menu-items">
-                <a class="nav-link" href="index.html">
+                <a class="nav-link" th:href="@{/sales/dashboard}">
               <span class="menu-icon">
                 <i class="mdi mdi-speedometer"></i>
               </span>
@@ -124,40 +145,42 @@
                     <span class="menu-title">Users</span>
                 </a>
             </li>
+
             <li class="nav-item menu-items">
-                <a class="nav-link" href="pages/charts/chartjs.html">
+                <a class="nav-link" th:href="@{/variant/low-stock}">
               <span class="menu-icon">
                 <i class="mdi mdi-chart-bar"></i>
               </span>
-                    <span class="menu-title">Charts</span>
+                    <span class="menu-title">lOW STOCK</span>
                 </a>
             </li>
             <li class="nav-item menu-items">
-                <a class="nav-link" href="pages/icons/mdi.html">
+                <a class="nav-link" th:href="@{/variant/variant-list}">
               <span class="menu-icon">
                 <i class="mdi mdi-contacts"></i>
               </span>
-                    <span class="menu-title">Icons</span>
+                    <span class="menu-title">Variants</span>
                 </a>
             </li>
             <li class="nav-item menu-items">
-                <a class="nav-link" data-toggle="collapse" href="#auth" aria-expanded="false" aria-controls="auth">
+                <a class="nav-link"  th:href="@{/orders/user-orders}">
               <span class="menu-icon">
                 <i class="mdi mdi-security"></i>
               </span>
-                    <span class="menu-title">User Pages</span>
+                    <span class="menu-title">User Orders</span>
                     <i class="menu-arrow"></i>
                 </a>
-
             </li>
+
             <li class="nav-item menu-items">
-                <a class="nav-link" href="http://www.bootstrapdash.com/demo/corona-free/jquery/documentation/documentation.html">
+                <a class="nav-link" th:href="@{/coupon/create}">
               <span class="menu-icon">
-                <i class="mdi mdi-file-document-box"></i>
+                <i class="mdi mdi-chart-bar"></i>
               </span>
-                    <span class="menu-title">Documentation</span>
+                    <span class="menu-title">Coupon</span>
                 </a>
             </li>
+
         </ul>
     </nav>
     <!-- partial -->
@@ -406,11 +429,15 @@
                                             <td th:text="${user.email}"></td>
 
                                             <td>
-                                                <!-- Add action buttons for each product -->
-                                                <a th:href="@{/user/block/{id}(id=${user.id})}" class="btn btn-primary">Block User</a>
-                                                <a th:href="@{/user/unblock/{id}(id=${user.id})}" class="btn btn-primary">unBlock User</a>
 
-                                                <!--                                                <a th:href="@{'/admin/delete-product/' + ${product.id}}" class="btn btn-danger btn-sm" onclick="if (!(confirm('Are you sure you want to delete this product?'))) return false">Delete</a>-->
+<!--                                                <a th:href="@{/user/block/{id}(id=${user.id})}" class="btn btn-primary">Block User</a>-->
+<!--                                                <a th:href="@{/user/unblock/{id}(id=${user.id})}" class="btn btn-primary">unBlock User</a>-->
+
+
+
+                                                <a th:if="${!user.enabled}" th:href="@{/user/unblock/{id}(id=${user.id})}" class="btn btn-primary">unBlock User</a>
+                                                <a th:if="${user.enabled}" class="btn btn-danger btn-sm block-button" data-bs-toggle="modal" th:data-bs-target="'#blockUserModal-' + ${user.id}" th:data-user-id="${user.id}">Block</a>
+<!--                                                <a th:if="${user.enabled}" th:href="@{/user/block/{id}(id=${user.id})}" class="btn btn-primary">Block User</a>-->
 
                                             </td>
                                         </tr>
@@ -439,12 +466,43 @@
 
             <!-- partial -->
         </div>
+
+
+        <div th:each="user : ${users.content}" class="modal fade" th:id="'blockUserModal-' + ${user.id}" tabindex="-1" role="dialog" th:aria-labelledby="'blockUserModalLabel-' + ${user.id}" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="blockUserModalLabel">Block User</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <p>
+                            Are you sure you want to block this user:
+                            <span th:text="${user.userName}" style="font-weight: bold; font-size: larger;"></span>?
+                        </p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+
+                        <a th:href="@{/user/block/{id}(id=${user.id})}" class="btn btn-primary">Block User</a>
+                    </div>
+                </div>
+            </div>
+        </div>
         <!-- main-panel ends -->
     </div>
     <!-- page-body-wrapper ends -->
 </div>
+
+
+<!---Modal-->
+
+
 <!-- container-scroller -->
 <!-- plugins:js -->
+
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
 <script src="/admin/adminassets/vendors/js/vendor.bundle.base.js"></script>
 <!-- endinject -->
 <!-- Plugin js for this page -->

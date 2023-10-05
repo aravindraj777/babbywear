@@ -1,5 +1,6 @@
 package com.secondskin.babbywear.service.category;
 
+import com.secondskin.babbywear.dto.CategoryDto;
 import com.secondskin.babbywear.model.Category;
 
 import java.util.List;
@@ -20,6 +21,10 @@ public interface CategoryService {
      void deleteById(Long id);
 
      void updateCategory(Category category);
+
+     Optional<Category> findByName(String categoryName);
+
+     void editCategory(CategoryDto categoryDto);
 
 
 

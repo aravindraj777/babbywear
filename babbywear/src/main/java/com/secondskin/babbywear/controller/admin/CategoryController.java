@@ -2,12 +2,14 @@ package com.secondskin.babbywear.controller.admin;
 
 //import com.secondskin.babbywear.service.category.CategoryService;
 //import com.secondskin.babbywear.service.category.CategoryServiceImpl;
+import com.secondskin.babbywear.dto.CategoryDto;
 import com.secondskin.babbywear.model.Category;
 import com.secondskin.babbywear.repository.CategoryRepository;
 import com.secondskin.babbywear.repository.UserRepository;
 import com.secondskin.babbywear.service.category.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.Banner;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -75,44 +77,13 @@ public class CategoryController {
             categoryService.addCategory(category);
         }
 
-//        if (existingCategory != null && !existingCategory.isDeleted() ) {
-//            result.rejectValue("categoryName", "error.categoryName", "Category Already Exists");
-//            return "admin/categorylist"; // Corrected the return view name
-//        }
 
-
-//        categoryService.addCategory(category);
 
         return "redirect:/category/create"; // Corrected the return view name
     }
 
 
 
-
-
-
-
-
-
-
-
-//    @GetMapping("/categories-add")
-//    public String showCategoryList(Model model) {
-//        List<Category> categories = categoryService.getAllCategories(); // You need to implement this method in CategoryService
-//        model.addAttribute("categories", categories);
-//        return "admin/categorylist"; // Corrected the return view name
-//    }
-
-
-//    @GetMapping("/delete/{id}")
-//    public String deleteCategory(@PathVariable Long id, Model model){
-//        return  categoryService.getById(id)
-//                .map(category ->  {
-//                    categoryService.deleteById(id);
-//                    return "redirect:/category/create";
-//                })
-//                .orElse("redirect:/category/create");
-//    }
 
 
     @GetMapping("/delete/{id}")
@@ -124,6 +95,31 @@ public class CategoryController {
                })
                .orElse("redirect:/category/create");
     }
+
+    @GetMapping("/update/{id}")
+    public String updateCategories(@PathVariable Long id,Model model){
+       Optional<Category> category =  categoryService.getById(id);
+       model.addAttribute("updateCategory",category);
+       return "admin/update-category";
+
+    }
+
+
+
+   @PostMapping("/edit")
+    public String updateCategory(@ModelAttribute("updateCategory") Category editedCategory){
+
+        Optional<Category> existingCategory = categoryService.getById(editedCategory.getId());
+
+        if(existingCategory.isPresent()){
+            Category categoryToUpdate = existingCategory.get();
+
+            categoryToUpdate.setCategoryName(editedCategory.getCategoryName());
+            categoryService.addCategory(categoryToUpdate);
+        }
+        return "redirect:/category/create";
+    }
+
 
 
 }

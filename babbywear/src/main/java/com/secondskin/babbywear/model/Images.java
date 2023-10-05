@@ -12,7 +12,9 @@ import java.util.UUID;
 @Builder
 @Table
 @Entity
-@Data
+//@Data
+@Getter
+@Setter
 public class Images {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

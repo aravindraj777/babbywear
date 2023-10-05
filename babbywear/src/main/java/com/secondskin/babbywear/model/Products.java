@@ -1,5 +1,6 @@
 package com.secondskin.babbywear.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -35,7 +36,11 @@ public class Products {
     private List<Images> images;
 
 
-    @OneToMany(mappedBy = "products")
+    @OneToMany(mappedBy = "products",cascade = CascadeType.ALL)
     @ToString.Exclude
-    private List<Variant> variant;
+    @JsonIgnore
+    private List<Variant> variant = new ArrayList<>();
+
+    @Column(name = "rating")
+    private Double averageRating ;
 }

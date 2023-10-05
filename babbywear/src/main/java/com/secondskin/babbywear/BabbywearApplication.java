@@ -6,9 +6,13 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.scheduling.annotation.EnableScheduling;
 
 
 @SpringBootApplication
+//@EnableScheduling
+//@ComponentScan("com.secondskin.babbywear.service.variant")
 public class BabbywearApplication {
 
 	public static void main(String[] args) {
@@ -16,21 +20,6 @@ public class BabbywearApplication {
 	}
 
 
-//	@Bean
-//	CommandLineRunner commandLineRunner(UserRepository userRepository, PasswordEncoder encoder) {
-//		return args->{
-//
-//			UserInfo user= UserInfo.builder().userName("user")
-//					.email("user@gmail.com")
-//					.password(encoder.encode("password1"))
-//					.roles("ROLE_USER")
-//					.build();
-//
-//
-//
-//
-//		};
-//	}
 
 
 }

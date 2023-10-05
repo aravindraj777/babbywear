@@ -14,46 +14,26 @@
             <div class="card bg-light">
                 <div class="card-body">
                     <h2 class="text-center mb-4">Edit Products</h2>
-                    <form th:action="@{/product/edit}" th:object="${product}" method="post" enctype="multipart/form-data">
-                        <div class="form-group">
-                            <label for="productName">Product Name:</label>
-                            <input type="text" class="form-control" id="productName" name="productName" required th:field="*{product.productName}">
-                            <span class="text-danger" th:if="${#fields.hasErrors('productName')}" th:errors="*{productName}"></span>
+
+                    <form th:action="@{/product/edit}" method="post" class="signup-background" id="signupForm">
+                        <input type="hidden" th:field="*{product.id}">
+                        <div class="mb-3 ml-5 mr-5">
+                            <input type="text" name="flat" class="form-control" placeholder="productName" th:field="*{product.productName}">
+                        </div>
+                        <div class="mb-3 ml-5 mr-5">
+                            <input type="text" name="area" class="form-control" placeholder="price" th:field="*{product.price}">
+                        </div>
+                        <div class="mb-3 ml-5 mr-5">
+                            <input type="text" name="town" class="form-control" placeholder="desc" th:field="*{product.description}">
                         </div>
 
-                        <div class="form-group">
-                            <label for="price">Price:</label>
-                            <input type="number" class="form-control" id="price" name="price" required th:field="*{product.price}">
+                        <div class="mb-3 pl-5 pr-5">
+                            <button type="submit" value="address" class="btn btn-success w-100">Edit</button>
                         </div>
-
-
-                        <div class="form-group">
-                            <label for="description">Description:</label>
-                            <textarea class="form-control" id="description" name="description" required th:field="*{product.description}"></textarea>
-                        </div>
-
-
-                        <div class="form-group">
-                            <label for="categoryId">Category:</label>
-                            <select class="form-control" id="categoryId" name="categoryId" required>
-                                <option th:each="category : ${categories}" th:value="${category.id}" th:text="${category.categoryName}" th:field="*{product.category}"></option>
-                            </select>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="images">Images:</label>
-                            <input type="file"  accept="image/jpeg,image/png" class="form-control" id="images" name="images" multiple="multiple">
-                        </div>
-
-                        <div class="modal-footer">
-                            <a th:href="@{/product/product-page}">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                            </a>
-                            <button type="submit" class="btn btn-primary">Edit Product</button>
-
-                        </div>
-
+                        <p class="text-center"><a th:href="@{/product/product-page}">Close</a></p>
                     </form>
+
+
                 </div>
             </div>
         </div>
@@ -61,15 +41,6 @@
 </div>
 
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.bundle.min.js"></script>
-<!--<script>-->
-<!--        document.getElementById("signupForm").addEventListener("submit", () => {-->
-<!--            var password = document.getElementById("password").value;-->
-<!--            var confirmPassword = document.getElementById("confirmPassword").value;-->
 
-<!--            if (password !== confirmPassword) {-->
-<!--                alert("Passwords do not match!");-->
-<!--            }-->
-<!--        });-->
-<!--    </script>-->
 </body>
 </html>

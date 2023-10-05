@@ -1,0 +1,1014 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Second Skin </title>
+    <!-- plugins:css -->
+    <link rel="stylesheet" href="/admin/adminassets/vendors/mdi/css/materialdesignicons.min.css">
+    <link rel="stylesheet" href="/admin/adminassets/vendors/css/vendor.bundle.base.css">
+    <!-- endinject -->
+    <!-- Plugin css for this page -->
+    <link rel="stylesheet" href="/admin/adminassets/vendors/jvectormap/jquery-jvectormap.css">
+    <link rel="stylesheet" href="/admin/adminassets/vendors/flag-icon-css/css/flag-icon.min.css">
+    <link rel="stylesheet" href="/admin/adminassets/vendors/owl-carousel-2/owl.carousel.min.css">
+    <link rel="stylesheet" href="/admin/adminassets/vendors/owl-carousel-2/owl.theme.default.min.css">
+    <!-- End plugin css for this page -->
+    <!-- inject:css -->
+    <!-- endinject -->
+    <!-- Layout styles -->
+    <link rel="stylesheet" href="/admin/adminassets/css/style.css">
+    <!-- End layout styles -->
+    <link rel="shortcut icon" href="/admin/adminassets/images/adminlogo.png" />
+
+
+    <style>
+
+        #month-card{
+        border-radius:  5px 50px ;
+        box-shadow: 0px 0px 10px rgba(0, 255, 255, 0.7),
+                    0px 0px 20px rgba(0, 255, 255, 0.5),
+                    0px 0px 30px rgba(0, 255, 255, 0.3);
+
+                     transition: transform 0.3s ease;
+        }
+         #month-card:hover {
+        transform: scale(1.1); /* Apply a 10% zoom on hover */
+        }
+
+
+
+        #weekly-card{
+        border-radius: 50px 5px ;
+        box-shadow: 0px 0px 10px rgba(0, 255, 255, 0.7),
+                    0px 0px 20px rgba(0, 255, 255, 0.5),
+                    0px 0px 30px rgba(0, 255, 255, 0.3);
+
+                     transition: transform 0.3s ease;
+        }
+         #weekly-card:hover {
+        transform: scale(1.1); /* Apply a 10% zoom on hover */
+        }
+
+        #yearly-card{
+        border-radius: 50px 5px ;
+        box-shadow: 0px 0px 10px rgba(0, 255, 255, 0.7),
+                    0px 0px 20px rgba(0, 255, 255, 0.5),
+                    0px 0px 30px rgba(0, 255, 255, 0.3);
+
+                     transition: transform 0.3s ease;
+        }
+         #yearly-card:hover {
+        transform: scale(1.1); /* Apply a 10% zoom on hover */
+        }
+
+
+         #daily-card{
+        border-radius:  5px 50px ;
+        box-shadow: 0px 0px 10px rgba(0, 255, 255, 0.7),
+                    0px 0px 20px rgba(0, 255, 255, 0.5),
+                    0px 0px 30px rgba(0, 255, 255, 0.3);
+
+                     transition: transform 0.3s ease;
+        }
+         #daily-card:hover {
+        transform: scale(1.1); /* Apply a 10% zoom on hover */
+        }
+
+
+
+
+    </style>
+
+</head>
+<body>
+
+
+ <div class="container-scroller" id="content" style="background-color: #333; color: #fff;">
+    <!-- partial:partials/_sidebar.html -->
+    <nav class="sidebar sidebar-offcanvas" id="sidebar">
+        <div class="sidebar-brand-wrapper d-none d-lg-flex align-items-center justify-content-center fixed-top">
+            <a class="sidebar-brand brand-logo" href="index.html"><img src="/admin/adminassets/images/adminlogo.png" alt="logo" /></a>
+            <a class="sidebar-brand brand-logo-mini" href="index.html"><img src="/admin/adminassets/images/logo-mini.svg" alt="logo" /></a>
+        </div>
+        <ul class="nav">
+            <li class="nav-item profile">
+                <div class="profile-desc">
+                    <div class="profile-pic">
+                        <div class="count-indicator">
+                            <img class="img-xs rounded-circle " src="/admin/adminassets/images/faces/face15.jpg" alt="">
+                            <span class="count bg-success"></span>
+                        </div>
+                        <div class="profile-name">
+                            <h5 class="mb-0 font-weight-normal">Admin</h5>
+                            <span>Gold Member</span>
+                        </div>
+                    </div>
+                    <a href="#" id="profile-dropdown" data-toggle="dropdown"><i class="mdi mdi-dots-vertical"></i></a>
+                    <div class="dropdown-menu dropdown-menu-right sidebar-dropdown preview-list" aria-labelledby="profile-dropdown">
+                        <a href="#" class="dropdown-item preview-item">
+                            <div class="preview-thumbnail">
+                                <div class="preview-icon bg-dark rounded-circle">
+                                    <i class="mdi mdi-settings text-primary"></i>
+                                </div>
+                            </div>
+                            <div class="preview-item-content">
+                                <p class="preview-subject ellipsis mb-1 text-small">Account settings</p>
+                            </div>
+                        </a>
+                        <div class="dropdown-divider"></div>
+                        <a href="#" class="dropdown-item preview-item">
+                            <div class="preview-thumbnail">
+                                <div class="preview-icon bg-dark rounded-circle">
+                                    <i class="mdi mdi-onepassword  text-info"></i>
+                                </div>
+                            </div>
+                            <div class="preview-item-content">
+                                <p class="preview-subject ellipsis mb-1 text-small">Change Password</p>
+                            </div>
+                        </a>
+                        <div class="dropdown-divider"></div>
+                        <a href="#" class="dropdown-item preview-item">
+                            <div class="preview-thumbnail">
+                                <div class="preview-icon bg-dark rounded-circle">
+                                    <i class="mdi mdi-calendar-today text-success"></i>
+                                </div>
+                            </div>
+                            <div class="preview-item-content">
+                                <p class="preview-subject ellipsis mb-1 text-small">To-do list</p>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </li>
+            <li class="nav-item nav-category">
+                <span class="nav-link">Navigation</span>
+            </li>
+            <li class="nav-item menu-items">
+                <a class="nav-link" th:href="@{/sales/dashboard}">
+              <span class="menu-icon">
+                <i class="mdi mdi-speedometer"></i>
+              </span>
+                    <span class="menu-title">Dashboard</span>
+                </a>
+            </li>
+            <li class="nav-item menu-items">
+                <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
+    <span class="menu-icon">
+      <i class="mdi mdi-laptop"></i>
+    </span>
+                    <span class="menu-title">Category</span>
+                    <i class="menu-arrow"></i>
+                </a>
+                <div class="collapse" id="ui-basic">
+                    <ul class="nav flex-column sub-menu">
+                        <li class="nav-item">
+                            <a class="nav-link" th:href="@{/category/create}">CategoryList</a>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+
+            <li class="nav-item menu-items">
+                <a class="nav-link" th:href="@{/product/product-page}">
+              <span class="menu-icon">
+                <i class="mdi mdi-playlist-play"></i>
+              </span>
+                    <span class="menu-title">Products</span>
+                </a>
+            </li>
+            <li class="nav-item menu-items">
+                <a class="nav-link" th:href="@{/user/user-panel}">
+              <span class="menu-icon">
+                <i class="mdi mdi-table-large"></i>
+              </span>
+                    <span class="menu-title">Users</span>
+                </a>
+            </li>
+
+            <li class="nav-item menu-items">
+                <a class="nav-link" th:href="@{/variant/low-stock}">
+              <span class="menu-icon">
+                <i class="mdi mdi-chart-bar"></i>
+              </span>
+                    <span class="menu-title">lOW STOCK</span>
+                </a>
+            </li>
+            <li class="nav-item menu-items">
+                <a class="nav-link" th:href="@{/variant/variant-list}">
+              <span class="menu-icon">
+                <i class="mdi mdi-contacts"></i>
+              </span>
+                    <span class="menu-title">Variants</span>
+                </a>
+            </li>
+            <li class="nav-item menu-items">
+                <a class="nav-link"  th:href="@{/orders/user-orders}">
+              <span class="menu-icon">
+                <i class="mdi mdi-security"></i>
+              </span>
+                    <span class="menu-title">User Orders</span>
+                    <i class="menu-arrow"></i>
+                </a>
+            </li>
+
+            <li class="nav-item menu-items">
+                <a class="nav-link" th:href="@{/coupon/create}">
+              <span class="menu-icon">
+                <i class="mdi mdi-chart-bar"></i>
+              </span>
+                    <span class="menu-title">Coupon</span>
+                </a>
+            </li>
+
+        </ul>
+    </nav>
+    <!-- partial -->
+    <div class="container-fluid page-body-wrapper">
+        <!-- partial:partials/_navbar.html -->
+        <nav class="navbar p-0 fixed-top d-flex flex-row">
+            <div class="navbar-brand-wrapper d-flex d-lg-none align-items-center justify-content-center">
+                <a class="navbar-brand brand-logo-mini" href="index.html"><img src="/admin/adminassets/images/logo-mini.svg" alt="logo" /></a>
+            </div>
+            <div class="navbar-menu-wrapper flex-grow d-flex align-items-stretch">
+                <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
+                    <span class="mdi mdi-menu"></span>
+                </button>
+                <ul class="navbar-nav w-100">
+                    <li class="nav-item w-100">
+                        <form class="nav-link mt-2 mt-md-0 d-none d-lg-flex search">
+                            <input type="text" class="form-control" placeholder="Search products">
+                        </form>
+                    </li>
+                </ul>
+
+
+                <ul class="navbar-nav navbar-nav-right">
+                    <li class="nav-item dropdown d-none d-lg-block">
+                        <a class="nav-link btn btn-success create-new-button" id="createbuttonDropdown" data-toggle="dropdown" aria-expanded="false" href="#">+ Create New Project</a>
+                        <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list" aria-labelledby="createbuttonDropdown">
+                            <h6 class="p-3 mb-0">Projects</h6>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item preview-item">
+                                <div class="preview-thumbnail">
+                                    <div class="preview-icon bg-dark rounded-circle">
+                                        <i class="mdi mdi-file-outline text-primary"></i>
+                                    </div>
+                                </div>
+                                <div class="preview-item-content">
+                                    <p class="preview-subject ellipsis mb-1">Software Development</p>
+                                </div>
+                            </a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item preview-item">
+                                <div class="preview-thumbnail">
+                                    <div class="preview-icon bg-dark rounded-circle">
+                                        <i class="mdi mdi-web text-info"></i>
+                                    </div>
+                                </div>
+                                <div class="preview-item-content">
+                                    <p class="preview-subject ellipsis mb-1">UI Development</p>
+                                </div>
+                            </a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item preview-item">
+                                <div class="preview-thumbnail">
+                                    <div class="preview-icon bg-dark rounded-circle">
+                                        <i class="mdi mdi-layers text-danger"></i>
+                                    </div>
+                                </div>
+                                <div class="preview-item-content">
+                                    <p class="preview-subject ellipsis mb-1">Software Testing</p>
+                                </div>
+                            </a>
+                            <div class="dropdown-divider"></div>
+                            <p class="p-3 mb-0 text-center">See all projects</p>
+                        </div>
+                    </li>
+                    <li class="nav-item nav-settings d-none d-lg-block">
+                        <a class="nav-link" href="#">
+                            <i class="mdi mdi-view-grid"></i>
+                        </a>
+                    </li>
+                    <li class="nav-item dropdown border-left">
+                        <a class="nav-link count-indicator dropdown-toggle" id="messageDropdown" href="#" data-toggle="dropdown" aria-expanded="false">
+                            <i class="mdi mdi-email"></i>
+                            <span class="count bg-success"></span>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list" aria-labelledby="messageDropdown">
+                            <h6 class="p-3 mb-0">Messages</h6>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item preview-item">
+                                <div class="preview-thumbnail">
+                                    <img src="/admin/adminassets/images/faces/face4.jpg" alt="image" class="rounded-circle profile-pic">
+                                </div>
+                                <div class="preview-item-content">
+                                    <p class="preview-subject ellipsis mb-1">Mark send you a message</p>
+                                    <p class="text-muted mb-0"> 1 Minutes ago </p>
+                                </div>
+                            </a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item preview-item">
+                                <div class="preview-thumbnail">
+                                    <img src="/admin/adminassets/images/faces/face2.jpg" alt="image" class="rounded-circle profile-pic">
+                                </div>
+                                <div class="preview-item-content">
+                                    <p class="preview-subject ellipsis mb-1">Cregh send you a message</p>
+                                    <p class="text-muted mb-0"> 15 Minutes ago </p>
+                                </div>
+                            </a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item preview-item">
+                                <div class="preview-thumbnail">
+                                    <img src="/admin/adminassets/images/faces/face3.jpg" alt="image" class="rounded-circle profile-pic">
+                                </div>
+                                <div class="preview-item-content">
+                                    <p class="preview-subject ellipsis mb-1">Profile picture updated</p>
+                                    <p class="text-muted mb-0"> 18 Minutes ago </p>
+                                </div>
+                            </a>
+                            <div class="dropdown-divider"></div>
+                            <p class="p-3 mb-0 text-center">4 new messages</p>
+                        </div>
+                    </li>
+                    <li class="nav-item dropdown border-left">
+                        <a class="nav-link count-indicator dropdown-toggle" id="notificationDropdown" href="#" data-toggle="dropdown">
+                            <i class="mdi mdi-bell"></i>
+                            <span class="count bg-danger"></span>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list" aria-labelledby="notificationDropdown">
+                            <h6 class="p-3 mb-0">Notifications</h6>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item preview-item">
+                                <div class="preview-thumbnail">
+                                    <div class="preview-icon bg-dark rounded-circle">
+                                        <i class="mdi mdi-calendar text-success"></i>
+                                    </div>
+                                </div>
+                                <div class="preview-item-content">
+                                    <p class="preview-subject mb-1">Event today</p>
+                                    <p class="text-muted ellipsis mb-0"> Just a reminder that you have an event today </p>
+                                </div>
+                            </a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item preview-item">
+                                <div class="preview-thumbnail">
+                                    <div class="preview-icon bg-dark rounded-circle">
+                                        <i class="mdi mdi-settings text-danger"></i>
+                                    </div>
+                                </div>
+                                <div class="preview-item-content">
+                                    <p class="preview-subject mb-1">Settings</p>
+                                    <p class="text-muted ellipsis mb-0"> Update dashboard </p>
+                                </div>
+                            </a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item preview-item">
+                                <div class="preview-thumbnail">
+                                    <div class="preview-icon bg-dark rounded-circle">
+                                        <i class="mdi mdi-link-variant text-warning"></i>
+                                    </div>
+                                </div>
+                                <div class="preview-item-content">
+                                    <p class="preview-subject mb-1">Launch Admin</p>
+                                    <p class="text-muted ellipsis mb-0"> New admin wow! </p>
+                                </div>
+                            </a>
+                            <div class="dropdown-divider"></div>
+                            <p class="p-3 mb-0 text-center">See all notifications</p>
+                        </div>
+                    </li>
+                    <button id="mode-toggle" onclick="toggleMode()">Mode</button>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link" id="profileDropdown" href="#" data-toggle="dropdown">
+                            <div class="navbar-profile">
+                                <img class="img-xs rounded-circle" src="/admin/adminassets/images/faces/face15.jpg" alt="">
+                                <p class="mb-0 d-none d-sm-block navbar-profile-name">Henry Klein</p>
+                                <i class="mdi mdi-menu-down d-none d-sm-block"></i>
+                            </div>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list" aria-labelledby="profileDropdown">
+                            <h6 class="p-3 mb-0">Profile</h6>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item preview-item">
+                                <div class="preview-thumbnail">
+                                    <div class="preview-icon bg-dark rounded-circle">
+                                        <i class="mdi mdi-settings text-success"></i>
+                                    </div>
+                                </div>
+                                <div class="preview-item-content">
+                                    <p class="preview-subject mb-1">Settings</p>
+                                </div>
+                            </a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item preview-item">
+                                <div class="preview-thumbnail">
+                                    <div class="preview-icon bg-dark rounded-circle">
+                                        <i class="mdi mdi-logout text-danger"></i>
+                                    </div>
+                                </div>
+                                <div class="preview-item-content">
+                                    <p class="preview-subject mb-1">Log out</p>
+                                </div>
+                            </a>
+                            <div class="dropdown-divider"></div>
+                            <p class="p-3 mb-0 text-center">Advanced settings</p>
+                        </div>
+                    </li>
+                </ul>
+                <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" data-toggle="offcanvas">
+                    <span class="mdi mdi-format-line-spacing"></span>
+                </button>
+            </div>
+        </nav>
+        <!-- partial -->
+        <div class="main-panel">
+
+            <div class="content-wrapper">
+
+
+
+                <div class="row datePicker">
+                    <div class="col-md-6 byDate">
+                        <form th:action="@{/sales/sales-by-selectedDate}" method="post">
+                            <div class="form-sec">
+                                <div class="form-group">
+                                    <input type="date" id="startDatePicker" th:name="startDate" class="form-control">
+                                </div>
+                                <div class="form-group">
+                                    <input type="date" id="endDatePicker" th:name="endDate" class="form-control">
+                                </div>
+                                <span><button type="submit" class="btn btn-primary">Show Report</button></span>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="col-md-6 byPeriod">
+                        <form th:action="@{/sales/sales-by-periods}" method="post" class="form-inline">
+                            <select id="timePeriod" th:name="selectedTimePeriod" class="form-control mr-2">
+                                <option value="">SELECT</option>
+                                <option value="DAILY">DAILY</option>
+                                <option value="WEEKLY">WEEKLY</option>
+                                <option value="MONTHLY">MONTHLY</option>
+                            </select>
+                            <button type="submit" class="btn btn-primary">Show Report</button>
+                        </form>
+                    </div>
+                </div>
+
+
+
+
+
+
+
+
+
+
+
+                <div class="row">
+                    <div class="col-xl-3 col-sm-6 grid-margin stretch-card">
+                        <div class="card" id="daily-card">
+                            <div class="card-body">
+                                <h6 class="text-muted font-weight-normal">Today</h6>
+                                <div class="row">
+                                    <div class="col-9">
+                                        <div class="d-flex align-items-center align-self-start">
+                                            <h3 class="mb-0" th:text="${dailyOrderCount}"></h3>
+                                        </div>
+
+                                        <p th:text="'Rs: '+ ${dailyOrderTotal}"></p>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-xl-3 col-sm-6 grid-margin stretch-card">
+                        <div class="card" id="weekly-card">
+                            <div class="card-body" >
+                                <h6 class="text-muted font-weight-normal">This Week</h6>
+                                <div class="row">
+                                    <div class="col-9">
+                                        <div class="d-flex align-items-center align-self-start">
+                                            <h3 class="mb-0" th:text="${weeklyOrder}" ></h3>
+                                        </div>
+
+                                        <p th:text="${weeklyTotal}"> </p>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-sm-6 grid-margin stretch-card">
+                        <div class="card" id="month-card">
+                            <div class="card-body">
+                                <h6 class="text-muted font-weight-normal">This Month</h6>
+                                <div class="row">
+                                    <div class="col-9">
+                                        <div class="d-flex align-items-center align-self-start">
+                                            <h3 class="mb-0" th:text="${monthOrderCount}"></h3>
+                                        </div>
+                                        <p th:text="'Rs: '+ ${monthlyOrderTotal}"></p>
+                                        <p></p>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-xl-3 col-sm-6 grid-margin stretch-card">
+                        <div class="card" id="yearly-card" >
+                            <div class="card-body">
+                                <h6 class="text-muted font-weight-normal">Total</h6>
+                                <div class="row">
+                                    <div class="col-9">
+                                        <div class="d-flex align-items-center align-self-start">
+                                            <h3 class="mb-0" th:text="${yearlyOrderCount}"></h3>
+                                        </div>
+                                        <p th:text="'Rs: '+ ${yearlyOrderTotal}"></p>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-8 d-flex justify-content-center">
+                        <div class="card " style="width: 40rem;">
+                            <div class="card-body"><div class="chartjs-size-monitor"><div class="chartjs-size-monitor-expand"><div class=""></div></div><div class="chartjs-size-monitor-shrink"><div class=""></div></div></div>
+                                <div class="chartjs-size-monitor"><div class="chartjs-size-monitor-expand"><div class=""></div></div><div class="chartjs-size-monitor-shrink"><div class=""></div></div>
+                                </div>
+                                <h4 class="card-title">Order Numbers Date-wise Graph</h4>
+                                <canvas id="orderChart" style="display: block; width: 459px; height: 229px;" width="459" height="229" class="chartjs-render-monitor"></canvas>
+                            </div>
+
+
+                            <div>
+                                <input type="radio" id="weekly" name="time-range" value="weekly">
+                                <label for="weekly">Weekly</label>
+
+                                <input type="radio" id="monthly" name="time-range" value="monthly">
+                                <label for="monthly">Monthly</label>
+
+                                <input type="radio" id="yearly" name="time-range" value="yearly">
+                                <label for="yearly">Yearly</label>
+                            </div>
+
+
+                        </div>
+
+
+
+
+
+
+                    </div>
+                    <div class="col-3">
+                        <h3 class="my-2">Report</h3>
+                        <div class="mt-5">
+                            <p th:text="'Rs: '+ ${yearlyOrderTotal}"></p>
+                            <p th:text="'Orders Delivered: '+  ${deliveredOrderCount}"></p>
+                            <p th:text="'Revenue Rate(month) :'+ ${monthlyOrderTotal}"></p>
+<!--                            <a href="/order/report/"><button type="button" class="btn btn-outline-info">Report Page</button></a>-->
+                        </div>
+
+
+                    </div>
+                </div>
+
+<!--                <div class="mt-5" style="width: 40rem;">-->
+<!--                    <h3 class="my-2">TODAY</h3>-->
+<!--                    <ul class="nav nav-tabs" id="myTabs" role="tablist">-->
+<!--                        <li class="nav-item">-->
+<!--                            <a class="nav-link" id="table1-tab" data-toggle="tab" href="#table1" role="tab" aria-controls="table1" aria-selected="false">Orders</a>-->
+<!--                        </li>-->
+<!--                        <li class="nav-item">-->
+<!--                            <a class="nav-link active" id="table2-tab" data-toggle="tab" href="#table2" role="tab" aria-controls="table2" aria-selected="true">Pending Return Requests</a>-->
+<!--                        </li>-->
+<!--                    </ul>-->
+
+<!--                    <div class="tab-content" id="myTabContent">-->
+<!--                        <div class="tab-pane fade" id="table1" role="tabpanel" aria-labelledby="table1-tab">-->
+<!--                            <table class="table">-->
+<!--                                <thead>-->
+<!--                                <tr>-->
+<!--                                    <th>Order num</th>-->
+<!--                                    <th>Username</th>-->
+<!--                                    &lt;!&ndash; Add more table headers if needed &ndash;&gt;-->
+<!--                                </tr>-->
+<!--                                </thead>-->
+<!--                                <tbody>-->
+
+<!--                                </tbody>-->
+<!--                            </table>-->
+<!--                        </div>-->
+<!--                        <div class="tab-pane fade active show" id="table2" role="tabpanel" aria-labelledby="table2-tab">-->
+<!--                            <table class="table">-->
+<!--                                <thead>-->
+<!--                                <tr>-->
+<!--                                    <th>Order num</th>-->
+<!--                                    <th>Username</th>-->
+<!--                                    &lt;!&ndash; Add more table headers if needed &ndash;&gt;-->
+<!--                                </tr>-->
+<!--                                </thead>-->
+<!--                                <tbody>-->
+
+<!--                                <tr>-->
+<!--                                    <td>41TFUJJM3L</td>-->
+<!--                                    <td>AswiinRaj R</td>-->
+<!--                                    <td><a href="/order/adminorderdetail/79">View details</a></td>-->
+<!--                                    &lt;!&ndash; Add more table cells for other fields if needed &ndash;&gt;-->
+<!--                                </tr>-->
+
+<!--                                <tr>-->
+<!--                                    <td>2N8NUHS8UW</td>-->
+<!--                                    <td>AswiinRaj R</td>-->
+<!--                                    <td><a href="/order/adminorderdetail/83">View details</a></td>-->
+<!--                                    &lt;!&ndash; Add more table cells for other fields if needed &ndash;&gt;-->
+<!--                                </tr>-->
+
+<!--                                <tr>-->
+<!--                                    <td>PBUPTU9SOO</td>-->
+<!--                                    <td>AswiinRaj R</td>-->
+<!--                                    <td><a href="/order/adminorderdetail/97">View details</a></td>-->
+<!--                                    &lt;!&ndash; Add more table cells for other fields if needed &ndash;&gt;-->
+<!--                                </tr>-->
+
+<!--                                </tbody></table>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+
+                <div>
+
+                </div>
+
+<!--                <script>-->
+<!-- document.addEventListener('DOMContentLoaded', function () {-->
+<!--    const orderData = [{'date': '2023-09-07', 'order_count': 5}, {'date': '2023-09-08', 'order_count': 3}, {'date': '2023-09-09', 'order_count': 5}, {'date': '2023-09-10', 'order_count': 0}, {'date': '2023-09-11', 'order_count': 0}, {'date': '2023-09-12', 'order_count': 0}, {'date': '2023-09-13', 'order_count': 0}];-->
+
+<!--    // Process the data and create the Chart.js configuration-->
+<!--    const labels = orderData.map(data => data.date);-->
+<!--    const dataValues = orderData.map(data => data.order_count);-->
+
+<!--    const chartConfig = {-->
+<!--        type: 'line',-->
+<!--        data: {-->
+<!--            labels: labels,-->
+<!--            datasets: [{-->
+<!--                label: 'Order Numbers',-->
+<!--                data: dataValues,-->
+<!--                backgroundColor: 'rgba(75, 192, 192, 0.2)',-->
+<!--                borderColor: 'rgba(75, 192, 192, 1)',-->
+<!--                borderWidth: 1-->
+<!--            }]-->
+<!--        },-->
+<!--        options: {-->
+<!--            responsive: true,-->
+<!--            scales: {-->
+<!--                x: {-->
+<!--                    type: 'time',-->
+<!--                    time: {-->
+<!--                        unit: 'day',-->
+<!--                        tooltipFormat: 'YYYY-MM-DD',-->
+<!--                        displayFormats: {-->
+<!--                            day: 'MMM DD'-->
+<!--                        }-->
+<!--                    },-->
+<!--                    title: {-->
+<!--                        display: true,-->
+<!--                        text: 'Date'-->
+<!--                    }-->
+<!--                },-->
+<!--                y: {-->
+<!--                    beginAtZero: true,-->
+<!--                    title: {-->
+<!--                        display: true,-->
+<!--                        text: 'Order Numbers'-->
+<!--                    }-->
+<!--                }-->
+<!--            }-->
+<!--        }-->
+<!--    };-->
+
+<!--    // Create the chart-->
+<!--    const ctx = document.getElementById('orderChart').getContext('2d');-->
+<!--    new Chart(ctx, chartConfig);-->
+<!--});-->
+<!--</script>-->
+
+
+
+                <script>
+
+<!--                document.addEventListener('DOMContentLoaded', function () {-->
+<!--                const chartContainer = document.getElementById('orderChart');-->
+<!--                const ctx = chartContainer.getContext('2d');-->
+
+<!--                const fetchData = (timeRange) => {-->
+<!--                // Define the API endpoint URL based on the selected time range-->
+<!--                let apiUrl = `/chart/show-chart?range=${timeRange}`;-->
+
+<!--                // Make a fetch request to the API-->
+<!--                fetch(apiUrl)-->
+<!--                .then(response => response.json())-->
+<!--                .then(data => {-->
+<!--                console.log('Api Response',data);-->
+<!--                // Extract the count of orders from the response data-->
+<!--                const orderCounts = data.map(item => item.order_count);-->
+
+<!--                // Create or update the chart-->
+<!--                if (window.myChart) {-->
+<!--                window.myChart.destroy(); // Destroy the existing chart-->
+<!--                }-->
+<!--                window.myChart = new Chart(ctx, {-->
+<!--                type: 'line',-->
+<!--                data: {-->
+<!--                labels: ['Order Count'], // Label for the single data point-->
+<!--                datasets: [{-->
+<!--                label: 'Order Count',-->
+<!--                data: orderCounts, // Use the orderCounts array-->
+<!--                backgroundColor: 'rgba(75, 192, 192, 0.2)',-->
+<!--                borderColor: 'rgba(75, 192, 192, 1)',-->
+<!--                borderWidth: 1-->
+<!--                }]-->
+<!--                },-->
+<!--                options: {-->
+<!--                responsive: true,-->
+<!--                scales: {-->
+<!--                x: {-->
+<!--                title: {-->
+<!--                display: true,-->
+<!--                text: 'Data Point'-->
+<!--                }-->
+<!--                },-->
+<!--                y: {-->
+<!--                beginAtZero: true,-->
+<!--                title: {-->
+<!--                display: true,-->
+<!--                text: 'Order Count'-->
+<!--                }-->
+<!--                }-->
+<!--                }-->
+<!--                }-->
+<!--                });-->
+<!--                })-->
+<!--                .catch(error => {-->
+<!--                console.error('Error fetching data:', error);-->
+<!--                });-->
+<!--                };-->
+
+<!--                // Handle radio button changes (assuming you have radio buttons in your HTML)-->
+<!--                const radioButtons = document.querySelectorAll('input[name="time-range"]');-->
+<!--                radioButtons.forEach(radioButton => {-->
+<!--                radioButton.addEventListener('change', (event) => {-->
+<!--                const selectedTimeRange = event.target.value;-->
+<!--                fetchData(selectedTimeRange);-->
+<!--                });-->
+<!--                });-->
+
+<!--                // Initial data fetch (you can set a default radio button as checked)-->
+<!--                const defaultTimeRange = 'weekly'; // Set your default time range-->
+<!--                fetchData(defaultTimeRange);-->
+<!--                });-->
+
+
+
+
+<!--document.addEventListener('DOMContentLoaded', function () {-->
+<!--    const chartContainer = document.getElementById('orderChart');-->
+<!--    const ctx = chartContainer.getContext('2d');-->
+
+<!--    const fetchData = (timeRange) => {-->
+<!--        // Define the API endpoint URL based on the selected time range-->
+<!--        let apiUrl = `/chart/show-chart?range=${timeRange}`;-->
+
+<!--        // Make a fetch request to the API-->
+<!--        fetch(apiUrl)-->
+<!--            .then(response => response.json())-->
+<!--            .then(data => {-->
+<!--                console.log('API Response:', data);-->
+
+<!--                // Create or update the chart-->
+<!--                if (window.myChart) {-->
+<!--                    window.myChart.destroy(); // Destroy the existing chart-->
+<!--                }-->
+<!--                window.myChart = new Chart(ctx, {-->
+<!--                    type: 'line',-->
+<!--                    data: {-->
+<!--                        labels: ['Order Count'], // Label for the single data point-->
+<!--                        datasets: [{-->
+<!--                            label: 'Order Count',-->
+<!--                            data: [data], // Use the single data value from the response-->
+<!--                            backgroundColor: 'rgba(75, 192, 192, 0.2)',-->
+<!--                            borderColor: 'rgba(75, 192, 192, 1)',-->
+<!--                            borderWidth: 1-->
+<!--                        }]-->
+<!--                    },-->
+<!--                    options: {-->
+<!--                        responsive: true,-->
+<!--                        scales: {-->
+<!--                            x: {-->
+<!--                                title: {-->
+<!--                                    display: true,-->
+<!--                                    text: 'Data Point'-->
+<!--                                }-->
+<!--                            },-->
+<!--                            y: {-->
+<!--                                beginAtZero: true,-->
+<!--                                title: {-->
+<!--                                    display: true,-->
+<!--                                    text: 'Order Count'-->
+<!--                                }-->
+<!--                            }-->
+<!--                        }-->
+<!--                    }-->
+<!--                });-->
+<!--            })-->
+<!--            .catch(error => {-->
+<!--                console.error('Error fetching data:', error);-->
+<!--            });-->
+<!--    };-->
+
+<!--    // Handle radio button changes (assuming you have radio buttons in your HTML)-->
+<!--    const radioButtons = document.querySelectorAll('input[name="time-range"]');-->
+<!--    radioButtons.forEach(radioButton => {-->
+<!--        radioButton.addEventListener('change', (event) => {-->
+<!--            const selectedTimeRange = event.target.value;-->
+<!--            fetchData(selectedTimeRange);-->
+<!--        });-->
+<!--    });-->
+
+<!--    // Initial data fetch (you can set a default radio button as checked)-->
+<!--    const defaultTimeRange = 'weekly'; // Set your default time range-->
+<!--    fetchData(defaultTimeRange);-->
+<!--});-->
+
+
+
+
+const formatDate = (dateString) => {
+    const options = { year: 'numeric', month: 'long', day: 'numeric' };
+    const date = new Date(dateString);
+    return date.toLocaleDateString(undefined, options);
+};
+
+// ...
+
+document.addEventListener('DOMContentLoaded', function () {
+    const chartContainer = document.getElementById('orderChart');
+    const ctx = chartContainer.getContext('2d');
+
+    const fetchData = (timeRange) => {
+        let apiUrl = `/chart/show-chart?range=${timeRange}`;
+
+        fetch(apiUrl)
+            .then(response => response.json())
+            .then(data => {
+                console.log('API Response:', data);
+
+                // Extract order counts and dates from the response data
+                const orderCounts = data.map(entry => entry.orderCount);
+                const dates = data.map(entry => entry.date);
+
+                // Create or update the chart
+                if (window.myChart) {
+                    window.myChart.destroy(); // Destroy the existing chart
+                }
+                window.myChart = new Chart(ctx, {
+                    type: 'line',
+                    data: {
+                        labels: dates, // Use dates as x-axis labels
+                        datasets: [{
+                            label: 'Order Count',
+                            data: orderCounts,
+                            backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                            borderColor: 'rgba(75, 192, 192, 1)',
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        scales: {
+                            x: {
+                                title: {
+                                    display: true,
+                                    text: 'Date' // Change to 'Date' or a suitable label
+                                }
+                            },
+                            y: {
+                                beginAtZero: true,
+                                title: {
+                                    display: true,
+                                    text: 'Order Count'
+                                }
+                            }
+                        }
+                    }
+                });
+            })
+            .catch(error => {
+                console.error('Error fetching data:', error);
+            });
+    };
+
+    // Handle radio button changes (assuming you have radio buttons in your HTML)
+    const radioButtons = document.querySelectorAll('input[name="time-range"]');
+    radioButtons.forEach(radioButton => {
+        radioButton.addEventListener('change', (event) => {
+            const selectedTimeRange = event.target.value;
+            fetchData(selectedTimeRange);
+        });
+    });
+
+    // Initial data fetch (you can set a default radio button as checked)
+    const defaultTimeRange = 'monthly'; // Set your default time range
+    fetchData(defaultTimeRange);
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                </script>
+
+
+
+
+            </div>
+
+
+            <!-- content-wrapper ends -->
+            <!-- partial:partials/_footer.html -->
+            <footer class="footer">
+                <div class="d-sm-flex justify-content-center justify-content-sm-between">
+                    <span class="text-muted d-block text-center text-sm-left d-sm-inline-block"></span>
+                    <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center"> Free <a href="https://www.bootstrapdash.com/bootstrap-admin-template/" target="_blank">Bootstrap admin templates</a> from Bootstrapdash.com</span>
+                </div>
+            </footer>
+            <!-- partial -->
+        </div>
+        <!-- main-panel ends -->
+    </div>
+    <!-- page-body-wrapper ends -->
+</div>
+<!-- container-scroller -->
+<!-- plugins:js -->
+<script src="/admin/adminassets/vendors/js/vendor.bundle.base.js"></script>
+<!-- endinject -->
+<!-- Plugin js for this page -->
+<script src="/admin/adminassets/vendors/chart.js/Chart.min.js"></script>
+<script src="/admin/adminassets/vendors/progressbar.js/progressbar.min.js"></script>
+<script src="/admin/adminassets/vendors/jvectormap/jquery-jvectormap.min.js"></script>
+<script src="/admin/adminassets/vendors/jvectormap/jquery-jvectormap-world-mill-en.js"></script>
+<script src="/admin/adminassets/vendors/owl-carousel-2/owl.carousel.min.js"></script>
+<!-- End plugin js for this page -->
+<!-- inject:js -->
+<script src="/admin/adminassets/js/off-canvas.js"></script>
+<script src="/admin/adminassets/js/hoverable-collapse.js"></script>
+<script src="/admin/adminassets/js/misc.js"></script>
+<script src="/admin/adminassets/js/settings.js"></script>
+<script src="/admin/adminassets/js/todolist.js"></script>
+<!-- endinject -->
+<!-- Custom js for this page -->
+<script src="/admin/adminassets/js/dashboard.js"></script>
+<!-- End custom js for this page -->
+
+
+<script>
+        // Set an initial flag for dark mode
+        let isDarkMode = true;
+
+        function toggleMode() {
+            const content = document.getElementById('content');
+            if (isDarkMode) {
+                // Switch to light mode
+                content.style.backgroundColor = 'white';
+                content.style.color = '#333';
+            } else {
+                // Switch to dark mode
+                content.style.backgroundColor = '#333';
+                content.style.color = '#fff';
+            }
+
+            // Toggle the dark mode flag
+            isDarkMode = !isDarkMode;
+        }
+    </script>
+</body>
+</html>
