@@ -378,74 +378,7 @@
             </div>
 
 
-            <!--      Modal-->
 
-<!--            <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">-->
-<!--                <div class="modal-dialog modal-dialog-centered" role="document">-->
-<!--                    <div class="modal-content">-->
-<!--                        <div class="modal-header">-->
-<!--                            <h5 class="modal-title" id="exampleModalLongTitle">Coupon</h5>-->
-<!--                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">-->
-<!--                                <span aria-hidden="true">&times</span>-->
-<!--                            </button>-->
-<!--                        </div>-->
-<!--                        <form th:action="@{/coupon/create}" th:object="${coupon}" method="post" onsubmit="return validateCategoryName();">-->
-<!--                            <div class="modal-body">-->
-<!--                                <label for="couponCode">CouponCode</label><br>-->
-<!--                                <input type="text" id="couponCode" name="code" th:field="*{code}" required><br>-->
-<!--                            </div>-->
-
-
-
-<!--                            <div class="modal-body">-->
-<!--                                <label for="stock">Stock</label><br>-->
-<!--                                <input type="number" id="stock" name="couponStock" th:field="*{stock}" required><br>-->
-<!--                            </div>-->
-
-
-
-<!--                            <div>-->
-<!--                                <label for="discount">Discount:</label>-->
-<!--                                <input type="number" id="discount" th:field="*{discount}" step="0.01" required>-->
-<!--                            </div>-->
-
-<!--                            <div class="modal-body">-->
-<!--                                <label for="minimum">Minimim </label><br>-->
-<!--                                <input type="number" id="minimum" name="couponStock" th:field="*{minimum}" required><br>-->
-<!--                            </div>-->
-
-<!--                            <div class="modal-body">-->
-<!--                                <label for="maximum">Maximum </label><br>-->
-<!--                                <input type="number" id="maximum" name="couponStock" th:field="*{maximum}" required><br>-->
-<!--                            </div>-->
-
-<!--                            <div>-->
-<!--                                <label for="expirationDate">Expiration Date:</label>-->
-<!--                                <input type="datetime-local" id="expirationDate" th:field="*{expirationDate}" required>-->
-<!--                            </div>-->
-
-<!--                            <div>-->
-<!--                                <label for="couponType">Coupon Type:</label>-->
-<!--                                <select id="couponType" th:field="*{couponType}" required>-->
-<!--                                    <option value="FIXED_AMOUNT">Fixed Amount</option>-->
-<!--                                    <option value="PERCENTAGE">Percentage</option>-->
-<!--                                    <option value="BOGO">BOGO (Buy One Get One)</option>-->
-<!--                                </select>-->
-<!--                            </div>-->
-
-
-
-
-
-
-<!--                            <div class="modal-footer">-->
-<!--                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>-->
-<!--                                <button type="submit" class="btn btn-primary">Add coupon</button>-->
-<!--                            </div>-->
-<!--                        </form>-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--            </div>-->
 
 
 
@@ -537,22 +470,7 @@
                                             <td class="couponStock" th:text="${coupon.discount}"></td>
 
                                             <td class="couponStock" th:text="${coupon.stock}"></td>
-<!--                                            <td>-->
-<!--                                                <a th:href="@{/category/delete/{id}(id=${category.id})}" class="btn btn-danger btn-sm" onclick="if (!(confirm('Are you sure you want to delete this Category?'))) return false">Delete</a>-->
-<!--                                                <a th:href="@{/category/update/{id}(id=${category.id})}" class="btn btn-success btn-sm">Update</a>-->
 
-
-
-<!--                                                <a>-->
-<!--                                                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">-->
-<!--                                                        Edit Category-->
-<!--                                                    </button>-->
-<!--                                                </a>-->
-
-
-<!--                                                &lt;!&ndash;                      <a th:href="@{/category/delete/{id}(id=${category.id})}" onclick="return confirmDeleteCategory()" class="delete action-icon" title="Delete" data-toggle="tooltip">&ndash;&gt;&ndash;&gt;-->
-<!--                                                &lt;!&ndash;                          <i class="material-icons">&#xE5C9;</i></a>&ndash;&gt;-->
-<!--                                            </td>-->
                                         </tr>
 
 

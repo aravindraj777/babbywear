@@ -17,8 +17,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import javax.transaction.Transactional;
-import java.util.List;
+
 import java.util.Optional;
 
 @Service
@@ -60,7 +59,7 @@ public class CartServiceImpl implements CartService{
             cart = new Cart();
             cart.setUserInfo(userInfo);
             userInfo.setCart(cart);
-            System.out.println("kjsadb");
+
         }
 
         boolean variantAlreadyInCart = cart.getCartItems().stream()
@@ -89,11 +88,7 @@ public class CartServiceImpl implements CartService{
 
     }
 
-    @Override
-    public void addCart(Long userId, String name) {
-        System.out.println(name);
 
-    }
 
 
     @Override
@@ -102,10 +97,10 @@ public class CartServiceImpl implements CartService{
         Optional<CartItem> cartItemOptional = cartItemRepository.findById(cartItemId);
         if (cartItemOptional.isPresent()) {
             CartItem cartItem = cartItemOptional.get();
-            // Update the cart item's quantity and recalculate the price
+
             cartItem.setQuantity(newQuantity);
             double updatedPrice = calculatePriceBasedOnQuantity(cartItem);
-//            cartItem.setTotalPrice((float) updatedPrice);
+
             cartItemRepository.save(cartItem);
             return (float) updatedPrice;
         } else {
@@ -133,11 +128,11 @@ public class CartServiceImpl implements CartService{
 
 
     private double calculatePriceBasedOnQuantity(CartItem cartItem) {
-        // Fetch the variant associated with the cart item
+
         Variant variant = variantRepository.findById(cartItem.getVariant().getId()).orElse(null);
 
         if (variant != null) {
-            // Calculate the price by multiplying variant's price with cart item's quantity
+
             return variant.getPrice() * cartItem.getQuantity();
         } else {
             throw new VariantNotFoundException("Variant not found for CartItem: " + cartItem.getId());

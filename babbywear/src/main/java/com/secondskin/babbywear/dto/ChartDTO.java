@@ -3,7 +3,7 @@ package com.secondskin.babbywear.dto;
 
 import lombok.*;
 
-import java.sql.Timestamp;
+
 import java.time.LocalDate;
 
 

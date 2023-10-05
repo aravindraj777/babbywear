@@ -9,13 +9,12 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
+
 import java.util.Arrays;
 import java.util.List;
-import java.util.Optional;
+
 
 @Controller
 @RequestMapping("/orders")
@@ -26,15 +25,7 @@ public class AdminOrderController {
 
 
 
-//
-//    @GetMapping("/user-orders")
-//    public String showOrders(Model model){
-//
-//        List<Order> orderList = orderService.getAllOrders();
-//        model.addAttribute("orders",orderList);
-//
-//        return "admin/user-orders";
-//    }
+
 
 
     @GetMapping("/user-orders")
@@ -80,7 +71,7 @@ public class AdminOrderController {
 
     @GetMapping("/view-order/{id}")
     public String viewSingleOrder(@PathVariable Long id ,Model model){
-        System.out.println("id"+id);
+
 
 
 
@@ -89,7 +80,7 @@ public class AdminOrderController {
         List<OrderItems> getOrderItemByOrder = orderService.getOrderById(id).getOrderItems();
 
 
-        System.out.println(getOrderItemByOrder+"jd");
+
 
 
         model.addAttribute("orderItems",getOrderItemByOrder);
@@ -108,8 +99,7 @@ public class AdminOrderController {
     public String updateStatus(@PathVariable Long orderId ,
                                @RequestParam Status orderStatus){
 
-        System.out.println("Longhhh"+orderId);
-        System.out.println("sjfgbsdjk"+orderStatus);
+
 
         try{
             orderService.updateOrderStatus(orderId,orderStatus);

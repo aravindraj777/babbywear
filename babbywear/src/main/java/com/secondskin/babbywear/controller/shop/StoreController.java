@@ -22,7 +22,7 @@ import java.util.List;
 
 import java.util.Optional;
 import java.util.stream.Collectors;
-import java.util.stream.IntStream;
+
 
 @Controller
 
@@ -73,7 +73,7 @@ public class StoreController {
                .stream().filter(products -> !products.isDeleted())
                .toList();
        List<Category>categories = categoryService.getAllCategories();
-        System.out.println(categories);
+
        model.addAttribute("categories",categories);
        model.addAttribute("products",product);
         return "product-gallery";
@@ -134,7 +134,7 @@ public class StoreController {
 
     @GetMapping("/searchProduct")
     public String searchProductsByName(@RequestParam String searchProduct, Model model) {
-        // Retrieve products with names containing the search term
+
         List<Products> products = productService.findByName(searchProduct)
                 .stream().filter(product -> !product.isDeleted()).collect(Collectors.toList());
 
@@ -211,42 +211,7 @@ public class StoreController {
 
 
 
-//    @PostMapping("/review")
-//    @ResponseBody
-//    public ResponseEntity<String> createReview(@RequestParam String productId,
-//                                               @RequestParam int rating,
-//                                               @RequestParam String review,
-//                                               Principal principal) {
-//
-//        Long id = Long.parseLong(productId);
-//        System.out.println(rating);
-//
-//        UserInfo user = userService.findByUsername(principal.getName());
-//
-//        Products product = productService.getById(id);
-//
-//
-//        if (user != null && product != null) {
-//
-//
-//            if (rating >= 0 && rating <= 5) {
-//                reviewService.saveUserRating(user, product, rating, review);
-//
-//
-//                double averageRating = productService.calculateAverageRating(product);
-//
-//                product.setAverageRating(averageRating);
-//                productService.saveProduct(product);
-//
-//
-//                return ResponseEntity.ok("Review Submitted");
-//
-//            } else {
-//                return ResponseEntity.badRequest().body("Rating must be between 1 and 5.");
-//            }
-//        }
-//        return ResponseEntity.badRequest().body("Unable to review");
-//    }
+
 
 
 
@@ -258,7 +223,7 @@ public class StoreController {
                                                Principal principal) {
 
         Long id = Long.parseLong(productId);
-        System.out.println(rating);
+
 
         UserInfo user = userService.findByUsername(principal.getName());
 
@@ -304,7 +269,7 @@ public class StoreController {
     @ResponseBody
     public ResponseEntity<Variant> getVariant(@PathVariable String id){
        try {
-           System.out.println(id+"id");
+
 
            Long variantId = Long.parseLong(id);
            Optional<Variant> variant = variantService.findById(variantId);

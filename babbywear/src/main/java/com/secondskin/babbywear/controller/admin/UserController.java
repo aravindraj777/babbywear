@@ -11,10 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import javax.mail.search.SearchTerm;
-import java.util.Optional;
 
 @Controller
 @RequestMapping("/user")
@@ -26,12 +23,7 @@ public class UserController {
 
 
 
-//   @GetMapping("/user-panel")
-//   public String showUser(Model model){
-//       model.addAttribute("users",userService.findAll());
-//       return "admin/user-list";
-//
-//   }
+
 
     @GetMapping("/user-panel")
     public String showUser(@RequestParam(defaultValue = "0")int pageNo,

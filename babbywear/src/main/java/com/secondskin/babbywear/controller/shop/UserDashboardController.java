@@ -10,20 +10,20 @@ import com.secondskin.babbywear.service.stock.StockService;
 import com.secondskin.babbywear.service.user.UserService;
 import com.secondskin.babbywear.service.wallet.WalletService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.Banner;
-import org.springframework.http.HttpStatus;
+
+
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
+
 import org.springframework.web.bind.annotation.*;
 
-import javax.mail.search.SearchTerm;
+
 import java.security.Principal;
 import java.time.LocalDate;
 import java.util.HashMap;
@@ -136,10 +136,10 @@ public class UserDashboardController {
 
     @PostMapping("/edit-address")
     public String editAddress(@ModelAttribute("address")Address address,Model model){
-//        System.out.println("idd"+id);
+
 
         addressService.updateAddress(address,address.getId());
-        System.out.println(address);
+
         return "redirect:/details/show-address";
 
     }
@@ -190,7 +190,7 @@ public class UserDashboardController {
     @GetMapping("/getOrderStatus/{id}")
     @ResponseBody
     public ResponseEntity<String> getOrderStatus(@PathVariable Long id){
-        System.out.println(id);
+
         String orderStatus = String.valueOf(orderService.getOrderStatusById(id));
         if (orderStatus != null){
             return ResponseEntity.ok(orderStatus);
@@ -204,7 +204,7 @@ public class UserDashboardController {
     @PostMapping("/cancel-order")
     @ResponseBody
     public Map<String,String> cancelOrder(@RequestParam ("orderId") Long orderId) {
-        System.out.println("orderIdd" + orderId);
+
 
 
         Map<String, String> response = new HashMap<>();
@@ -236,7 +236,7 @@ public class UserDashboardController {
                 stockService.updateStockForOrderCancellation(order);
                 orderService.updateOrder(order);
                 response.put("status", "success");
-                System.out.println(order.getStatus());
+
                 response.put("message", "Order has been successfully canceled.");
             } else {
                 response.put("status", "error");
@@ -252,7 +252,7 @@ public class UserDashboardController {
     @GetMapping("/delete-address/{id}")
 
     public String deleteUserAddress(@PathVariable Long id){
-        System.out.println("addred"+id);
+
 
         Address address = addressService.getAddressById(id);
 
@@ -270,24 +270,7 @@ public class UserDashboardController {
     }
 
 
-//    @PostMapping("/return-order")
-//    public  ResponseEntity<String> requestForReturn(@RequestParam("orderId") Long orderId,
-//                                                    @RequestParam("selectedReason") String selectedReason){
-//
-//
-//        System.out.println(orderId+"order");
-//        System.out.println(selectedReason+"reason");
-//
-//          Optional<Order> order =  orderService.findOrderById(orderId);
-//
-//          if(order.isPresent()){
-//              Order orders = order.get();
-//
-//
-//          }
-//
-//
-//    }
+
 
 
 

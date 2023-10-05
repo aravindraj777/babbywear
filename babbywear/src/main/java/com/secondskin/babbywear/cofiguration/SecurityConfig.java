@@ -43,10 +43,7 @@ public class SecurityConfig {
         return authenticationProvider;
     }
 
-//    @Bean
-//    public UserDetailsService userDetailsService(){
-//        return  new UserInfoDetailsService();
-//    }
+
 
     @Bean
     public PasswordEncoder passwordEncoder(){
@@ -90,17 +87,7 @@ public class SecurityConfig {
     }
 
 
-//    @Bean
-//    public AuthenticationManager authenticationManager(){
-//        return new ProviderManager(Arrays.asList(authenticationProvider()));
-//
-//    }
-//
-//    @Bean
-//    public AuthenticationProvider authenticationProvider(){
-//        return new authen
-//
-//    }
+
 
 
 }

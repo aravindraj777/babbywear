@@ -7,7 +7,6 @@ import com.secondskin.babbywear.repository.OrderRepository;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
@@ -40,13 +39,13 @@ public class OrderServiceImpl implements  OrderService {
 
     public void createTransaction(Double amount) {
         try {
-            System.out.println(amount);
+
             JSONObject jsonObject = new JSONObject();
             jsonObject.put("amount", (amount * 100));
             jsonObject.put("currency", CURRENCY);
             RazorpayClient razorpayClient = new RazorpayClient(KEY, KEY_SECRET);
             com.razorpay.Order order = razorpayClient.orders.create(jsonObject);
-            System.out.println(order);
+
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }

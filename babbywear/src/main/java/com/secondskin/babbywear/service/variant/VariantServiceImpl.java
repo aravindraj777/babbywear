@@ -6,7 +6,7 @@ import com.secondskin.babbywear.repository.VariantRepository;
 import com.secondskin.babbywear.service.email.EmailService;
 import com.secondskin.babbywear.service.product.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
+
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
@@ -74,7 +74,7 @@ public class VariantServiceImpl implements VariantService{
     public void checkStockAndNotifyAdmin() {
 
         List<Variant> lowStockVariants = variantRepository.findByStock(4);
-        System.out.println(lowStockVariants);
+
 
         for(Variant variant : lowStockVariants){
             if(variant.getStock() <5){

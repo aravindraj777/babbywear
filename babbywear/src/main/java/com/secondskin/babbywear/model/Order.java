@@ -2,16 +2,15 @@ package com.secondskin.babbywear.model;
 
 
 import lombok.*;
-import org.hibernate.annotations.CreationTimestamp;
+
 
 import javax.persistence.*;
-import java.sql.Timestamp;
+
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
-import java.util.UUID;
-import java.util.concurrent.ThreadLocalRandom;
+
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -66,7 +65,7 @@ public class Order {
     private static final String NUMBERS = "123456789";
 
 
-//   private UUID randomNumber = UUID.randomUUID();
+
 
     @Column(unique = true)
     private String orderNumber;

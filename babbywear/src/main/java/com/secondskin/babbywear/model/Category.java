@@ -3,9 +3,9 @@ package com.secondskin.babbywear.model;
 import lombok.*;
 
 import javax.persistence.*;
-import java.sql.Blob;
+
 import java.util.List;
-import java.util.UUID;
+
 
 @Entity
 @Builder

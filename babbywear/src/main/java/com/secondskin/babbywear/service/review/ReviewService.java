@@ -5,7 +5,7 @@ import com.secondskin.babbywear.model.Products;
 import com.secondskin.babbywear.model.UserInfo;
 
 import java.util.List;
-import java.util.Optional;
+
 
 public interface ReviewService {
 
@@ -22,5 +22,5 @@ public interface ReviewService {
 
     List<ProductReview> findByProductId(Long id);
 
-//    double calculateAverageRating(Products product);
+
 }

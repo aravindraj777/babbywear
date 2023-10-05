@@ -6,7 +6,7 @@ import com.secondskin.babbywear.repository.CategoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.persistence.EntityNotFoundException;
+
 import java.util.List;
 import java.util.Optional;
 
@@ -63,21 +63,11 @@ public class CategoryServiceImpl implements CategoryService{
         Category category = categoryRepository.findById(categoryDto.getId())
                 .orElseThrow(() -> new RuntimeException("Category not found"));
 
-        // Update the category name
         category.setCategoryName(categoryDto.getCategoryName());
 
-        // Save the updated category
+
         categoryRepository.save(category);
     }
-
-
-
-//    public String getImageUrlForCategory(Category category) {
-//        Category fetchedCategory = categoryRepository.findById(category.getId())
-//                .orElseThrow(() -> new EntityNotFoundException("Category not found"));
-//
-//        return fetchedCategory.getImageUrl();
-//    }
 
 
 

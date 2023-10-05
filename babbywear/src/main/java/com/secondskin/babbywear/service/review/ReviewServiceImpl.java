@@ -5,11 +5,11 @@ import com.secondskin.babbywear.model.Products;
 import com.secondskin.babbywear.model.UserInfo;
 import com.secondskin.babbywear.repository.ProductReviewRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.parameters.P;
+
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
+
 
 @Service
 public class ReviewServiceImpl implements ReviewService {
@@ -67,19 +67,7 @@ public class ReviewServiceImpl implements ReviewService {
         return productReviewRepository.findByProductsId(id);
     }
 
-//    @Override
-//    public double calculateAverageRating(Products product) {
-//
-//        List<ProductReview> productReviews = productReviewRepository.findByProducts(product);
-//
-//        if(productReviews.isEmpty()){
-//            return 0.0;
-//        }
-//        int totalRatingValue = productReviews.stream().mapToInt(ProductReview::getRating).sum();
-//        int totalRatings = productReviews.size();
-//        int totalAvailableStars = totalRatings * 5;
-//        return (double) totalRatingValue / totalAvailableStars;
-//    }
+
 
 }
 

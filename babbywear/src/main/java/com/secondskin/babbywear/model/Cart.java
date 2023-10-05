@@ -1,7 +1,7 @@
 package com.secondskin.babbywear.model;
 
 import lombok.*;
-import org.aspectj.weaver.ast.Var;
+
 
 import javax.persistence.*;
 import java.util.ArrayList;

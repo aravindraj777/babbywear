@@ -1,7 +1,7 @@
 package com.secondskin.babbywear.controller.shop;
 
 
-import com.razorpay.RazorpayClient;
+
 import com.razorpay.RazorpayException;
 import com.secondskin.babbywear.model.*;
 import com.secondskin.babbywear.repository.CartItemRepository;
@@ -34,8 +34,7 @@ import java.security.Principal;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
-import java.util.Optional;
+
 
 @Controller
 
@@ -91,25 +90,25 @@ public class CartController {
 
         try{
             Long variantId = Long.parseLong(id);
-            System.out.println("1");
+
 
 
             Authentication currentAuthentication = SecurityContextHolder.getContext().getAuthentication();
-            System.out.println(currentAuthentication+"current user");
+
 
 
             if(authentication!=null && authentication.isAuthenticated()){
-                System.out.println("1.5");
+
 
                 UserDetails userDetails =(UserDetails) authentication.getPrincipal();
                 String username = userDetails.getUsername();
                 ResponseEntity<String> response = cartService.addToCart(username,variantId);
-                System.out.println("1.8");
-                System.out.println("2");
+
+
                 return response;
             }
             else {
-                System.out.println("3");
+
                 return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("User Not authenticated:Try Login");
             }
         }
@@ -137,7 +136,7 @@ public class CartController {
     @GetMapping("/delete/{id}")
     public String deleteCartItem(@PathVariable long id){
         cartService.deleteCartItemById(id);
-        System.out.println("ajg"+id);
+
         return "redirect:/cart";
     }
 
@@ -147,9 +146,9 @@ public class CartController {
     @ResponseBody
     public ResponseEntity<Float> updateQuantity(@RequestParam Long cartItemId, @RequestParam int newQuantity){
 
-        System.out.println("id"+cartItemId+" "+newQuantity);
 
-        System.out.println("id"+cartItemId);
+
+
         CartItem cartItem = cartItemService.findById(cartItemId);
         cartItem.setQuantity(newQuantity);
         cartItemService.save(cartItem);
@@ -208,7 +207,7 @@ public class CartController {
             int amount= order.get("amount");
 
 
-         System.out.println(order.toString()+"kjsbh");
+
 
          model.addAttribute("orderId",orderId);
          model.addAttribute("updatedCartTotal", updatedCartTotal);
@@ -228,14 +227,13 @@ public class CartController {
                              HttpServletRequest request,HttpSession session,
                              Model model ){
 
-        System.out.println(id);
-        System.out.println(selectedPaymentMethod);
+
 
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         if(authentication!=null && authentication.getPrincipal()instanceof UserDetails){
             UserDetails userDetails =((UserDetails) authentication.getPrincipal());
             String userName = userDetails.getUsername();
-            System.out.println(userName);
+
 
             UserInfo userInfo = userRepository.findByUserName(userName)
                   .orElseThrow(()->new UsernameNotFoundException("Not found"));
@@ -244,7 +242,7 @@ public class CartController {
             List<CartItem> cartItems =cart.getCartItems();
             float totalAmount = calculateTotalOrderAmount(cartItems);
 
-//            float cartTotal = cartItemService.calculateCartTotal(cart);
+
             Boolean couponApplied = (Boolean) session.getAttribute("couponApplied");
             Float updatedCartTotal = (Float) session.getAttribute("updatedCartTotal");
 
@@ -255,7 +253,7 @@ public class CartController {
 
 
             Address shippingAddress = addressService.getAddressById(id);
-//            Payment payment = Payment.valueOf(String.valueOf(selectedPaymentMethod));
+
             Status orderStatus = Status.ORDER_PENDING;
             
 
@@ -297,10 +295,10 @@ public class CartController {
                         cartItems.clear();
                         cartService.saveCart(cart);
                         userService.deleteCart(cart);
-                        System.out.println("hekkkk");
+
                         cartService.deleteCart(cart);
 
-                        System.out.println("lkjdasgkj");
+
                         session.removeAttribute("cartTotal");
                         session.removeAttribute("couponApplied");
                         session.removeAttribute("updatedCartTotal");
@@ -321,7 +319,7 @@ public class CartController {
                 order.setOrderedDate(LocalDate.now());
                 order.setTotal(totalAmount);
 
-//            float totalAmount = 0.0f;
+
                 List<OrderItems> orderItemsList = new ArrayList<>();
                 for (CartItem cartItem : cartItems) {
                     OrderItems orderItems = new OrderItems();
@@ -353,10 +351,10 @@ public class CartController {
                         cartItems.clear();
                         cartService.saveCart(cart);
                         userService.deleteCart(cart);
-                        System.out.println("hekkkk");
+
                         cartService.deleteCart(cart);
 
-                        System.out.println("lkjdasgkj");
+
                         session.removeAttribute("cartTotal");
                         session.removeAttribute("couponApplied");
                         session.removeAttribute("updatedCartTotal");

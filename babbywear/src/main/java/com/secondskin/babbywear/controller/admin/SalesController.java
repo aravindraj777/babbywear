@@ -2,13 +2,13 @@ package com.secondskin.babbywear.controller.admin;
 
 
 
-//import com.secondskin.babbywear.service.sales.SalesService;
+
 import com.secondskin.babbywear.model.Order;
 import com.secondskin.babbywear.model.SalesTime;
 import com.secondskin.babbywear.repository.OrderRepository;
 import com.secondskin.babbywear.service.pdfGenerator.PdfGeneratorService;
 import com.secondskin.babbywear.service.sales.SalesService;
-import com.secondskin.babbywear.service.sales.SalesServiceImpl;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
@@ -147,7 +147,6 @@ public class SalesController {
         String token = request.getParameter("token");
         List<Order> orders = (List<Order>) session.getAttribute(token);
         pdfGeneratorService.generatePdf(orders,response);
-
     }
 
 
