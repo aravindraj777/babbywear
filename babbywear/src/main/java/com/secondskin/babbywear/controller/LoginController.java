@@ -87,9 +87,6 @@ public class LoginController {
 
     @PostMapping("/verifyotp")
     public String verifyAccount(@ModelAttribute("otp") OtpDto otp) {
-
-
-
         boolean res=userService.verifyAccount(otp);
         if(res) {
             return "login";

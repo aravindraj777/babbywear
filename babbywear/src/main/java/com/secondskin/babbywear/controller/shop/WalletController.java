@@ -30,6 +30,6 @@ public class WalletController {
           model.addAttribute("balance",balance);
           model.addAttribute("wallet",wallet);
 
-        return "wallet";
+        return "Wallet";
     }
 }

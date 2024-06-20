@@ -48,10 +48,4 @@ public class UserController {
        userService.unBlockById(id);
        return "redirect:/user/user-panel";
    }
-
-
-
-
-
-
 }

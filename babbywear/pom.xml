@@ -122,6 +122,7 @@
 				</configuration>
 			</plugin>
 		</plugins>
+		<finalName>aws-spring</finalName>
 	</build>
 
 </project>

@@ -1,0 +1,15 @@
+
+`	java:S112P"FDefine and throw a dedicated exception instead of using a generic one.(¡®¸ãÿÿÿÿÿ
+\	java:S112×"FDefine and throw a dedicated exception instead of using a generic one.(…ò†
+t
+java:S1488f"^Immediately return this expression instead of assigning it to the temporary variable "otpDto".(¼¤öƒ
+t
+java:S3655÷"XCall "userPassword.isPresent()" or "!userPassword.isEmpty()" before accessing the value.(‘šÇÒùÿÿÿÿ
+_
+java:S3655æ"HCall "user.isPresent()" or "!user.isEmpty()" before accessing the value.(©ıö
+@	java:S106H"+Replace this use of System.out by a logger.(¨¿Ÿ…
+E	java:S106J"+Replace this use of System.out by a logger.(ˆ¦º÷üÿÿÿÿ
+K
+java:S2209f"5Change this instance-reference to a static reference.(¼¤öƒ
+X
+java:S1126ç"AReplace this if-then-else statement by a single return statement.(Ûâ’í

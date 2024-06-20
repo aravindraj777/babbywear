@@ -64,7 +64,8 @@ public class ProductController {
     ImageService imageService;
 
 
-    public static String uploadDir ="C:\\Users\\ARAVIND\\IdeaProjects\\babbywear\\babbywear\\src\\main\\resources\\static\\productImages";
+
+ String uploadDir = "/home/ec2-user/babbywear/src/main/resources/static/productImages";
 
 
 
@@ -124,18 +125,6 @@ public class ProductController {
             String imageId= imageFile.getOriginalFilename();
             Path filePath = Paths.get(uploadDir,imageId);
             Files.write(filePath,imageFile.getBytes());
-
-            int maxHeight = 200;
-            int maxWidth=200;
-
-
-            Thumbnails.of(filePath.toFile())
-                    .crop(Positions.TOP_CENTER)
-                    .size(maxWidth,maxHeight)
-                    .outputQuality(1.0)
-                    .toFile(filePath.toFile());
-
-
             images.setImageUrl(imageId);
             images.setProducts(products);
             imagesList.add(images);

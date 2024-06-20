@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <module version="4">
-  <component name="AdditionalModuleElements">
-    <content url="file://$MODULE_DIR$" />
+  <component name="SonarLintModuleSettings">
+    <option name="uniqueId" value="06dd2057-a295-4f97-b051-f1e46d719bdc" />
   </component>
 </module>

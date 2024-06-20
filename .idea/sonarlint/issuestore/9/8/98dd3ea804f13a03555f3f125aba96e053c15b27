@@ -1,0 +1,15 @@
+
+i
+java:S3008"NRename this field "KEY" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¹ÿ† ıÿÿÿÿ
+p
+java:S3008"URename this field "KEY_SECRET" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(³ù£‚üÿÿÿÿ
+n
+java:S3008"SRename this field "CURRENCY" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ó±üºıÿÿÿÿ
+T
+java:S1854/"9Remove this useless assignment to local variable "order".(íºÏıÿÿÿÿ
+E
+java:S1481/"*Remove this unused "order" local variable.(íºÏıÿÿÿÿ
+E	java:S1062"+Replace this use of System.out by a logger.(©şêÜúÿÿÿÿ
+E	java:S106A"+Replace this use of System.out by a logger.(ÍÕ§§ùÿÿÿÿ
+2
+java:S6205a"Remove this redundant block.(üØô
