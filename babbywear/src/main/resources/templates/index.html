@@ -690,37 +690,68 @@
     </div><!-- End .heading -->
 
 
+<!--     <div class="tab-content tab-content-carousel">-->
+<!--         <div class="tab-pane p-0 fade show active"  role="tabpanel"-->
+<!--              aria-labelledby="trending-women-link">-->
+<!--             <div class="product product-7 text-center">-->
+<!--                 <div class="container">-->
+<!--                     <div class="row">-->
+<!--&lt;!&ndash;                         <div class="col-md-3 d-flex" th:each="product :${products}" th:if="${product.category.categoryName == 'Mens'}">&ndash;&gt;-->
+<!--                         <div class="col-md-3 d-flex" th:each="mensProducts : ${mensProduct}">-->
+<!--                         <div class="card flex-fill" style="width: 100%;">-->
+<!--                                 <img th:src="${'/productImages/' +mensProducts.images[0].imageUrl}"-->
+<!--                                      th:alt="${mensProducts.images[0].imageUrl}"-->
+<!--                                      class="card-img-top mx-auto"-->
+<!--                                      style="max-height: 200px; max-width: 95%; object-fit: contain;">-->
+<!--                                 <div class="card-body d-flex flex-column">-->
+<!--                                     <h5 class="card-title" th:text="${mensProducts.productName}"></h5>-->
+
+<!--                                     <p class="card-text flex-grow-1" th:text="${mensProducts.description}"></p>-->
+<!--                                     <div class="mt-auto text-center">-->
+<!--                                         <a th:href="@{'/single-product/' + ${mensProducts.id}}"-->
+<!--                                            class="btn btn-primary">View</a>-->
+<!--                                     </div>-->
+<!--                                 </div>-->
+<!--                             </div>-->
+<!--                         </div>-->
+<!--                     </div>-->
+<!--                 </div>-->
+<!--             </div>-->
+<!--         </div>-->
+<!--      </div>-->
+
+
      <div class="tab-content tab-content-carousel">
-         <div class="tab-pane p-0 fade show active"  role="tabpanel"
-              aria-labelledby="trending-women-link">
+         <div class="tab-pane p-0 fade show active" role="tabpanel" aria-labelledby="trending-women-link">
              <div class="product product-7 text-center">
                  <div class="container">
-                     <div class="row">
-<!--                         <div class="col-md-3 d-flex" th:each="product :${products}" th:if="${product.category.categoryName == 'Mens'}">-->
+                     <div class="row" th:if="${!mensProduct.isEmpty()}">
                          <div class="col-md-3 d-flex" th:each="mensProducts : ${mensProduct}">
-                         <div class="card flex-fill" style="width: 100%;">
-                                 <img th:src="${'/productImages/' +mensProducts.images[0].imageUrl}"
+                             <div class="card flex-fill" style="width: 100%;">
+                                 <img th:src="${'/productImages/' + mensProducts.images[0].imageUrl}"
                                       th:alt="${mensProducts.images[0].imageUrl}"
                                       class="card-img-top mx-auto"
                                       style="max-height: 200px; max-width: 95%; object-fit: contain;">
                                  <div class="card-body d-flex flex-column">
                                      <h5 class="card-title" th:text="${mensProducts.productName}"></h5>
-
                                      <p class="card-text flex-grow-1" th:text="${mensProducts.description}"></p>
                                      <div class="mt-auto text-center">
-                                         <a th:href="@{'/single-product/' + ${mensProducts.id}}"
-                                            class="btn btn-primary">View</a>
+                                         <a th:href="@{'/single-product/' + ${mensProducts.id}}" class="btn btn-primary">View</a>
                                      </div>
                                  </div>
                              </div>
                          </div>
                      </div>
+                     <div class="row" th:if="${mensProduct.isEmpty()}">
+                         <p>No products available.</p>
+                     </div>
                  </div>
              </div>
          </div>
-      </div>
+     </div>
 
-    </div><!-- End .row -->
+
+ </div><!-- End .row -->
 </div><!-- End .container -->
 
 

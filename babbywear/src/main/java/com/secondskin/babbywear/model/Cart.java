@@ -13,7 +13,7 @@ import java.util.List;
 @Getter
 @Setter
 @ToString
-@Table
+@Table(name = "cart")
 @Entity
 public class Cart {
 
